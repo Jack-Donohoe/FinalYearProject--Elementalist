@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MapModule : MonoBehaviour
 {
-    [SerializeField] MapCell _map;
+    [SerializeField] Map _map;
     [SerializeField] string _forwardContactType;
     [SerializeField] string _backContactType;
     [SerializeField] string _rightContactType;

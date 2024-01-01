@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2656482973251298668}
+  - component: {fileID: 282514294481123211}
   m_Layer: 0
   m_Name: CornerTile
   m_TagString: Untagged
@@ -34,6 +35,23 @@ Transform:
   - {fileID: 1327377082112476787}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &282514294481123211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 211773705276330990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7586f90b487bfcf4b9d5a37868dbc352, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _map: {fileID: 1327574640419919549, guid: 92019ebf51f23234d9ab3cfbe2838633, type: 3}
+  _forwardContactType: Wall
+  _backContactType: WallOnLeft
+  _rightContactType: WallOnRight
+  _leftContactType: Wall
 --- !u!1 &590164534187731964
 GameObject:
   m_ObjectHideFlags: 0
