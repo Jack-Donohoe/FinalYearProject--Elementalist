@@ -27,7 +27,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 45, y: 3, z: -9}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5075349682992425965}
@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7586f90b487bfcf4b9d5a37868dbc352, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _map: {fileID: 1327574640419919549, guid: 92019ebf51f23234d9ab3cfbe2838633, type: 3}
+  _map: {fileID: 0}
   _forwardContactType: Wall
   _backContactType: WallOnLeft
   _rightContactType: WallOnRight
