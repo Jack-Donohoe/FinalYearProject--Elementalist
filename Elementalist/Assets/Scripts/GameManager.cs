@@ -15,4 +15,16 @@ public class GameManager : MonoBehaviour
     {
         
     }
+
+    void StartCombat()
+    {
+        
+    }
+
+    void ReturnToLevel()
+    {
+        
+    }
+    
+    
 }
