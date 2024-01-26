@@ -379,7 +379,7 @@
 "Assets/Scripts/Combat/CombatCamera.cs"
 "Assets/Scripts/Combat/CombatHUD.cs"
 "Assets/Scripts/Combat/CombatSystem.cs"
-"Assets/Scripts/Enemy/Grunt_Exploration.cs"
+"Assets/Scripts/Enemy/Enemy_Exploration.cs"
 "Assets/Scripts/GameManager.cs"
 "Assets/Scripts/ProcGen/DemoMap.cs"
 "Assets/StarterAssets/InputSystem/StarterAssetsInputs.cs"
