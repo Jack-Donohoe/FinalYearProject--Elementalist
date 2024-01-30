@@ -12,6 +12,6 @@ public class CombatCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        gameCamera.transform.RotateAround(lookPoint.transform.position, Vector3.up, 0.01f);
+        gameCamera.transform.RotateAround(lookPoint.transform.position, Vector3.up, 0.05f);
     }
 }
