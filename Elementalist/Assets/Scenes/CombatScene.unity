@@ -922,8 +922,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1740096170}
-        m_TargetAssemblyTypeName: CombatSystem, Assembly-CSharp
+      - m_Target: {fileID: 755511669}
+        m_TargetAssemblyTypeName: Player_Combat, Assembly-CSharp
         m_MethodName: onFireballButton
         m_Mode: 1
         m_Arguments:
@@ -1220,8 +1220,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1740096170}
-        m_TargetAssemblyTypeName: CombatSystem, Assembly-CSharp
+      - m_Target: {fileID: 755511669}
+        m_TargetAssemblyTypeName: Player_Combat, Assembly-CSharp
         m_MethodName: onHealButton
         m_Mode: 1
         m_Arguments:
@@ -1718,9 +1718,10 @@ GameObject:
   - component: {fileID: 699507971}
   - component: {fileID: 699507970}
   - component: {fileID: 699507974}
+  - component: {fileID: 699507975}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1838,6 +1839,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &699507975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 699507969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48c6f17702173144a8ad7a9b8960f7ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hud: {fileID: 707934140}
+  manager: {fileID: 1740096172}
+  state: 0
 --- !u!1 &700636620
 GameObject:
   m_ObjectHideFlags: 0
@@ -2089,6 +2105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cf4395877cb49548abbd8eef316b251, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DialogueText: {fileID: 1417423815}
   PlayerHPSlider: {fileID: 483533871}
   EnemyHPSlider: {fileID: 63879156}
   MPSlider: {fileID: 1573842333}
@@ -2343,9 +2360,10 @@ GameObject:
   - component: {fileID: 755511667}
   - component: {fileID: 755511666}
   - component: {fileID: 755511665}
+  - component: {fileID: 755511669}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2438,6 +2456,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &755511669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 755511664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 979a5c8796adfda4d905f35af236f90c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hud: {fileID: 707934140}
+  manager: {fileID: 1740096172}
+  state: 0
 --- !u!1 &779393373
 GameObject:
   m_ObjectHideFlags: 0
@@ -2973,8 +3006,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1740096170}
-        m_TargetAssemblyTypeName: CombatSystem, Assembly-CSharp
+      - m_Target: {fileID: 755511669}
+        m_TargetAssemblyTypeName: Player_Combat, Assembly-CSharp
         m_MethodName: onAttackButton
         m_Mode: 1
         m_Arguments:
@@ -3330,29 +3363,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1740096171}
-  - component: {fileID: 1740096170}
+  - component: {fileID: 1740096172}
   m_Layer: 0
-  m_Name: CombatSystem
+  m_Name: CombatManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1740096170
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1740096169}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f4bb61df70316b4f929fb1e07d009f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hud: {fileID: 707934140}
-  dialogueText: {fileID: 1417423815}
-  state: 0
 --- !u!4 &1740096171
 Transform:
   m_ObjectHideFlags: 0
@@ -3368,6 +3386,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1740096172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1740096169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6eae1ba996d9b624f93c85d0fce3ce41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hud: {fileID: 707934140}
 --- !u!1 &2033672889
 GameObject:
   m_ObjectHideFlags: 0

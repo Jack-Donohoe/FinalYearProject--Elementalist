@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class CombatHUD : MonoBehaviour
 {
+    public TMP_Text DialogueText; 
     public Slider PlayerHPSlider;
     public Slider EnemyHPSlider;
     public Slider MPSlider;
@@ -12,7 +14,7 @@ public class CombatHUD : MonoBehaviour
     public void Start()
     {
         PlayerHPSlider.maxValue = 100;
-        EnemyHPSlider.maxValue = 100;
+        EnemyHPSlider.maxValue = 40;
         MPSlider.value = 100;
     }
 

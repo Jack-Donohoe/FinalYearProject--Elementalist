@@ -38,5 +38,12 @@ public class ProcGenV1 : MonoBehaviour
                 print(column + ", " + row);
             }
         }
+        
+        int rand = Random.Range(0, 100);
+        
+        if (rand <= 30)
+        {
+            
+        }
     }
 }
