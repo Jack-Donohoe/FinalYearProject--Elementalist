@@ -5,18 +5,40 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    void LoadLevel()
+    private Scene level;
+    private Scene combat;
+    
+    private static GameManager instance;
+
+    private void Awake()
     {
-        
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
+        level = SceneManager.GetSceneByName("TestScene");
+        combat = SceneManager.GetSceneByName("CombatScene");
     }
     
-    void StartCombat()
+    public void LoadLevel()
     {
-        
+        SceneManager.LoadScene("TestScene");
+    }
+    
+    public void StartCombat()
+    {
+        SceneManager.LoadScene("CombatScene",LoadSceneMode.Additive);
     }
 
-    void ReturnToLevel()
+    public void ReturnToLevel()
     {
-        
+        SceneManager.SetActiveScene(level);
+        SceneManager.UnloadSceneAsync(combat);
     }
 }

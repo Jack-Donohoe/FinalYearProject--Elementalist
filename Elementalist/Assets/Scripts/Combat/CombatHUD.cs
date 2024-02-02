@@ -15,7 +15,7 @@ public class CombatHUD : MonoBehaviour
     {
         PlayerHPSlider.maxValue = 100;
         EnemyHPSlider.maxValue = 40;
-        MPSlider.value = 100;
+        MPSlider.maxValue = 50;
     }
 
     public void setPlayerHP(int hp)

@@ -31,9 +31,15 @@ public class Combat_Manager : MonoBehaviour
 
     private void Update()
     {
-        if (player.GetHealth() == 0)
+        if (player.GetDead())
         {
             state = BattleState.Player_Lost;
+            EndCombat();
+        }
+
+        if (enemies[0].GetComponent<Grunt_Combat>().GetDead())
+        {
+            state = BattleState.Player_Won;
             EndCombat();
         }
     }
@@ -59,10 +65,10 @@ public class Combat_Manager : MonoBehaviour
     {
         if (state == BattleState.Player_Won)
         {
-            
+            hud.DialogueText.text = "Player Won";
         } else if (state == BattleState.Player_Lost)
         {
-            
+            hud.DialogueText.text = "Player Lost";
         }
     }
 }

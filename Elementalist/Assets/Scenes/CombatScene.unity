@@ -3399,6 +3399,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hud: {fileID: 707934140}
+  enemies: []
 --- !u!1 &2033672889
 GameObject:
   m_ObjectHideFlags: 0
@@ -3580,6 +3581,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameCamera: {fileID: 2087154732}
   lookPoint: {fileID: 331769849}
+  cameraRotationSpeed: 5
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

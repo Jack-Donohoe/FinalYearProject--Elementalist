@@ -7,26 +7,43 @@
     <list default="true" id="a963d819-7dda-485b-9ffe-5bea1ba9d47c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Elementalist/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Elementalist/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Rooms/EmptyRoom.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Rooms/EmptyRoom.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Rooms/EmptyRoom.prefab.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Rooms/EmptyRoom.prefab.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/CombatScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/CombatScene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/TestScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/TestScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Combat/CombatCamera.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Combat/CombatCamera.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Combat/CombatHUD.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Combat/CombatHUD.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Combat/Combat_Manager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Combat/Combat_Manager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Combat/Grunt_Combat.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Combat/Grunt_Combat.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Combat/Player_Combat.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Combat/Player_Combat.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemy.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemy/Enemy_Exploration.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemy/Enemy_Exploration.cs.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/ProcGen/ProcGenV1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ProcGen/ProcGenV1.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ProcGen/ProcGenV1.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ProcGen/ProcGenV1.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Library/ArtifactDB" beforeDir="false" afterPath="$PROJECT_DIR$/Library/ArtifactDB" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Library/ArtifactDB-lock" beforeDir="false" afterPath="$PROJECT_DIR$/Library/ArtifactDB-lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Library/Bee/1900b0aE-inputdata.json" beforeDir="false" afterPath="$PROJECT_DIR$/Library/Bee/1900b0aE-inputdata.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Library/Bee/1900b0aE.dag" beforeDir="false" afterPath="$PROJECT_DIR$/Library/Bee/1900b0aE.dag" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Library/Bee/1900b0aE.dag.json" beforeDir="false" afterPath="$PROJECT_DIR$/Library/Bee/1900b0aE.dag.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Library/Bee/1900b0aE.dag.payloads" beforeDir="false" afterPath="$PROJECT_DIR$/Library/Bee/1900b0aE.dag.payloads" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Library/Bee/1900b0aE.dag_derived" beforeDir="false" afterPath="$PROJECT_DIR$/Library/Bee/1900b0aE.dag_derived" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Library/Bee/1900b0aE.dag_fsmtime" beforeDir="false" afterPath="$PROJECT_DIR$/Library/Bee/1900b0aE.dag_fsmtime" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Library/Bee/TundraBuildState.state" beforeDir="false" afterPath="$PROJECT_DIR$/Library/Bee/TundraBuildState.state" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Library/Bee/TundraBuildState.state.map" beforeDir="false" afterPath="$PROJECT_DIR$/Library/Bee/TundraBuildState.state.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Library/Bee/artifacts/1900b0aE.dag/Assembly-CSharp.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Library/Bee/artifacts/1900b0aE.dag/Assembly-CSharp.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Library/Bee/artifacts/1900b0aE.dag/Assembly-CSharp.ref.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Library/Bee/artifacts/1900b0aE.dag/Assembly-CSharp.ref.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Library/Bee/artifacts/1900b0aE.dag/Assembly-CSharp.rsp" beforeDir="false" afterPath="$PROJECT_DIR$/Library/Bee/artifacts/1900b0aE.dag/Assembly-CSharp.rsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Library/Bee/backend1.traceevents" beforeDir="false" afterPath="$PROJECT_DIR$/Library/Bee/backend1.traceevents" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Library/Bee/backend2.traceevents" beforeDir="false" afterPath="$PROJECT_DIR$/Library/Bee/backend2.traceevents" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Library/Bee/buildprogram0.traceevents" beforeDir="false" afterPath="$PROJECT_DIR$/Library/Bee/buildprogram0.traceevents" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Library/Bee/fullprofile.json" beforeDir="false" afterPath="$PROJECT_DIR$/Library/Bee/fullprofile.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Library/Bee/tundra.digestcache" beforeDir="false" afterPath="$PROJECT_DIR$/Library/Bee/tundra.digestcache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Library/Bee/tundra.log.json" beforeDir="false" afterPath="$PROJECT_DIR$/Library/Bee/tundra.log.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Library/EditorUserBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Library/EditorUserBuildSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Library/InspectorExpandedItems.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Library/InspectorExpandedItems.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Library/EditorOnlyScriptingSettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/Library/EditorOnlyScriptingSettings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Library/LastSceneManagerSetup.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Library/LastSceneManagerSetup.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Library/ilpp.pid" beforeDir="false" afterPath="$PROJECT_DIR$/Library/ilpp.pid" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,6 +55,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Combat/Grunt_Combat.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Exploration/Player_Exploration.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/StarterAssets/ThirdPersonController/Scripts/ThirdPersonController.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
@@ -64,9 +82,9 @@
   },
   &quot;keyToStringList&quot;: {
     &quot;rider.external.source.directories&quot;: [
-      &quot;C:\\Users\\jackd\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\DecompilerCache&quot;,
-      &quot;C:\\Users\\jackd\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\SourcesCache&quot;,
-      &quot;C:\\Users\\jackd\\AppData\\Local\\Symbols\\src&quot;
+      &quot;C:\\Users\\Jack\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\DecompilerCache&quot;,
+      &quot;C:\\Users\\Jack\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\SourcesCache&quot;,
+      &quot;C:\\Users\\Jack\\AppData\\Local\\Symbols\\src&quot;
     ]
   }
 }</component>
@@ -138,6 +156,9 @@
       <workItem from="1706710113247" duration="2495000" />
       <workItem from="1706779831298" duration="5493000" />
       <workItem from="1706786557141" duration="66000" />
+      <workItem from="1706795533849" duration="12799000" />
+      <workItem from="1706865092539" duration="1469000" />
+      <workItem from="1706866578476" duration="1505000" />
     </task>
     <servers />
   </component>

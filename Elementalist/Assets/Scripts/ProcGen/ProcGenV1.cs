@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class ProcGenV1 : MonoBehaviour
 {
-    [SerializeField] GameObject room;
+    public GameObject empty_room;
+    public GameObject enemy_room;
 
     // Start is called before the first frame update
     void Start()
@@ -28,22 +29,24 @@ public class ProcGenV1 : MonoBehaviour
 
         for (int i = 0; i < level.Length; i++)
         {
-            
             if (level[i] == 1)
             {
                 int column, row;
                 column = i % 10;
                 row = i / 10;
-                GameObject object1 = (GameObject)(Instantiate(room, new Vector3(column * 20f, 0f, row * 20f), Quaternion.identity, this.transform));
-                print(column + ", " + row);
+
+                int rand = Random.Range(0, 100);
+
+                if (rand >= 10)
+                {
+                    GameObject object1 = (GameObject)(Instantiate(empty_room, new Vector3(column * 20f, 0f, row * 20f), Quaternion.identity, this.transform));
+                    print(column + ", " + row);
+                } else
+                {
+                    GameObject object1 = (GameObject)(Instantiate(enemy_room, new Vector3(column * 20f, 0f, row * 20f), Quaternion.identity, this.transform));
+                    print(column + ", " + row);
+                }
             }
-        }
-        
-        int rand = Random.Range(0, 100);
-        
-        if (rand <= 30)
-        {
-            
         }
     }
 }

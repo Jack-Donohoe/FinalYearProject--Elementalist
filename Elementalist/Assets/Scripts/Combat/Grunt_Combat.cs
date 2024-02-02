@@ -45,19 +45,16 @@ public class Grunt_Combat : MonoBehaviour
             case State.Attack:
             {
                 Attack();
-                EndTurn();
                 break;
             }
             case State.Heal:
             {
                 Heal();
-                EndTurn();
                 break;
             }
             case State.ElementalAttack:
             {
                 ElementalAttack();
-                EndTurn();
                 break;
             }
         }
@@ -65,6 +62,7 @@ public class Grunt_Combat : MonoBehaviour
 
     public void StartTurn()
     {
+        Debug.Log("Enemy Turn");
         int rand = Random.Range(0, 100);
 
         if (rand > 30)
@@ -80,9 +78,11 @@ public class Grunt_Combat : MonoBehaviour
         }
     }
 
-    private void EndTurn()
+    IEnumerator EndTurn()
     {
         state = State.Idle;
+        
+        yield return new WaitForSeconds(1f);
         
         manager.ChangeTurn();
     }
@@ -94,6 +94,8 @@ public class Grunt_Combat : MonoBehaviour
         multiplier = (rand <= 5)? 2: 1;
 
         player.TakeDamage(attack_power * multiplier);
+
+        StartCoroutine(EndTurn());
     }
 
     private void Heal()
@@ -109,6 +111,8 @@ public class Grunt_Combat : MonoBehaviour
         
         hud.setEnemyHP(health_points);
         magic_points -= 5;
+        
+        StartCoroutine(EndTurn());
     }
 
     private void ElementalAttack()
@@ -118,11 +122,14 @@ public class Grunt_Combat : MonoBehaviour
         multiplier = (rand <= 5)? 2: 1;
         
         player.TakeDamage(attack_power * 2 * multiplier);
+        magic_points -= 5;
+        
+        StartCoroutine(EndTurn());
     }
 
     public void TakeDamage(int damage)
     {
-        health_points -= damage;
+        health_points -= damage - defence_power;
         
         if (health_points <= 0)
         {
@@ -131,5 +138,12 @@ public class Grunt_Combat : MonoBehaviour
         } 
         
         hud.setEnemyHP(health_points);
+        
+        StartCoroutine(EndTurn());
+    }
+    
+    public bool GetDead()
+    {
+        return dead;
     }
 }

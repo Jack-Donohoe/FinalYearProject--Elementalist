@@ -29,6 +29,7 @@ public class Player_Combat : MonoBehaviour
         state = State.Idle;
         
         hud.setPlayerHP(health_points);
+        hud.setMP(magic_points);
 
         enemies = manager.enemies;
         Debug.Log(enemies.Length);
@@ -50,19 +51,16 @@ public class Player_Combat : MonoBehaviour
             case State.Attack:
             {
                 Attack();
-                EndTurn();
                 break;
             }
             case State.Heal:
             {
                 Heal();
-                EndTurn();
                 break;
             }
             case State.ElementalAttack:
             {
                 ElementalAttack();
-                EndTurn();
                 break;
             }
         }
@@ -87,6 +85,8 @@ public class Player_Combat : MonoBehaviour
         multiplier = (rand <= 5)? 2: 1;
 
         enemies[0].GetComponent<Grunt_Combat>().TakeDamage(attack_power * multiplier);
+        
+        EndTurn();
     }
 
     private void Heal()
@@ -101,7 +101,11 @@ public class Player_Combat : MonoBehaviour
         }
         
         hud.setEnemyHP(health_points);
+        
         magic_points -= 5;
+        hud.setMP(magic_points);
+        
+        EndTurn();
     }
 
     private void ElementalAttack()
@@ -111,11 +115,16 @@ public class Player_Combat : MonoBehaviour
         multiplier = (rand <= 5)? 2: 1;
         
         enemies[0].GetComponent<Grunt_Combat>().TakeDamage(attack_power * 2 * multiplier);
+        
+        magic_points -= 5;
+        hud.setMP(magic_points);
+        
+        EndTurn();
     }
 
     public void TakeDamage(int damage)
     {
-        health_points -= damage;
+        health_points -= damage - defence_power;
         
         if (health_points <= 0)
         {
@@ -126,9 +135,9 @@ public class Player_Combat : MonoBehaviour
         hud.setPlayerHP(health_points);
     }
 
-    public int GetHealth()
+    public bool GetDead()
     {
-        return health_points;
+        return dead;
     }
     
     public void onAttackButton()
