@@ -37,7 +37,7 @@ public class ProcGenV1 : MonoBehaviour
 
                 int rand = Random.Range(0, 100);
 
-                if (rand >= 10)
+                if (rand >= 40)
                 {
                     GameObject object1 = (GameObject)(Instantiate(empty_room, new Vector3(column * 20f, 0f, row * 20f), Quaternion.identity, this.transform));
                     print(column + ", " + row);

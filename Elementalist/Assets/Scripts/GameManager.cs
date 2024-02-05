@@ -7,8 +7,12 @@ public class GameManager : MonoBehaviour
 {
     private Scene level;
     private Scene combat;
+
+    private GameObject level_content;
     
     private static GameManager instance;
+
+    private int score;
 
     private void Awake()
     {
@@ -24,6 +28,9 @@ public class GameManager : MonoBehaviour
 
         level = SceneManager.GetSceneByName("TestScene");
         combat = SceneManager.GetSceneByName("CombatScene");
+
+        level_content = GameObject.Find("Level");
+        score = 0;
     }
     
     public void LoadLevel()
@@ -34,11 +41,26 @@ public class GameManager : MonoBehaviour
     public void StartCombat()
     {
         SceneManager.LoadScene("CombatScene",LoadSceneMode.Additive);
+        level_content.SetActive(false);
     }
 
     public void ReturnToLevel()
     {
-        SceneManager.SetActiveScene(level);
-        SceneManager.UnloadSceneAsync(combat);
+        if (score == 4)
+        {
+            SceneManager.LoadScene("WinScreen");
+        }
+        else
+        {
+            SceneManager.SetActiveScene(level);
+            level_content.SetActive(true);
+            SceneManager.UnloadSceneAsync("CombatScene");
+            score++;
+        }
+    }
+
+    public void LoseGame()
+    {
+        SceneManager.LoadScene("DeathScreen");
     }
 }

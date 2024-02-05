@@ -12,6 +12,7 @@ public class Player_Exploration : MonoBehaviour
         if (collider.gameObject.tag.Equals("Enemy"))
         {
             manager.StartCombat();
+            Destroy(collider.gameObject,1);
         }
     }
 }
