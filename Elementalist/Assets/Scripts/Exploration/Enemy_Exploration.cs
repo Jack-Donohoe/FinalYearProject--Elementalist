@@ -9,8 +9,7 @@ public class Enemy_Exploration : MonoBehaviour
     public enum State
     {
         Patrol,
-        PlayerDetected,
-        Hunt
+        PlayerDetected
     }
 
     public State enemyState;
@@ -18,7 +17,7 @@ public class Enemy_Exploration : MonoBehaviour
     private Transform target;
     public Transform[] waypoints;
 
-    private int waypointCount = 0;
+    private int waypointCount;
     
     private NavMeshAgent enemyAgent;
     
@@ -30,6 +29,15 @@ public class Enemy_Exploration : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        int rand = Random.Range(0,waypoints.Length);
+        transform.position = waypoints[rand].position;
+
+        waypointCount = rand + 1;
+        if (waypointCount >= waypoints.Length)
+        {
+            waypointCount = 0;
+        }
+        
         enemyState = State.Patrol;
         enemyAgent = GetComponent<NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("Player");
@@ -48,8 +56,8 @@ public class Enemy_Exploration : MonoBehaviour
                 
                 if (Vector3.Distance(transform.position, target.position) < 1.5)
                 {
-                    waypointCount++;
-                    if (waypointCount > waypoints.Length - 1) waypointCount = 0;
+                    waypointCount = Random.Range(0, waypoints.Length);
+                    //if (waypointCount > waypoints.Length - 1) waypointCount = 0;
                 }
 
                 enemyAgent.SetDestination(target.position);
@@ -60,14 +68,14 @@ public class Enemy_Exploration : MonoBehaviour
             {
                 target = player.transform;
 
-                enemyAgent.SetDestination(target.position);
-                break;
-            }
+                NavMeshPath path = new NavMeshPath();
+                enemyAgent.CalculatePath(target.position, path);
 
-            case State.Hunt:
-            {
-                target = lastPlayerPos.transform;
-                if (timer % 4 == 0)
+                if (path.status != NavMeshPathStatus.PathInvalid)
+                {
+                    enemyAgent.SetDestination(target.position);
+                }
+                else
                 {
                     enemyState = State.Patrol;
                 }
@@ -97,20 +105,21 @@ public class Enemy_Exploration : MonoBehaviour
         ray.origin = transform.position + Vector3.up * 0.7f;
         string seenObject = "";
 
-        float castDistance = 20;
+        float castDistance = 10;
         ray.direction = transform.forward * castDistance;
         Debug.DrawRay(ray.origin, ray.direction * castDistance, Color.red);
 
         if (Physics.Raycast(ray.origin, lookDirection, out hit, castDistance))
         {
+            seenObject = hit.collider.gameObject.name;
+            
             if (seenObject == "Player" || inFOV)
             {
                 enemyState = State.PlayerDetected;
             }
             else
             {
-                lastPlayerPos = player.transform;
-                enemyState = State.Hunt;
+                enemyState = State.Patrol;
             }
         }
     }

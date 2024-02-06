@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,11 +7,10 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     private Scene level;
-    private Scene combat;
 
     private GameObject level_content;
     
-    private static GameManager instance;
+    public static GameManager instance { private set; get; }
 
     private int score;
 
@@ -26,16 +26,22 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        level = SceneManager.GetSceneByName("TestScene");
-        combat = SceneManager.GetSceneByName("CombatScene");
-
-        level_content = GameObject.Find("Level");
-        score = 0;
+        level = SceneManager.GetSceneByName("Level1");
     }
-    
+
+    public void Update()
+    {
+        if (level_content == null)
+        {
+            level_content = GameObject.Find("Level");
+            score = 0;
+        }
+    }
+
     public void LoadLevel()
     {
-        SceneManager.LoadScene("TestScene");
+        score = 0;
+        SceneManager.LoadScene("Level1");
     }
     
     public void StartCombat()
@@ -46,7 +52,8 @@ public class GameManager : MonoBehaviour
 
     public void ReturnToLevel()
     {
-        if (score == 4)
+        SceneManager.UnloadSceneAsync("CombatScene");
+        if (score == 1)
         {
             SceneManager.LoadScene("WinScreen");
         }
@@ -54,13 +61,13 @@ public class GameManager : MonoBehaviour
         {
             SceneManager.SetActiveScene(level);
             level_content.SetActive(true);
-            SceneManager.UnloadSceneAsync("CombatScene");
             score++;
         }
     }
 
     public void LoseGame()
     {
+        SceneManager.UnloadSceneAsync("CombatScene");
         SceneManager.LoadScene("DeathScreen");
     }
 }

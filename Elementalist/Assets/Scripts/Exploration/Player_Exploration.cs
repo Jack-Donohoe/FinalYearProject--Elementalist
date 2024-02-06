@@ -5,13 +5,11 @@ using UnityEngine;
 
 public class Player_Exploration : MonoBehaviour
 {
-    public GameManager manager;
-    
     private void OnTriggerEnter(Collider collider)
     {
         if (collider.gameObject.tag.Equals("Enemy"))
         {
-            manager.StartCombat();
+            GameManager.instance.StartCombat();
             Destroy(collider.gameObject,1);
         }
     }

@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class Combat_Manager : MonoBehaviour
 {
-    public GameManager manager;
-    
     public CombatHUD hud;
     
     public GameObject[] enemies;
@@ -25,7 +23,6 @@ public class Combat_Manager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        manager = GameObject.Find("GameManager").GetComponent<GameManager>();
         state = BattleState.PlayerTurn;
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player_Combat>();
         player.StartTurn();
@@ -69,11 +66,11 @@ public class Combat_Manager : MonoBehaviour
         if (state == BattleState.Player_Won)
         {
             hud.DialogueText.text = "Player Won";
-            manager.ReturnToLevel();
+            GameManager.instance.ReturnToLevel();
         } else if (state == BattleState.Player_Lost)
         {
             hud.DialogueText.text = "Player Lost";
-            manager.LoseGame();
+            GameManager.instance.LoseGame();
         }
     }
 }
