@@ -100,7 +100,8 @@ public class Player_Combat : MonoBehaviour
             health_points = 100;
         }
         
-        hud.setEnemyHP(health_points);
+        Debug.Log(health_points);
+        hud.setPlayerHP(health_points);
         
         magic_points -= 5;
         hud.setMP(magic_points);
@@ -135,7 +136,7 @@ public class Player_Combat : MonoBehaviour
         hud.setPlayerHP(health_points);
     }
 
-    public bool GetDead()
+    public bool IsDead()
     {
         return dead;
     }
@@ -158,7 +159,7 @@ public class Player_Combat : MonoBehaviour
 
     public void onHealButton()
     {
-        if (state != State.Ready)
+        if (state != State.Ready || magic_points == 0)
             return;
 
         Heal();

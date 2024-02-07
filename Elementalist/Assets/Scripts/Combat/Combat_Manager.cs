@@ -31,13 +31,13 @@ public class Combat_Manager : MonoBehaviour
 
     private void Update()
     {
-        if (player.GetDead())
+        if (player.IsDead())
         {
             state = BattleState.Player_Lost;
             EndCombat();
         }
 
-        if (enemies[0].GetComponent<Grunt_Combat>().GetDead())
+        if (enemies[0].GetComponent<Grunt_Combat>().IsDead())
         {
             state = BattleState.Player_Won;
             EndCombat();
@@ -51,7 +51,7 @@ public class Combat_Manager : MonoBehaviour
             state = BattleState.EnemyTurn;
             hud.DialogueText.text = "Enemy Turn";
             
-            enemies[0].GetComponent<Grunt_Combat>().StartTurn();
+            StartCoroutine(enemies[0].GetComponent<Grunt_Combat>().StartTurn());
         } else if (state == BattleState.EnemyTurn)
         {
             state = BattleState.PlayerTurn;
