@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
     public void ReturnToLevel()
     {
         SceneManager.UnloadSceneAsync("CombatScene");
-        if (score == 1)
+        if (score == 4)
         {
             SceneManager.LoadScene("WinScreen");
         }

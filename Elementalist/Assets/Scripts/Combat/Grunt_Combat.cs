@@ -6,8 +6,8 @@ public class Grunt_Combat : MonoBehaviour
 {
     private int health_points = 40;
     private int magic_points = 20;
-    public int attack_power = 15;
-    private int defence_power = 2;
+    public int attack_power = 10;
+    private int defence_power = 0;
     
     private int multiplier;
     

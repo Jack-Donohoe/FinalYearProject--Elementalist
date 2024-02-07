@@ -6,7 +6,7 @@ public class Player_Combat : MonoBehaviour
 {
     private int health_points = 100;
     private int magic_points = 50;
-    private int attack_power = 5;
+    private int attack_power = 10;
     private int defence_power = 5;
     
     private int multiplier;
