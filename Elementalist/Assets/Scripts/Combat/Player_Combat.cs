@@ -71,10 +71,11 @@ public class Player_Combat : MonoBehaviour
         state = State.Ready;
     }
     
-    private void EndTurn()
+    private IEnumerator EndTurn()
     {
         state = State.Idle;
         
+        yield return new WaitForSeconds(2f);
         manager.ChangeTurn();
     }
     
@@ -84,9 +85,11 @@ public class Player_Combat : MonoBehaviour
 
         multiplier = (rand <= 5)? 2: 1;
 
-        enemies[0].GetComponent<Grunt_Combat>().TakeDamage(attack_power * multiplier);
+        int damage = attack_power * multiplier;
+        enemies[0].GetComponent<Grunt_Combat>().TakeDamage(damage);
+        hud.DialogueText.text = "Player attacks and deals " + damage + " damage to Enemy A";
         
-        EndTurn();
+        StartCoroutine(EndTurn());
     }
 
     private void Heal()
@@ -105,8 +108,9 @@ public class Player_Combat : MonoBehaviour
         
         magic_points -= 5;
         hud.setMP(magic_points);
+        hud.DialogueText.text = "Player heals and restores 5HP";
         
-        EndTurn();
+        StartCoroutine(EndTurn());
     }
 
     private void ElementalAttack()
@@ -120,13 +124,15 @@ public class Player_Combat : MonoBehaviour
         Vector3 direction = (enemies[0].transform.position - projectile.transform.position).normalized * (5f * Time.deltaTime);
         projectile.transform.LookAt(enemies[0].transform.position);
         projectile.GetComponent<Projectile>().SetMoveDirection(direction);
-        
-        enemies[0].GetComponent<Grunt_Combat>().TakeDamage(attack_power * GameManager.instance.GetElement(0).GetDamageValue() * multiplier);
+
+        int damage = attack_power * GameManager.instance.GetElement(0).GetDamageValue() * multiplier;
+        enemies[0].GetComponent<Grunt_Combat>().TakeDamage(damage);
         
         magic_points -= 5;
         hud.setMP(magic_points);
+        hud.DialogueText.text = "Player uses Fireball and deals " + damage + " damage to Enemy A";
         
-        EndTurn();
+        StartCoroutine(EndTurn());
     }
 
     public void TakeDamage(int damage)

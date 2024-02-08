@@ -78,10 +78,11 @@ public class Grunt_Combat : MonoBehaviour
         }
     }
 
-    private void EndTurn()
+    private IEnumerator EndTurn()
     {
         state = State.Idle;
         
+        yield return new WaitForSeconds(2f);
         manager.ChangeTurn();
     }
 
@@ -91,9 +92,11 @@ public class Grunt_Combat : MonoBehaviour
 
         multiplier = (rand <= 5)? 2: 1;
 
-        player.TakeDamage(attack_power * multiplier);
-
-        EndTurn();
+        int damage = attack_power * multiplier;
+        player.TakeDamage(damage);
+        hud.DialogueText.text = "Enemy A attacks and deals " + damage + " damage to the Player";
+        
+        StartCoroutine(EndTurn());
     }
 
     private void Heal()
@@ -109,8 +112,9 @@ public class Grunt_Combat : MonoBehaviour
         
         hud.setEnemyHP(health_points);
         magic_points -= 5;
+        hud.DialogueText.text = "Enemy A heals and restores 5 HP";
         
-        EndTurn();
+        StartCoroutine(EndTurn());
     }
 
     private void ElementalAttack()
@@ -119,10 +123,12 @@ public class Grunt_Combat : MonoBehaviour
         
         multiplier = (rand <= 5)? 2: 1;
         
-        player.TakeDamage(attack_power * 2 * multiplier);
+        int damage = attack_power * 2 * multiplier;
+        player.TakeDamage(damage);
         magic_points -= 5;
+        hud.DialogueText.text = "Enemy A uses an Elemental Attack and deals " + damage + " damage to Enemy A";
         
-        EndTurn();
+        StartCoroutine(EndTurn());
     }
 
     public void TakeDamage(int damage)
