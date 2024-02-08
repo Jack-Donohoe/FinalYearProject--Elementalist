@@ -15,6 +15,8 @@ public class Combat_Manager : MonoBehaviour
     
     private Player_Combat player;
 
+    public Fire fire;
+
     private void Awake()
     {
         enemies = GameObject.FindGameObjectsWithTag("Enemy");
@@ -27,6 +29,8 @@ public class Combat_Manager : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player_Combat>();
         player.StartTurn();
         hud.DialogueText.text = "Player Turn";
+        
+        GameManager.instance.AddElement(fire);
     }
 
     private void Update()

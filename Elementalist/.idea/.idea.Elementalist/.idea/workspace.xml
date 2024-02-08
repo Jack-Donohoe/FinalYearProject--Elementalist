@@ -6,133 +6,33 @@
   <component name="ChangeListManager">
     <list default="true" id="a963d819-7dda-485b-9ffe-5bea1ba9d47c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Elementalist/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Elementalist/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/Demo Scene.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/Demo Scene/DungeonLiteScene-FPS.unity" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/Demo Scene/DungeonLiteScene-FPS.unity.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/Demo Scene/DungeonLiteScene-TopDown.unity" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/Demo Scene/DungeonLiteScene-TopDown.unity.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/Materials.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/Materials/Mat_Dungeon.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/Materials/Mat_Dungeon.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/Materials/Mat_Flag.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/Materials/Mat_Flag.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/Materials/Plane.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/Materials/Plane.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/Materials/Skybox 1.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/Materials/Skybox 1.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/Materials/Skybox.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/Materials/Skybox.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/Meshes.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/Meshes/DungeonPackLite.fbx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/Meshes/DungeonPackLite.fbx.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/Prefabs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/Prefabs/Barrel_C.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/Prefabs/Barrel_C.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/Prefabs/Book_Holy_C.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/Prefabs/Book_Holy_C.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/Prefabs/Cauldron.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/Prefabs/Cauldron.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/Prefabs/Ceiling_SquareLarge.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/Prefabs/Ceiling_SquareLarge.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/Prefabs/Chain_Metal.002.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/Prefabs/Chain_Metal.002.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/Prefabs/Chain_Metal.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/Prefabs/Chain_Metal.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/Prefabs/Chair_Small.001.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/Prefabs/Chair_Small.001.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/Prefabs/Club.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/Prefabs/Club.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/Prefabs/Column_Half.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/Prefabs/Column_Half.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/Prefabs/Door_Middle.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/Prefabs/Door_Middle.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/Prefabs/Flag.004.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/Prefabs/Flag.004.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/Prefabs/Floor_Flat.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/Prefabs/Floor_Flat.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/Prefabs/Pot.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/Prefabs/Pot.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/Prefabs/Potion_Blue.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/Prefabs/Potion_Blue.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/Prefabs/Potion_Red.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/Prefabs/Potion_Red.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/Prefabs/Sand_B.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/Prefabs/Sand_B.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/Prefabs/Sawblade.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/Prefabs/Sawblade.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/Prefabs/Sewer_Square.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/Prefabs/Sewer_Square.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/Prefabs/Shelf_Framed.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/Prefabs/Shelf_Framed.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/Prefabs/SquareChest_Bottom.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/Prefabs/SquareChest_Bottom.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/Prefabs/SquareChest_Top.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/Prefabs/SquareChest_Top.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/Prefabs/Stair.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/Prefabs/Stair.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/Prefabs/Table.003.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/Prefabs/Table.003.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/Prefabs/Torch.001.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/Prefabs/Torch.001.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/Prefabs/Traphome_Mid.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/Prefabs/Traphome_Mid.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/Prefabs/Wall_Chiseled.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/Prefabs/Wall_Chiseled.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/Prefabs/Wall_DoorStand.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/Prefabs/Wall_DoorStand.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/Scenes.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/Scenes/DungeonPackLiteCollection.unity" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/Scenes/DungeonPackLiteCollection.unity.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/Textures.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/Textures/DungeonTextures@4x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/Textures/DungeonTextures@4x.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/VFX.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/VFX/Fire_Effect.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Gridness Studios/Elementary Dungeon Pack Lite/VFX/Fire_Effect.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Corner Tile.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Corner Tile.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/CornerTile.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/CornerTile.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Empty Tile.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Empty Tile.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/EmptyTile.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/EmptyTile.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Rooms/Empty Room.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Rooms/Empty Room.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Wall Tile.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Wall Tile.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/WallTile.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/WallTile.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/LowPolyFire.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/LowPolyFire.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Player.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Player.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/CombatScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/CombatScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Level1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Level1.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/TestScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/TestScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Shaders/Fire/Fire_Material.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Shaders/Fire/Fire_Material.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Shaders/Fire/Fire_Material.mat.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Shaders/Fire/Fire_Material.mat.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Shaders/Fire/Fire_URP.shader" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Shaders/Fire/Fire_URP.shader.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Shaders/Universal Render Pipeline Asset.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Shaders/Universal Render Pipeline Asset.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Shaders/Universal Render Pipeline Asset_Renderer.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Shaders/Universal Render Pipeline Asset_Renderer.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Combat/Combat_Manager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Combat/Combat_Manager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Combat/Player_Combat.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Combat/Player_Combat.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Elements/Fire.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Elements/Fire.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Elements/Fire.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Elements/Fire.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Shaders/Fire/Fire URP.shadergraph" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Shaders/Fire/Fire URP.shadergraph" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Library/APIUpdater/project-dependencies.graph" beforeDir="false" afterPath="$PROJECT_DIR$/Library/APIUpdater/project-dependencies.graph" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Library/ArtifactDB" beforeDir="false" afterPath="$PROJECT_DIR$/Library/ArtifactDB" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Library/ArtifactDB-lock" beforeDir="false" afterPath="$PROJECT_DIR$/Library/ArtifactDB-lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Library/Bee/TundraBuildState.state" beforeDir="false" afterPath="$PROJECT_DIR$/Library/Bee/TundraBuildState.state" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Library/Bee/TundraBuildState.state.map" beforeDir="false" afterPath="$PROJECT_DIR$/Library/Bee/TundraBuildState.state.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Library/Bee/backend1.traceevents" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Library/Bee/backend2.traceevents" beforeDir="false" afterPath="$PROJECT_DIR$/Library/Bee/backend2.traceevents" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Library/Bee/buildprogram0.traceevents" beforeDir="false" afterPath="$PROJECT_DIR$/Library/Bee/buildprogram0.traceevents" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Library/Bee/fullprofile.json" beforeDir="false" afterPath="$PROJECT_DIR$/Library/Bee/fullprofile.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Library/Bee/tundra.digestcache" beforeDir="false" afterPath="$PROJECT_DIR$/Library/Bee/tundra.digestcache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Library/Bee/tundra.log.json" beforeDir="false" afterPath="$PROJECT_DIR$/Library/Bee/tundra.log.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Library/EditorOnlyScriptingSettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/Library/EditorOnlyScriptingSettings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Library/EditorSnapSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Library/EditorSnapSettings.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Library/InspectorExpandedItems.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Library/InspectorExpandedItems.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Library/LastSceneManagerSetup.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Library/LastSceneManagerSetup.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Library/expandedItems" beforeDir="false" afterPath="$PROJECT_DIR$/Library/expandedItems" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Library/ilpp.pid" beforeDir="false" afterPath="$PROJECT_DIR$/Library/ilpp.pid" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/GraphicsSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/GraphicsSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -144,7 +44,10 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Combat/Grunt_Combat.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Elements/Element.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Elements/Fire.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Exploration/Player_Exploration.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Shaders/Projectile.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/StarterAssets/ThirdPersonController/Scripts/ThirdPersonController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.core@14.0.8/Runtime/Utilities/ResourceReloader.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.shadergraph@14.0.8/Editor/Data/Implementation/GraphObject.cs" root0="SKIP_HIGHLIGHTING" />
@@ -160,6 +63,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Attach to Unity Editor.Attach to Unity Editor.executor": "Debug",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "Prototype-2-Feb",
@@ -173,9 +77,9 @@
   },
   "keyToStringList": {
     "rider.external.source.directories": [
-      "C:\\Users\\Jack\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\DecompilerCache",
-      "C:\\Users\\Jack\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\SourcesCache",
-      "C:\\Users\\Jack\\AppData\\Local\\Symbols\\src"
+      "C:\\Users\\jackd\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\DecompilerCache",
+      "C:\\Users\\jackd\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\SourcesCache",
+      "C:\\Users\\jackd\\AppData\\Local\\Symbols\\src"
     ]
   }
 }]]></component>
@@ -214,10 +118,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="26612">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" />
+      <option name="pid" value="26612" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -272,6 +176,9 @@
       <workItem from="1707325739941" duration="611000" />
       <workItem from="1707328409067" duration="102000" />
       <workItem from="1707337968267" duration="1285000" />
+      <workItem from="1707387306255" duration="2163000" />
+      <workItem from="1707394342487" duration="3863000" />
+      <workItem from="1707405221315" duration="5257000" />
     </task>
     <servers />
   </component>

@@ -114,8 +114,14 @@ public class Player_Combat : MonoBehaviour
         int rand = Random.Range(0, 100);
         
         multiplier = (rand <= 5)? 2: 1;
+
+        GameObject projectile = Instantiate(GameManager.instance.GetElement(0).GetProjectile(),transform.position, Quaternion.identity);
+
+        Vector3 direction = (enemies[0].transform.position - projectile.transform.position).normalized * (5f * Time.deltaTime);
+        projectile.transform.LookAt(enemies[0].transform.position);
+        projectile.GetComponent<Projectile>().SetMoveDirection(direction);
         
-        enemies[0].GetComponent<Grunt_Combat>().TakeDamage(attack_power * 2 * multiplier);
+        enemies[0].GetComponent<Grunt_Combat>().TakeDamage(attack_power * GameManager.instance.GetElement(0).GetDamageValue() * multiplier);
         
         magic_points -= 5;
         hud.setMP(magic_points);

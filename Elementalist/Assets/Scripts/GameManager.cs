@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
 
     private int score;
 
+    private List<Element> _elements = new List<Element>();
+
     private void Awake()
     {
         if (instance == null)
@@ -69,5 +71,15 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.UnloadSceneAsync("CombatScene");
         SceneManager.LoadScene("DeathScreen");
+    }
+
+    public void AddElement(Element element)
+    {
+        _elements.Add(element);
+    }
+    
+    public Element GetElement(int i)
+    {
+        return _elements[i];
     }
 }
