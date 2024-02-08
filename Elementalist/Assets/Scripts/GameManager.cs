@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
 
     private List<Element> _elements = new List<Element>();
 
+    public Exploration_HUD hud;
+
     private void Awake()
     {
         if (instance == null)
@@ -64,6 +66,7 @@ public class GameManager : MonoBehaviour
             SceneManager.SetActiveScene(level);
             level_content.SetActive(true);
             score++;
+            hud.SetScoreText("Enemies Defeated: " + score);
         }
     }
 

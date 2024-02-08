@@ -62,7 +62,7 @@ public class Grunt_Combat : MonoBehaviour
 
     public IEnumerator StartTurn()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         int rand = Random.Range(0, 100);
 
         if (rand >= 30)
