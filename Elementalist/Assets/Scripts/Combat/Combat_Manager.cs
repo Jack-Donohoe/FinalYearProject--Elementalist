@@ -15,7 +15,7 @@ public class Combat_Manager : MonoBehaviour
     
     private Player_Combat player;
 
-    public Fire fire;
+    public Element element;
 
     private void Awake()
     {
@@ -30,7 +30,7 @@ public class Combat_Manager : MonoBehaviour
         player.StartTurn();
         hud.DialogueText.text = "Player Turn";
         
-        GameManager.instance.AddElement(fire);
+        GameManager.instance.AddElement(element);
     }
 
     private void Update()

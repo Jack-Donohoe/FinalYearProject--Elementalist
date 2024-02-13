@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: Fire
   m_EditorClassIdentifier: 
   fireball: {fileID: 7189532715603981810, guid: 4f56d6cb49354014d95e736344002eeb, type: 3}
+  speed: 5
   damage_value: 2
+  attack_name: Fireball

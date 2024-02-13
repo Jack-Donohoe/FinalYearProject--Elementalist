@@ -2029,7 +2029,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Fireball
+  m_text: Elemental Attack
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3495,6 +3495,10 @@ PrefabInstance:
       propertyPath: hud
       value: 
       objectReference: {fileID: 707934140}
+    - target: {fileID: 3256959476624745702, guid: c9ae9cc906decd14eac7b34946a43d9e, type: 3}
+      propertyPath: element
+      value: 
+      objectReference: {fileID: 11400000, guid: 580725dd379310843b1444491619d888, type: 2}
     - target: {fileID: 7154253464818492262, guid: c9ae9cc906decd14eac7b34946a43d9e, type: 3}
       propertyPath: m_Name
       value: CombatManager

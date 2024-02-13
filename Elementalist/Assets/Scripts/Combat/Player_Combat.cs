@@ -119,18 +119,19 @@ public class Player_Combat : MonoBehaviour
         
         multiplier = (rand <= 5)? 2: 1;
 
+        Element element = GameManager.instance.GetElement(0);
         GameObject projectile = Instantiate(GameManager.instance.GetElement(0).GetProjectile(),transform.position, Quaternion.identity);
 
-        Vector3 direction = (enemies[0].transform.position - projectile.transform.position).normalized * (5f * Time.deltaTime);
+        Vector3 direction = (enemies[0].transform.position - projectile.transform.position).normalized * (element.GetProjectileSpeed() * Time.deltaTime);
         projectile.transform.LookAt(enemies[0].transform.position);
         projectile.GetComponent<Projectile>().SetMoveDirection(direction);
 
-        int damage = attack_power * GameManager.instance.GetElement(0).GetDamageValue() * multiplier;
+        int damage = attack_power * element.GetDamageValue() * multiplier;
         enemies[0].GetComponent<Grunt_Combat>().TakeDamage(damage);
         
         magic_points -= 5;
         hud.setMP(magic_points);
-        hud.DialogueText.text = "Player uses Fireball and deals " + damage + " damage to Enemy A";
+        hud.DialogueText.text = "Player uses "+ element.GetAttackName() +" and deals " + damage + " damage to Enemy A";
         
         StartCoroutine(EndTurn());
     }

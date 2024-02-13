@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 054b6864558855a45a6fe62ae5abd100, type: 3}
+  m_Name: Water
+  m_EditorClassIdentifier: 
+  waterball: {fileID: 27301545086308959, guid: 40539d1de6731bb408b4c88bebedc258, type: 3}
+  speed: 4
+  damage_value: 1
+  attack_name: Water Bolt
