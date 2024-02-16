@@ -6,10 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    private Scene level;
-
-    private GameObject level_content;
-    
     public static GameManager instance { private set; get; }
 
     private int score;
@@ -17,6 +13,12 @@ public class GameManager : MonoBehaviour
     private List<Element> _elements = new List<Element>();
 
     public Exploration_HUD hud;
+    
+    public enum GameState { Start, InGame }
+
+    public GameState gameState;
+
+    private GameObject map;
 
     private void Awake()
     {
@@ -30,49 +32,82 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        level = SceneManager.GetSceneByName("Level1");
-    }
-
-    public void Update()
-    {
-        if (level_content == null)
-        {
-            level_content = GameObject.Find("Level");
-            score = 0;
-        }
+        gameState = GameState.Start;
     }
 
     public void LoadLevel()
     {
         score = 0;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         SceneManager.LoadScene("Level1");
     }
     
     public void StartCombat()
     {
-        SceneManager.LoadScene("CombatScene",LoadSceneMode.Additive);
-        level_content.SetActive(false);
+        gameState = GameState.InGame;
+        map = GameObject.FindGameObjectWithTag("Map");
+            
+        GameData levelData = new GameData
+        {
+            playerPos = GameObject.FindGameObjectWithTag("Player").transform.position,
+            elementInventory = _elements,
+            level = map.GetComponent<ProcGenV2>().GetLevel()
+        };
+
+        DataManager.instance.SaveLevelData(levelData);
+
+        SceneManager.LoadScene("CombatScene");
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     public void ReturnToLevel()
     {
-        SceneManager.UnloadSceneAsync("CombatScene");
         if (score == 4)
         {
             SceneManager.LoadScene("WinScreen");
         }
         else
         {
-            SceneManager.SetActiveScene(level);
-            level_content.SetActive(true);
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+            gameState = GameState.InGame;
+            SceneManager.LoadScene("Level1");
+
+            StartCoroutine(ReloadLevel());
+            
             score++;
-            hud.SetScoreText("Enemies Defeated: " + score);
         }
+    }
+
+    IEnumerator ReloadLevel()
+    {
+        yield return new WaitForSeconds(0.1f);
+        GameData levelData = DataManager.instance.LoadLevelData();
+        Debug.Log(levelData.playerPos);
+        GameObject.FindGameObjectWithTag("Player").transform.position = levelData.playerPos;
+            
+        map = GameObject.FindGameObjectWithTag("Map");
+        int levelSize = map.GetComponent<ProcGenV2>().levelSize;
+        int[,] level = new int[levelSize, levelSize];
+            
+        for (int x = 0; x < levelSize; x++)
+        {
+            for (int z = 0; z < levelSize; z++)
+            {
+                level[x, z] = levelData.level[x * levelSize + z];
+            }
+        }
+            
+        map.GetComponent<ProcGenV2>().GenerateMap(level);
+
+        hud = GameObject.FindGameObjectWithTag("HUD").GetComponent<Exploration_HUD>();
+        hud.SetScoreText("Enemies Defeated: " + score);
     }
 
     public void LoseGame()
     {
-        SceneManager.UnloadSceneAsync("CombatScene");
         SceneManager.LoadScene("DeathScreen");
     }
 
@@ -84,5 +119,10 @@ public class GameManager : MonoBehaviour
     public Element GetElement(int i)
     {
         return _elements[i];
+    }
+
+    public List<Element> GetElements()
+    {
+        return _elements;
     }
 }

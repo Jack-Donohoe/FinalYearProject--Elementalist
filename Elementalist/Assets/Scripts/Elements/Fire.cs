@@ -5,6 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Fire", menuName = "Elements/Fire", order = 1)]
 public class Fire : Element
 {
+    [SerializeField] private string element_name;
+    
     [SerializeField] private GameObject fireball;
     
     [SerializeField] private float speed;
@@ -12,7 +14,12 @@ public class Fire : Element
     [SerializeField] private int damage_value;
 
     [SerializeField] private string attack_name;
-    
+
+    public override string GetName()
+    {
+        return element_name;
+    }
+
     public override GameObject GetProjectile()
     {
         return fireball;

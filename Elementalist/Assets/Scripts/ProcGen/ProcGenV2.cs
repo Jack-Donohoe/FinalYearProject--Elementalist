@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class ProcGenV2 : MonoBehaviour
 {
@@ -13,54 +15,81 @@ public class ProcGenV2 : MonoBehaviour
     public double enemyFrequency;
 
     private int[,] level;
-
+    
     private Vector3 startPos;
+
+    //public bool isFirstFrame = true;
 
     // Start is called before the first frame update
     void Start()
     {
-        level = new int[levelSize, levelSize];
-
-        GenerateMap();
-
-        GameObject.Find("Player").transform.position = startPos;
+        if (GameManager.instance.gameState == GameManager.GameState.Start)
+        {
+            level = CreateMap();
+            GenerateMap(level);
+            StartCoroutine(SetPlayerStartPos());
+        }
     }
 
-    void GenerateMap()
+    // private void Update()
+    // {
+    //     if (isFirstFrame)
+    //     {
+    //         GameObject.FindGameObjectWithTag("Player").transform.position = startPos;
+    //         isFirstFrame = false;
+    //     }
+    // }
+
+    private IEnumerator SetPlayerStartPos()
     {
+        yield return new WaitForSeconds(0.1f);
+        GameObject.FindGameObjectWithTag("Player").transform.position = startPos;
+        Debug.Log(GameObject.FindGameObjectWithTag("Player").transform.position);
+    }
+
+    private int[,] CreateMap()
+    {
+        int[,] _level = new int[levelSize, levelSize];
+        
         int rand_position = Random.Range(1, levelSize - 2);
 
-        level[levelSize - 1, rand_position] = 3;
+        _level[levelSize - 1, rand_position] = 3;
 
         rand_position = Random.Range(1, levelSize - 2);
 
-        level[0, rand_position] = 4;
+        _level[0, rand_position] = 4;
 
         for (int x = 0; x < levelSize; x++)
         {
             for (int z = 0; z < levelSize; z++)
             {
-                if (level[x, z] == 0)
+                if (_level[x, z] == 0)
                 {
                     double rand = Random.Range(0f, 1.0f);
 
                     if (rand < enemyFrequency)
                     {
-                        level[x, z] = 2;
+                        _level[x, z] = 2;
                     }
                     else
                     {
-                        level[x, z] = 1;
+                        _level[x, z] = 1;
                     }
                 }
             }
         }
-
+        
+        return _level;
+    }
+    
+    public void GenerateMap(int[,] _level)
+    {
+        level = _level;
         for (int x = 0; x < levelSize; x++)
         {
             for (int z = 0; z < levelSize; z++)
             {
-                if (level[x, z] == 1)
+                if (_level[x, z] == 1)
                 {
                     if (x == 0 && z == 0)
                     {
@@ -114,7 +143,7 @@ public class ProcGenV2 : MonoBehaviour
                             Quaternion.identity, this.transform));
                     }
                 }
-                else if (level[x, z] == 2)
+                else if (_level[x, z] == 2)
                 {
                     if (x == 0 && z == 0)
                     {
@@ -168,7 +197,7 @@ public class ProcGenV2 : MonoBehaviour
                             Quaternion.identity, this.transform));
                     }
                 } 
-                else if (level[x, z] == 3)
+                else if (_level[x, z] == 3)
                 {
                     GameObject room = (Instantiate(startRoom, new Vector3(x * 20f, 0f, z * 20f),
                         Quaternion.identity, this.transform));
@@ -176,7 +205,7 @@ public class ProcGenV2 : MonoBehaviour
                     
                     startPos = new Vector3(room.transform.position.x, 1.5f, room.transform.position.z);
                 }
-                else if (level[x, z] == 4)
+                else if (_level[x, z] == 4)
                 {
                     GameObject room = (Instantiate(endRoom, new Vector3(x * 20f, 0f, z * 20f),
                         Quaternion.identity, this.transform));
@@ -184,5 +213,20 @@ public class ProcGenV2 : MonoBehaviour
                 }
             }
         }
+    }
+
+    public int[] GetLevel()
+    {
+        int[] newLevel = new int[levelSize * levelSize];
+
+        for (int x = 0; x < levelSize; x++)
+        {
+            for (int z = 0; z < levelSize; z++)
+            {
+                newLevel[x * levelSize + z] = level[x, z];
+            }
+        }
+
+        return newLevel;
     }
 }
