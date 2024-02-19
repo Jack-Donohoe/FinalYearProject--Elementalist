@@ -1,16 +1,20 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance { private set; get; }
+    private static GameManager _instance;
+    public static GameManager Instance { get { return _instance; } }
 
     private int score;
 
     public List<Element> _elements = new List<Element>();
+
+    public Element selectedElement;
 
     public Exploration_HUD hud;
 
@@ -18,15 +22,26 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null)
+        if (_instance != null && _instance != this)
         {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
+            Destroy(this.gameObject);
+        } else {
+            _instance = this;
+            DontDestroyOnLoad(_instance);
         }
-        else
-        {
-            Destroy(gameObject);
-        }
+    }
+
+    private void Start()
+    {
+        selectedElement = _elements[0];
+    }
+
+    public void LoadMainMenu()
+    {
+        score = 0;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        SceneManager.LoadScene("StartScreen");
     }
 
     public void LoadLevel()
@@ -38,11 +53,21 @@ public class GameManager : MonoBehaviour
         StartCoroutine(StartLevel());
     }
 
-    IEnumerator StartLevel()
+    private IEnumerator StartLevel()
     {
-        yield return new WaitForSeconds(0.01f);
+        yield return new WaitForNextFrameUnit();
         map = GameObject.FindGameObjectWithTag("Map");
         map.GetComponent<ProcGenV2>().OnLevelLoad();
+        
+        hud = GameObject.FindGameObjectWithTag("HUD").GetComponent<Exploration_HUD>();
+        StartCoroutine(RemoveLoadingScreen());
+    }
+
+    private IEnumerator RemoveLoadingScreen()
+    {
+        yield return new WaitForSecondsRealtime(1.5f);
+        hud.loadingScreen.gameObject.SetActive(false);
+        hud.inGameHUD.gameObject.SetActive(true);
     }
     
     public void StartCombat()
@@ -63,8 +88,10 @@ public class GameManager : MonoBehaviour
         Cursor.visible = true;
     }
 
-    public void ReturnToLevel()
+    public IEnumerator ReturnToLevel()
     {
+        yield return new WaitForSeconds(2f);
+        
         if (score == 4)
         {
             SceneManager.LoadScene("WinScreen");
@@ -81,9 +108,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    IEnumerator ReloadLevel()
+    private IEnumerator ReloadLevel()
     {
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForNextFrameUnit();
         GameData levelData = DataManager.instance.LoadLevelData();
         Debug.Log(levelData.playerPos);
         GameObject.FindGameObjectWithTag("Player").transform.position = levelData.playerPos;
@@ -104,10 +131,13 @@ public class GameManager : MonoBehaviour
 
         hud = GameObject.FindGameObjectWithTag("HUD").GetComponent<Exploration_HUD>();
         hud.SetScoreText("Enemies Defeated: " + score);
+        
+        StartCoroutine(RemoveLoadingScreen());
     }
 
-    public void LoseGame()
+    public IEnumerator LoseGame()
     {
+        yield return new WaitForSeconds(2f);
         SceneManager.LoadScene("DeathScreen");
     }
 

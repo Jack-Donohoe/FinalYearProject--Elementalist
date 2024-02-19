@@ -17,8 +17,8 @@ GameObject:
   m_Name: Wall (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &2439506213523163955
 Transform:
@@ -29,8 +29,8 @@ Transform:
   m_GameObject: {fileID: 312965046229430125}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -6, y: 2.5, z: -9.75}
-  m_LocalScale: {x: 8, y: 0.5, z: 5}
+  m_LocalPosition: {x: -6, y: 2, z: -9.75}
+  m_LocalScale: {x: 8, y: 0.5, z: 3.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6473195058847252228}
@@ -379,8 +379,8 @@ GameObject:
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &6937603787258327482
 Transform:
@@ -391,8 +391,8 @@ Transform:
   m_GameObject: {fileID: 3199682195888330068}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 6, y: 2.5, z: -9.75}
-  m_LocalScale: {x: 8, y: 0.5, z: 5}
+  m_LocalPosition: {x: 6, y: 2, z: -9.75}
+  m_LocalScale: {x: 8, y: 0.5, z: 3.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6473195058847252228}
@@ -501,8 +501,8 @@ GameObject:
   m_Name: Wall (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &3729476545540296950
 Transform:
@@ -513,8 +513,8 @@ Transform:
   m_GameObject: {fileID: 3226132854441146327}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -6, y: 2.5, z: 9.75}
-  m_LocalScale: {x: 8, y: 0.5, z: 5}
+  m_LocalPosition: {x: -6, y: 2, z: 9.75}
+  m_LocalScale: {x: 8, y: 0.5, z: 3.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6473195058847252228}
@@ -654,8 +654,8 @@ GameObject:
   m_Name: Wall (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &7895423657456609638
 Transform:
@@ -666,8 +666,8 @@ Transform:
   m_GameObject: {fileID: 4552561089430290288}
   serializedVersion: 2
   m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
-  m_LocalPosition: {x: 9.75, y: 2.5, z: -6}
-  m_LocalScale: {x: 8, y: 0.5, z: 5}
+  m_LocalPosition: {x: 9.75, y: 2, z: -6}
+  m_LocalScale: {x: 8, y: 0.5, z: 3.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6473195058847252228}
@@ -776,8 +776,8 @@ GameObject:
   m_Name: Wall (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &118539735310604541
 Transform:
@@ -788,8 +788,8 @@ Transform:
   m_GameObject: {fileID: 6002675870892301616}
   serializedVersion: 2
   m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
-  m_LocalPosition: {x: 9.75, y: 2.5, z: 6}
-  m_LocalScale: {x: 8, y: 0.5, z: 5}
+  m_LocalPosition: {x: 9.75, y: 2, z: 6}
+  m_LocalScale: {x: 8, y: 0.5, z: 3.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6473195058847252228}
@@ -909,7 +909,7 @@ Transform:
   m_GameObject: {fileID: 6330862453386827157}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 5, z: 0}
+  m_LocalPosition: {x: 0, y: 3.5, z: 0}
   m_LocalScale: {x: 20, y: 0.5, z: 20}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1003,8 +1003,8 @@ GameObject:
   m_Name: Wall (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &988362635294371513
 Transform:
@@ -1015,8 +1015,8 @@ Transform:
   m_GameObject: {fileID: 6387365357701623704}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 6, y: 2.5, z: 9.75}
-  m_LocalScale: {x: 8, y: 0.5, z: 5}
+  m_LocalPosition: {x: 6, y: 2, z: 9.75}
+  m_LocalScale: {x: 8, y: 0.5, z: 3.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6473195058847252228}
@@ -1125,8 +1125,8 @@ GameObject:
   m_Name: Wall (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &8440269208197562880
 Transform:
@@ -1137,8 +1137,8 @@ Transform:
   m_GameObject: {fileID: 6775691326414018457}
   serializedVersion: 2
   m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
-  m_LocalPosition: {x: -9.75, y: 2.5, z: -6}
-  m_LocalScale: {x: 8, y: 0.5, z: 5}
+  m_LocalPosition: {x: -9.75, y: 2, z: -6}
+  m_LocalScale: {x: 8, y: 0.5, z: 3.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6473195058847252228}
@@ -1239,7 +1239,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6473195058847252228}
-  - component: {fileID: 2854715442201807202}
+  - component: {fileID: 1428861928538256616}
   m_Layer: 0
   m_Name: EnemyRoom_Base
   m_TagString: Untagged
@@ -1274,7 +1274,7 @@ Transform:
   - {fileID: 4458396433244238986}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2854715442201807202
+--- !u!114 &1428861928538256616
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1300,10 +1300,10 @@ MonoBehaviour:
   m_IgnoreNavMeshObstacle: 1
   m_OverrideTileSize: 0
   m_TileSize: 256
-  m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
+  m_OverrideVoxelSize: 1
+  m_VoxelSize: 0.75
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: 0ae5e24bd6ebae34c8d841c743198094, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 612fd0f5f4461cc48a03e3c8499ca659, type: 2}
   m_BuildHeightMesh: 0
 --- !u!1 &6941450313809167550
 GameObject:
@@ -1322,8 +1322,8 @@ GameObject:
   m_Name: Wall (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &6322094188974743275
 Transform:
@@ -1334,8 +1334,8 @@ Transform:
   m_GameObject: {fileID: 6941450313809167550}
   serializedVersion: 2
   m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
-  m_LocalPosition: {x: -9.75, y: 2.5, z: 6}
-  m_LocalScale: {x: 8, y: 0.5, z: 5}
+  m_LocalPosition: {x: -9.75, y: 2, z: 6}
+  m_LocalScale: {x: 8, y: 0.5, z: 3.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6473195058847252228}
@@ -1474,12 +1474,13 @@ GameObject:
   - component: {fileID: 7013779728863549285}
   - component: {fileID: 6321284982980465622}
   - component: {fileID: 2498589930658671}
+  - component: {fileID: 6763092368523817699}
   m_Layer: 0
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &8945161171802380627
 Transform:
@@ -1567,3 +1568,34 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6763092368523817699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9040240015167872203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 1
+  m_VoxelSize: 0.75
+  m_MinRegionArea: 2
+  m_NavMeshData: {fileID: 23800000, guid: 53670138c9bd59e40ade9a030dc3433e, type: 2}
+  m_BuildHeightMesh: 0

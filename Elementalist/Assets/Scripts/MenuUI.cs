@@ -6,6 +6,11 @@ public class MenuUI : MonoBehaviour
 {
     public void RestartGame()
     {
-        GameManager.instance.LoadLevel();
+        GameManager.Instance.LoadLevel();
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }

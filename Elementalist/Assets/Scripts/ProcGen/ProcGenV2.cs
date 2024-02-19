@@ -18,17 +18,6 @@ public class ProcGenV2 : MonoBehaviour
     
     private Vector3 startPos;
 
-    //public bool isFirstFrame = true;
-
-    // private void Update()
-    // {
-    //     if (isFirstFrame)
-    //     {
-    //         GameObject.FindGameObjectWithTag("Player").transform.position = startPos;
-    //         isFirstFrame = false;
-    //     }
-    // }
-
     public void OnLevelLoad()
     {
         level = CreateMap();
@@ -132,8 +121,28 @@ public class ProcGenV2 : MonoBehaviour
                     }
                     else
                     {
-                        GameObject room = (Instantiate(emptyRooms[0], new Vector3(x * 20f, 0f, z * 20f),
-                            Quaternion.identity, this.transform));
+                        int rand = Random.Range(0, 10);
+                        if (rand > 3)
+                        {
+                            GameObject room = (Instantiate(emptyRooms[0], new Vector3(x * 20f, 0f, z * 20f),
+                                Quaternion.identity, this.transform));
+                        }
+                        else if (rand is < 3 and >= 2)
+                        {
+                            GameObject room = (Instantiate(emptyRooms[2], new Vector3(x * 20f, 0f, z * 20f),
+                                Quaternion.identity, this.transform));
+                            
+                            int rand_angle = Random.Range(0, 4);
+                            room.transform.Rotate(0f, 90f * rand_angle, 0f);
+                        }
+                        else
+                        {
+                            GameObject room = (Instantiate(emptyRooms[1], new Vector3(x * 20f, 0f, z * 20f),
+                                Quaternion.identity, this.transform));
+                            
+                            int rand_angle = Random.Range(0, 4);
+                            room.transform.Rotate(0f, 90f * rand_angle, 0f);
+                        }
                     }
                 }
                 else if (_level[x, z] == 2)
@@ -186,8 +195,28 @@ public class ProcGenV2 : MonoBehaviour
                     }
                     else
                     {
-                        GameObject room = (Instantiate(enemyRooms[0], new Vector3(x * 20f, 0f, z * 20f),
-                            Quaternion.identity, this.transform));
+                        int rand = Random.Range(0, 10);
+                        if (rand > 6)
+                        {
+                            GameObject room = (Instantiate(enemyRooms[0], new Vector3(x * 20f, 0f, z * 20f),
+                                Quaternion.identity, this.transform));
+                        }
+                        else if (rand is < 6 and >= 3)
+                        {
+                            GameObject room = (Instantiate(enemyRooms[2], new Vector3(x * 20f, 0f, z * 20f),
+                                Quaternion.identity, this.transform));
+                            
+                            int rand_angle = Random.Range(0, 4);
+                            room.transform.Rotate(0f, 90f * rand_angle, 0f);
+                        }
+                        else
+                        {
+                            GameObject room = (Instantiate(enemyRooms[1], new Vector3(x * 20f, 0f, z * 20f),
+                                Quaternion.identity, this.transform));
+                            
+                            int rand_angle = Random.Range(0, 4);
+                            room.transform.Rotate(0f, 90f * rand_angle, 0f);
+                        }
                     }
                 } 
                 else if (_level[x, z] == 3)

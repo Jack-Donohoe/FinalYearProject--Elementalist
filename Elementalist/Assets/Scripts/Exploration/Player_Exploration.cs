@@ -6,17 +6,29 @@ using UnityEngine.InputSystem;
 
 public class Player_Exploration : MonoBehaviour
 {
+    private Exploration_HUD hud;
+
+    private void Start()
+    {
+        hud = GameObject.FindGameObjectWithTag("HUD").GetComponent<Exploration_HUD>();
+    }
+
     private void OnTriggerEnter(Collider collider)
     {
         if (collider.gameObject.tag.Equals("Enemy"))
         {
-            GameManager.instance.StartCombat();
+            GameManager.Instance.StartCombat();
             Destroy(collider.gameObject,1);
         }
     }
 
+    public void OnPause()
+    {
+        hud.HandlePauseMenu();
+    }
+    
     public void OnInventory()
     {
-        GameObject.FindGameObjectWithTag("HUD").GetComponent<Exploration_HUD>().HandleInventoryMenu();
+        hud.HandleInventoryMenu();
     }
 }

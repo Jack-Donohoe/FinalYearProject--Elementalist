@@ -119,8 +119,8 @@ public class Player_Combat : MonoBehaviour
         
         multiplier = (rand <= 5)? 2: 1;
 
-        Element element = GameManager.instance.GetElement(0);
-        GameObject projectile = Instantiate(GameManager.instance.GetElement(0).GetProjectile(),transform.position, Quaternion.identity);
+        Element element = GameManager.Instance.selectedElement;
+        GameObject projectile = Instantiate(element.GetProjectile(),transform.position, Quaternion.identity);
 
         Vector3 direction = (enemies[0].transform.position - projectile.transform.position).normalized * (element.GetProjectileSpeed() * Time.deltaTime);
         projectile.transform.LookAt(enemies[0].transform.position);
