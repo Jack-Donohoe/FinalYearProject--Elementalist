@@ -10,16 +10,24 @@ public class Exploration_HUD : MonoBehaviour
     public GameObject inGameHUD;
     public TMP_Text scoreText;
     public GameObject inventoryMenu;
-    public Button[] Buttons;
+    public Button[] buttons;
+    public TMP_Text[] buttonTexts;
 
     public void SetScoreText(string text)
     {
         scoreText.text = text;
     }
 
-    public void InventoryButton()
+    public void HandleInventoryMenu()
     {
-        LoadInventoryMenu();
+        if (inventoryMenu.activeSelf == false)
+        {
+            LoadInventoryMenu();
+        }
+        else
+        {
+            UnloadInventoryMenu();
+        }
     }
 
     private void LoadInventoryMenu()
@@ -27,13 +35,34 @@ public class Exploration_HUD : MonoBehaviour
         Time.timeScale = 0f;
         inGameHUD.SetActive(false);
         
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        
         List<Element> elements = GameManager.instance.GetElements();
         
         for(int i = 0; i < elements.Count; i++)
         {
-            Buttons[i].GetComponentInChildren<TMP_Text>().text = elements[i].GetName();
+            buttonTexts[i].text = elements[i].GetName();
         }
         
         inventoryMenu.SetActive(true);
+    }
+
+    private void UnloadInventoryMenu()
+    {
+        Time.timeScale = 1f;
+        inventoryMenu.SetActive(false);
+        
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        inGameHUD.SetActive(true);
+    }
+
+    public OnElementButton()
+    {
+        foreach (var button in buttons)
+        {
+            if (gameObject )
+        }
     }
 }

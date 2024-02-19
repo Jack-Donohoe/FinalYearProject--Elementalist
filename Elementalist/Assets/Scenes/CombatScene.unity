@@ -3498,7 +3498,7 @@ PrefabInstance:
     - target: {fileID: 3256959476624745702, guid: c9ae9cc906decd14eac7b34946a43d9e, type: 3}
       propertyPath: element
       value: 
-      objectReference: {fileID: 11400000, guid: 51f4cc4b598eaa64c893482717fba1e8, type: 2}
+      objectReference: {fileID: 11400000, guid: 580725dd379310843b1444491619d888, type: 2}
     - target: {fileID: 7154253464818492262, guid: c9ae9cc906decd14eac7b34946a43d9e, type: 3}
       propertyPath: m_Name
       value: CombatManager

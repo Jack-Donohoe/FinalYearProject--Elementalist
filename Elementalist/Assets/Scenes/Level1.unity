@@ -1245,10 +1245,14 @@ MonoBehaviour:
   inGameHUD: {fileID: 2131878110}
   scoreText: {fileID: 1415972232}
   inventoryMenu: {fileID: 1915443301}
-  Buttons:
+  buttons:
   - {fileID: 723170566}
   - {fileID: 1707040755}
   - {fileID: 1248029114}
+  buttonTexts:
+  - {fileID: 146933040}
+  - {fileID: 1174741823}
+  - {fileID: 538751877}
 --- !u!1 &929828840
 GameObject:
   m_ObjectHideFlags: 0
@@ -3023,7 +3027,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2121993954072845486, guid: bb1a41c2e1b41c744ba0e16123f87bdc, type: 3}
       propertyPath: cursorLocked
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7346252043569432691, guid: bb1a41c2e1b41c744ba0e16123f87bdc, type: 3}
       propertyPath: m_Camera

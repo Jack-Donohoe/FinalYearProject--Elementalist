@@ -20,17 +20,6 @@ public class ProcGenV2 : MonoBehaviour
 
     //public bool isFirstFrame = true;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        if (GameManager.instance.gameState == GameManager.GameState.Start)
-        {
-            level = CreateMap();
-            GenerateMap(level);
-            StartCoroutine(SetPlayerStartPos());
-        }
-    }
-
     // private void Update()
     // {
     //     if (isFirstFrame)
@@ -40,11 +29,15 @@ public class ProcGenV2 : MonoBehaviour
     //     }
     // }
 
-    private IEnumerator SetPlayerStartPos()
+    public void OnLevelLoad()
     {
-        yield return new WaitForSeconds(0.1f);
+        level = CreateMap();
+        GenerateMap(level);
+
+        GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterController>().enabled = false;
         GameObject.FindGameObjectWithTag("Player").transform.position = startPos;
-        Debug.Log(GameObject.FindGameObjectWithTag("Player").transform.position);
+        GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterController>().enabled = true;
+        Debug.Log(GameObject.FindGameObjectWithTag("Player").transform.position);    
     }
 
     private int[,] CreateMap()

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 054b6864558855a45a6fe62ae5abd100, type: 3}
   m_Name: Water
   m_EditorClassIdentifier: 
+  element_name: Water
   waterball: {fileID: 27301545086308959, guid: 40539d1de6731bb408b4c88bebedc258, type: 3}
   speed: 4
   damage_value: 1

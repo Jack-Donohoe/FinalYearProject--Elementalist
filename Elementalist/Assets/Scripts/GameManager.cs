@@ -10,13 +10,9 @@ public class GameManager : MonoBehaviour
 
     private int score;
 
-    private List<Element> _elements = new List<Element>();
+    public List<Element> _elements = new List<Element>();
 
     public Exploration_HUD hud;
-    
-    public enum GameState { Start, InGame }
-
-    public GameState gameState;
 
     private GameObject map;
 
@@ -31,8 +27,6 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        gameState = GameState.Start;
     }
 
     public void LoadLevel()
@@ -41,11 +35,18 @@ public class GameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         SceneManager.LoadScene("Level1");
+        StartCoroutine(StartLevel());
+    }
+
+    IEnumerator StartLevel()
+    {
+        yield return new WaitForSeconds(0.01f);
+        map = GameObject.FindGameObjectWithTag("Map");
+        map.GetComponent<ProcGenV2>().OnLevelLoad();
     }
     
     public void StartCombat()
     {
-        gameState = GameState.InGame;
         map = GameObject.FindGameObjectWithTag("Map");
             
         GameData levelData = new GameData
@@ -72,7 +73,6 @@ public class GameManager : MonoBehaviour
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
-            gameState = GameState.InGame;
             SceneManager.LoadScene("Level1");
 
             StartCoroutine(ReloadLevel());

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Player_Exploration : MonoBehaviour
 {
@@ -12,5 +13,10 @@ public class Player_Exploration : MonoBehaviour
             GameManager.instance.StartCombat();
             Destroy(collider.gameObject,1);
         }
+    }
+
+    public void OnInventory()
+    {
+        GameObject.FindGameObjectWithTag("HUD").GetComponent<Exploration_HUD>().HandleInventoryMenu();
     }
 }
