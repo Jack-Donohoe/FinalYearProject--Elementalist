@@ -112,8 +112,6 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForNextFrameUnit();
         GameData levelData = DataManager.instance.LoadLevelData();
-        Debug.Log(levelData.playerPos);
-        GameObject.FindGameObjectWithTag("Player").transform.position = levelData.playerPos;
             
         map = GameObject.FindGameObjectWithTag("Map");
         int levelSize = map.GetComponent<ProcGenV2>().levelSize;
@@ -131,6 +129,11 @@ public class GameManager : MonoBehaviour
 
         hud = GameObject.FindGameObjectWithTag("HUD").GetComponent<Exploration_HUD>();
         hud.SetScoreText("Enemies Defeated: " + score);
+        
+        Debug.Log(levelData.playerPos);
+        GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterController>().enabled = false;
+        GameObject.FindGameObjectWithTag("Player").transform.position = levelData.playerPos;
+        GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterController>().enabled = true;
         
         StartCoroutine(RemoveLoadingScreen());
     }

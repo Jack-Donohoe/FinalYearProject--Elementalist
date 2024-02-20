@@ -12,6 +12,7 @@ public class ProcGenV2 : MonoBehaviour
     public GameObject[] emptyRooms;
     public GameObject[] enemyRooms;
 
+    [Range(0,1)]
     public double enemyFrequency;
 
     private int[,] level;
@@ -122,12 +123,12 @@ public class ProcGenV2 : MonoBehaviour
                     else
                     {
                         int rand = Random.Range(0, 10);
-                        if (rand > 3)
+                        if (rand >= 8)
                         {
                             GameObject room = (Instantiate(emptyRooms[0], new Vector3(x * 20f, 0f, z * 20f),
                                 Quaternion.identity, this.transform));
                         }
-                        else if (rand is < 3 and >= 2)
+                        else if (rand is < 8 and >= 5)
                         {
                             GameObject room = (Instantiate(emptyRooms[2], new Vector3(x * 20f, 0f, z * 20f),
                                 Quaternion.identity, this.transform));
@@ -196,12 +197,12 @@ public class ProcGenV2 : MonoBehaviour
                     else
                     {
                         int rand = Random.Range(0, 10);
-                        if (rand > 6)
+                        if (rand >= 8)
                         {
                             GameObject room = (Instantiate(enemyRooms[0], new Vector3(x * 20f, 0f, z * 20f),
                                 Quaternion.identity, this.transform));
                         }
-                        else if (rand is < 6 and >= 3)
+                        else if (rand is < 8 and >= 5)
                         {
                             GameObject room = (Instantiate(enemyRooms[2], new Vector3(x * 20f, 0f, z * 20f),
                                 Quaternion.identity, this.transform));
