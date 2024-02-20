@@ -82,7 +82,7 @@ public class Grunt_Combat : MonoBehaviour
     {
         state = State.Idle;
         
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.5f);
         manager.ChangeTurn();
     }
 

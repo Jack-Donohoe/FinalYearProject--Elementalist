@@ -22,6 +22,8 @@ public class Player_Combat : MonoBehaviour
     private bool dead = false;
 
     private GameObject[] enemies;
+
+    private int damage;
     
     // Start is called before the first frame update
     void Start()
@@ -74,7 +76,6 @@ public class Player_Combat : MonoBehaviour
     private IEnumerator EndTurn()
     {
         state = State.Idle;
-        
         yield return new WaitForSeconds(2f);
         manager.ChangeTurn();
     }
@@ -85,7 +86,7 @@ public class Player_Combat : MonoBehaviour
 
         multiplier = (rand <= 5)? 2: 1;
 
-        int damage = attack_power * multiplier;
+        damage = attack_power * multiplier;
         enemies[0].GetComponent<Grunt_Combat>().TakeDamage(damage);
         hud.DialogueText.text = "Player attacks and deals " + damage + " damage to Enemy A";
         
@@ -125,13 +126,12 @@ public class Player_Combat : MonoBehaviour
         Vector3 direction = (enemies[0].transform.position - projectile.transform.position).normalized * (element.GetProjectileSpeed() * Time.deltaTime);
         projectile.transform.LookAt(enemies[0].transform.position);
         projectile.GetComponent<Projectile>().SetMoveDirection(direction);
-
-        int damage = attack_power * element.GetDamageValue() * multiplier;
-        enemies[0].GetComponent<Grunt_Combat>().TakeDamage(damage);
         
         magic_points -= 5;
         hud.setMP(magic_points);
-        hud.DialogueText.text = "Player uses "+ element.GetAttackName() +" and deals " + damage + " damage to Enemy A";
+        
+        damage = attack_power * element.GetDamageValue() * multiplier;
+        hud.DialogueText.text = "Player uses " + element.GetAttackName() + " and deals " + damage + " damage to Enemy A";
         
         StartCoroutine(EndTurn());
     }
@@ -152,6 +152,11 @@ public class Player_Combat : MonoBehaviour
     public bool IsDead()
     {
         return dead;
+    }
+
+    public int GetDamage()
+    {
+        return damage;
     }
     
     public void onAttackButton()

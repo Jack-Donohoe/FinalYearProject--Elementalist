@@ -102,6 +102,7 @@ public class Exploration_HUD : MonoBehaviour
 
     public void OnMainMenuButton()
     {
+        UnloadMenu(pauseMenu);
         GameManager.Instance.LoadMainMenu();
     }
 

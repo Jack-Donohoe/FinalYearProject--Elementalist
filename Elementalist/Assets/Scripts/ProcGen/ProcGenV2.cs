@@ -23,11 +23,13 @@ public class ProcGenV2 : MonoBehaviour
     {
         level = CreateMap();
         GenerateMap(level);
+        
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
 
-        GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterController>().enabled = false;
-        GameObject.FindGameObjectWithTag("Player").transform.position = startPos;
-        GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterController>().enabled = true;
-        Debug.Log(GameObject.FindGameObjectWithTag("Player").transform.position);    
+        player.GetComponent<CharacterController>().enabled = false;
+        player.transform.position = startPos;
+        player.GetComponent<CharacterController>().enabled = true;
+        Debug.Log(player.transform.position);    
     }
 
     private int[,] CreateMap()
