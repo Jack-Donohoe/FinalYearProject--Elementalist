@@ -15,7 +15,7 @@ public class Enemy_Exploration : MonoBehaviour
     public State enemyState;
 
     private Transform target;
-    public Transform[] waypoints;
+    public GameObject[] waypoints;
 
     private int waypointCount;
     
@@ -29,8 +29,10 @@ public class Enemy_Exploration : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        waypoints = GameObject.FindGameObjectsWithTag("Waypoint");
+        
         int rand = Random.Range(0,waypoints.Length);
-        transform.position = waypoints[rand].position;
+        transform.position = waypoints[rand].transform.position;
 
         waypointCount = rand + 1;
         if (waypointCount >= waypoints.Length)
@@ -52,7 +54,7 @@ public class Enemy_Exploration : MonoBehaviour
         {
             case State.Patrol:
             {
-                target = waypoints[waypointCount];
+                target = waypoints[waypointCount].transform;
                 
                 if (Vector3.Distance(transform.position, target.position) < 1.5)
                 {

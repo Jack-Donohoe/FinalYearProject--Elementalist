@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Room : MonoBehaviour
 {
-    private GameObject room;
-    private bool[] connections;
+    private int id;
+    private bool completed = false;
     
     public enum RoomType
     {
@@ -18,25 +18,33 @@ public class Room : MonoBehaviour
 
     private RoomType roomType;
 
-    public Room(GameObject room, bool[] connections, RoomType roomType)
+    public int GetID()
     {
-        this.room = room;
-        this.connections = connections;
-        this.roomType = roomType;
+        return id;
     }
 
-    public GameObject GetRoom()
+    public void SetID(int id)
     {
-        return room;
+        this.id = id;
     }
 
-    public bool[] GetConnections()
+    public bool GetCompleted()
     {
-        return connections;
+        return completed;
+    }
+
+    public void SetCompleted(bool completed)
+    {
+        this.completed = completed;
     }
 
     public RoomType GetRoomType()
     {
         return roomType;
+    }
+
+    public void SetRoomType(RoomType roomType)
+    {
+        this.roomType = roomType;
     }
 }

@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Map
   - HUD
+  - Waypoint
   layers:
   - Default
   - TransparentFX
