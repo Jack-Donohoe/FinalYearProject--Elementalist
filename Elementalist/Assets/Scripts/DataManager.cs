@@ -8,7 +8,7 @@ public class GameData
 {
     public Vector3 playerPos;
     public List<Element> elementInventory;
-    public int[] level;
+    public GameObject[] level;
 }
 
 public class DataManager : MonoBehaviour

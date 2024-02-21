@@ -1111,6 +1111,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1457204324245749556}
   - component: {fileID: 4061968078683968452}
+  - component: {fileID: 6141777850229843978}
   m_Layer: 0
   m_Name: EmptyRoom_Straight
   m_TagString: Untagged
@@ -1173,3 +1174,21 @@ MonoBehaviour:
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: d8b7a7d3ff6469441bc64f31f2b02c7e, type: 2}
   m_BuildHeightMesh: 0
+--- !u!114 &6141777850229843978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8776208258515102377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73cb73d768a239d49a8ec78c2621b14b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 1723696547747711858, guid: 287aa9abb0fe0a5458e4da6214691667, type: 3}
+  waypoints:
+  - {fileID: 4548189106794994693}
+  - {fileID: 6668026001777334513}
+  - {fileID: 539004960693893161}
+  - {fileID: 3953072026936131730}

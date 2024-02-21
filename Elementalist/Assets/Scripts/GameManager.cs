@@ -57,7 +57,19 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForNextFrameUnit();
         map = GameObject.FindGameObjectWithTag("Map");
-        map.GetComponent<ProcGenV2>().OnLevelLoad();
+        map.GetComponent<ProcGenV3>().OnLevelLoad();
+        
+        GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterController>().enabled = false;
+        GameObject.FindGameObjectWithTag("Player").transform.position = map.GetComponent<ProcGenV3>().GetStartPos();
+        GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterController>().enabled = true;
+        
+        GameData levelData = new GameData
+        {
+            playerPos = GameObject.FindGameObjectWithTag("Player").transform.position,
+            elementInventory = _elements,
+            level = map.GetComponent<ProcGenV3>().GetLevel()
+        };
+        DataManager.instance.SaveLevelData(levelData);
         
         hud = GameObject.FindGameObjectWithTag("HUD").GetComponent<Exploration_HUD>();
         StartCoroutine(RemoveLoadingScreen());
@@ -73,15 +85,6 @@ public class GameManager : MonoBehaviour
     public void StartCombat()
     {
         map = GameObject.FindGameObjectWithTag("Map");
-            
-        GameData levelData = new GameData
-        {
-            playerPos = GameObject.FindGameObjectWithTag("Player").transform.position,
-            elementInventory = _elements,
-            level = map.GetComponent<ProcGenV2>().GetLevel()
-        };
-
-        DataManager.instance.SaveLevelData(levelData);
 
         SceneManager.LoadScene("CombatScene");
         Cursor.lockState = CursorLockMode.None;
@@ -114,18 +117,7 @@ public class GameManager : MonoBehaviour
         GameData levelData = DataManager.instance.LoadLevelData();
             
         map = GameObject.FindGameObjectWithTag("Map");
-        int levelSize = map.GetComponent<ProcGenV2>().levelSize;
-        int[,] level = new int[levelSize, levelSize];
-            
-        for (int x = 0; x < levelSize; x++)
-        {
-            for (int z = 0; z < levelSize; z++)
-            {
-                level[x, z] = levelData.level[x * levelSize + z];
-            }
-        }
-            
-        map.GetComponent<ProcGenV2>().GenerateMap(level);
+        map.GetComponent<ProcGenV3>().GenerateMap(levelData.level);
 
         hud = GameObject.FindGameObjectWithTag("HUD").GetComponent<Exploration_HUD>();
         hud.SetScoreText("Enemies Defeated: " + score);

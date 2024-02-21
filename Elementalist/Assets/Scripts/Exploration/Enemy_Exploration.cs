@@ -15,7 +15,7 @@ public class Enemy_Exploration : MonoBehaviour
     public State enemyState;
 
     private Transform target;
-    public GameObject[] waypoints;
+    private GameObject[] waypoints;
 
     private int waypointCount;
     
@@ -25,25 +25,6 @@ public class Enemy_Exploration : MonoBehaviour
     private Transform lastPlayerPos;
 
     private float timer;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        waypoints = GameObject.FindGameObjectsWithTag("Waypoint");
-        
-        int rand = Random.Range(0,waypoints.Length);
-        transform.position = waypoints[rand].transform.position;
-
-        waypointCount = rand + 1;
-        if (waypointCount >= waypoints.Length)
-        {
-            waypointCount = 0;
-        }
-        
-        enemyState = State.Patrol;
-        enemyAgent = GetComponent<NavMeshAgent>();
-        player = GameObject.FindGameObjectWithTag("Player");
-    }
 
     // Update is called once per frame
     void Update()
@@ -88,6 +69,22 @@ public class Enemy_Exploration : MonoBehaviour
         LookForPlayer();
         enemyAgent.SetDestination(target.position);
     }
+    
+    public void Setup()
+    {
+        int rand = Random.Range(0,waypoints.Length);
+        transform.position = waypoints[rand].transform.position;
+
+        waypointCount = rand + 1;
+        if (waypointCount >= waypoints.Length)
+        {
+            waypointCount = 0;
+        }
+        
+        enemyState = State.Patrol;
+        enemyAgent = GetComponent<NavMeshAgent>();
+        player = GameObject.FindGameObjectWithTag("Player");
+    }
 
     void LookForPlayer()
     {
@@ -124,5 +121,10 @@ public class Enemy_Exploration : MonoBehaviour
                 enemyState = State.Patrol;
             }
         }
+    }
+
+    public void SetWaypoints(GameObject[] waypoints)
+    {
+        this.waypoints = waypoints;
     }
 }
