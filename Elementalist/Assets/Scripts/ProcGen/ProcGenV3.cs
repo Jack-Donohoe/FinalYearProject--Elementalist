@@ -10,10 +10,8 @@ public class ProcGenV3 : MonoBehaviour
     
     [Range(0,1)]
     public double enemyFrequency;
-
-    public GameObject[] editableRoomTemplates;
     
-    private static GameObject[] roomTemplates;
+    public GameObject[] roomTemplates;
 
     private Dictionary<int, (GameObject, (float, float, float))> rooms;
 
@@ -23,8 +21,6 @@ public class ProcGenV3 : MonoBehaviour
 
     private void Start()
     {
-        // Crimes against God
-        roomTemplates = editableRoomTemplates;
         rooms = new Dictionary<int, (GameObject, (float, float, float))>()
         {
             {0,(roomTemplates[0], (0f, 0f, 0f))},
@@ -103,7 +99,7 @@ public class ProcGenV3 : MonoBehaviour
                 Debug.Log(_level[i].GetComponent<Room>().GetID());
             }
 
-            if (randPos > 0.4f)
+            if (randPos > 0.2f)
             {
                 _level[i * levelSize + (levelSize - 1)].GetComponent<Room>().SetID(6);
             }
@@ -115,7 +111,7 @@ public class ProcGenV3 : MonoBehaviour
                 Debug.Log(_level[i].GetComponent<Room>().GetID());
             }
 
-            if (randPos > 0.4f)
+            if (randPos > 0.2f)
             {
                 _level[i].GetComponent<Room>().SetID(7);
             }
@@ -127,7 +123,7 @@ public class ProcGenV3 : MonoBehaviour
                 Debug.Log(_level[i].GetComponent<Room>().GetID());
             }
 
-            if (randPos > 0.4f)
+            if (randPos > 0.2f)
             {
                 _level[(levelSize - 1) * levelSize + i].GetComponent<Room>().SetID(8);
             }
