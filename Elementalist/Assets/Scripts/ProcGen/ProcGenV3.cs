@@ -15,7 +15,13 @@ public class ProcGenV3 : MonoBehaviour
 
     private Dictionary<int, (GameObject, (float, float, float))> rooms;
 
-    private GameObject[] level;
+    //private List<GameObject> level;
+
+    private int[] ids;
+
+    private bool[] roomsCompleted;
+
+    private Room.RoomType[] roomTypes;
     
     private Vector3 startPos;
 
@@ -43,15 +49,16 @@ public class ProcGenV3 : MonoBehaviour
 
     public void OnLevelLoad()
     {
-        level = new GameObject[levelSize * levelSize];
-        level = CreateMap();
-        GenerateMap(level);
+        CreateMap();
+        GenerateMap(ids, roomsCompleted, roomTypes);
     }
 
-    private GameObject[] CreateMap()
+    private void CreateMap()
     {
-        GameObject[] _level = new GameObject[levelSize * levelSize];
-
+        ids = new int[levelSize * levelSize];
+        roomsCompleted = new bool[levelSize * levelSize];
+        roomTypes = new Room.RoomType[levelSize * levelSize];
+        
         // Initial Pass, Fill Array
         for (int i = 0; i < levelSize * levelSize; i++)
         {
@@ -59,27 +66,21 @@ public class ProcGenV3 : MonoBehaviour
             
             if (rand < enemyFrequency)
             {
-                GameObject room = new GameObject("Room" + i, typeof(Room));
-                
-                room.GetComponent<Room>().SetID(Random.Range(0,14));
-                room.GetComponent<Room>().SetRoomType(Room.RoomType.Enemy);
-                _level[i] = room;
-                Destroy(room);
+                ids[i] = Random.Range(0,14);
+                roomsCompleted[i] = false;
+                roomTypes[i] = Room.RoomType.Enemy;
             }
             else
             {
-                GameObject room = new GameObject("Room" + i, typeof(Room));
-                
-                room.GetComponent<Room>().SetID(Random.Range(0,14));
-                room.GetComponent<Room>().SetRoomType(Room.RoomType.Empty);
-                _level[i] = room;
-                Destroy(room);
+                ids[i] = Random.Range(0,14);
+                roomsCompleted[i] = false;
+                roomTypes[i] = Room.RoomType.Empty;
             }
         }
 
         int randPos = Random.Range(0, levelSize);
-        _level[0 + randPos].GetComponent<Room>().SetRoomType(Room.RoomType.Start);
-        _level[(levelSize - 1) * levelSize + randPos].GetComponent<Room>().SetRoomType(Room.RoomType.End);
+        roomTypes[0 + randPos] = Room.RoomType.Start;
+        roomTypes[(levelSize - 1) * levelSize + randPos] = Room.RoomType.End;
         
         // Process Edges
         for (int i = 0; i < levelSize; i++)
@@ -89,71 +90,65 @@ public class ProcGenV3 : MonoBehaviour
 
             if (rand > 0.4f)
             {
-                _level[i * levelSize + 0].GetComponent<Room>().SetID(5);
+                ids[i * levelSize + 0] = 5;
             }
             else
             {
-                int[] ids = new[] { 1, 3 };
+                int[] idsToSelect = new[] { 1, 3 };
                 int randBool = (Random.value > 0.5f) ? 1 : 0;
-                _level[i * levelSize + 0].GetComponent<Room>().SetID(ids[randBool]);
-                Debug.Log(_level[i].GetComponent<Room>().GetID());
+                ids[i * levelSize + 0] =  idsToSelect[randBool];
             }
 
             if (randPos > 0.2f)
             {
-                _level[i * levelSize + (levelSize - 1)].GetComponent<Room>().SetID(6);
+                ids[i * levelSize + (levelSize - 1)] = 6;
             }
             else
             {
-                int[] ids = new[] { 2, 4 };
+                int[] idsToSelect = new[] { 2, 4 };
                 int randBool = (Random.value > 0.5f) ? 1 : 0;
-                _level[i * levelSize + (levelSize - 1)].GetComponent<Room>().SetID(ids[randBool]);
-                Debug.Log(_level[i].GetComponent<Room>().GetID());
+                ids[i * levelSize + (levelSize - 1)] = idsToSelect[randBool];
             }
 
             if (randPos > 0.2f)
             {
-                _level[i].GetComponent<Room>().SetID(7);
+                ids[i] = 7;
             }
             else
             {
-                int[] ids = new[] { 1, 2 };
+                int[] idsToSelect = new[] { 1, 2 };
                 int randBool = (Random.value > 0.5f) ? 1 : 0;
-                _level[i].GetComponent<Room>().SetID(ids[randBool]);
-                Debug.Log(_level[i].GetComponent<Room>().GetID());
+                ids[i] =  idsToSelect[randBool];
             }
 
             if (randPos > 0.2f)
             {
-                _level[(levelSize - 1) * levelSize + i].GetComponent<Room>().SetID(8);
+                ids[(levelSize - 1) * levelSize + i] = 8;
             }
             else
             {
-                int[] ids = new[] { 3, 4 };
+                int[] idsToSelect = new[] { 3, 4 };
                 int randBool = (Random.value > 0.5f) ? 1 : 0;
-                _level[(levelSize - 1) * levelSize + i].GetComponent<Room>().SetID(ids[randBool]);
-                Debug.Log(_level[i].GetComponent<Room>().GetID());
+                ids[(levelSize - 1) * levelSize + i] =  idsToSelect[randBool];
             }
         }
 
         // Process Corners
-        _level[0].GetComponent<Room>().SetID(1);
-        _level[0 + levelSize - 1].GetComponent<Room>().SetID(2);
-        _level[(levelSize - 1) * levelSize].GetComponent<Room>().SetID(3);
-        _level[(levelSize - 1) * levelSize + levelSize - 1].GetComponent<Room>().SetID(4);
-        
-        return _level;
+        ids[0] = 1;
+        ids[0 + levelSize - 1] = 2;
+        ids[(levelSize - 1) * levelSize] = 3;
+        ids[(levelSize - 1) * levelSize + levelSize - 1] = 4;
     }
 
-    public void GenerateMap(GameObject[] _level)
+    public void GenerateMap(int[] ids, bool[] roomsCompleted, Room.RoomType[] roomTypes)
     {
         for (int i = 0; i < levelSize; i++)
         {
             for (int j = 0; j < levelSize; j++)
             {
-                int id = _level[(i * levelSize + j)].GetComponent<Room>().GetID();
-                Room.RoomType type = _level[(i * levelSize + j)].GetComponent<Room>().GetRoomType();
-                bool completed = _level[(i * levelSize + j)].GetComponent<Room>().GetCompleted();
+                int id = ids[(i * levelSize + j)];
+                bool completed = roomsCompleted[(i * levelSize + j)];
+                Room.RoomType type = roomTypes[(i * levelSize + j)];
 
                 if (rooms.TryGetValue(id, out (GameObject, (float, float, float)) roomInfo))
                 {
@@ -176,17 +171,51 @@ public class ProcGenV3 : MonoBehaviour
         }
     }
 
-    public GameObject[] GetLevel()
+    public int[] GetIds()
     {
-        return level;
+        return ids;
+    }
+
+    public void SetIds(int[] ids)
+    {
+        this.ids = ids;
+    }
+
+    public bool[] GetRoomsCompleted()
+    {
+        return roomsCompleted;
+    }
+
+    public void SetRoomsCompleted(bool[] roomsCompleted)
+    {
+        this.roomsCompleted = roomsCompleted;
+    }
+
+    public Room.RoomType[] GetRoomTypes()
+    {
+        return roomTypes;
+    }
+
+    public void SetRoomTypes(Room.RoomType[] roomTypes)
+    {
+        this.roomTypes = roomTypes;
     }
     
-    public GameObject GetRoom(Vector3 roomPos)
+    public (int,bool,Room.RoomType) GetRoom(Vector3 roomPos)
     {
-        int x = (int) roomPos.x / levelSize;
-        int z = (int) roomPos.z / levelSize;
+        int x = (int) roomPos.x / 20;
+        int z = (int) roomPos.z / 20;
 
-        return level[x * levelSize + z];
+        return (ids[x * levelSize + z], roomsCompleted[x * levelSize + z], roomTypes[x * levelSize + z]);
+    }
+
+    public void SetRoomCompleted(Vector3 roomPos, bool roomCompleted)
+    {
+        int x = (int) roomPos.x / 20;
+        int z = (int) roomPos.z / 20;
+        Debug.Log(z * levelSize + x);
+
+        roomsCompleted[z * levelSize + x] = roomCompleted;
     }
 
     public Vector3 GetStartPos()

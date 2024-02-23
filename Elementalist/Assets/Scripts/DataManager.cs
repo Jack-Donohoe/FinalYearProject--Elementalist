@@ -7,8 +7,13 @@ using System.IO;
 public class GameData
 {
     public Vector3 playerPos;
-    public List<Element> elementInventory;
-    public GameObject[] level;
+    // public List<Element> elementInventory;
+    // public GameObject[] level;
+    // public List<(int, bool, Room.RoomType)> roomInfo;
+    public int levelSize;
+    public int[] ids;
+    public bool[] roomsCompleted;
+    public Room.RoomType[] roomTypes;
 }
 
 public class DataManager : MonoBehaviour
@@ -62,8 +67,8 @@ public class DataManager : MonoBehaviour
     {
         string dataToSave = JsonUtility.ToJson(gameData);
         
-        File.WriteAllText(inGameDataPath, dataToSave);
         Debug.Log(dataToSave);
+        File.WriteAllText(inGameDataPath, dataToSave);
     }
 
     public GameData LoadLevelData()
@@ -72,7 +77,7 @@ public class DataManager : MonoBehaviour
         {
             string dataToLoad = File.ReadAllText(inGameDataPath);
             GameData gameData = JsonUtility.FromJson<GameData>(dataToLoad);
-
+            
             return gameData;
         }
 
