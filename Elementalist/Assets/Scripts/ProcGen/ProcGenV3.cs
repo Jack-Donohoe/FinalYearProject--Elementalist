@@ -87,47 +87,48 @@ public class ProcGenV3 : MonoBehaviour
         {
             float rand = Random.Range(0f, 1.0f);
             rand -= (rand % 0.1f);
+            Debug.Log(rand);
 
-            if (rand > 0.4f)
+            if (rand >= 0.7f)
             {
                 ids[i * levelSize + 0] = 5;
             }
             else
             {
-                int[] idsToSelect = new[] { 1, 3 };
+                int[] idsToSelect = new[] { 1, 3, 9 };
                 int randBool = (Random.value > 0.5f) ? 1 : 0;
                 ids[i * levelSize + 0] =  idsToSelect[randBool];
             }
 
-            if (randPos > 0.2f)
+            if (randPos >= 0.7f)
             {
                 ids[i * levelSize + (levelSize - 1)] = 6;
             }
             else
             {
-                int[] idsToSelect = new[] { 2, 4 };
+                int[] idsToSelect = new[] { 2, 4, 9 };
                 int randBool = (Random.value > 0.5f) ? 1 : 0;
                 ids[i * levelSize + (levelSize - 1)] = idsToSelect[randBool];
             }
 
-            if (randPos > 0.2f)
+            if (randPos >= 0.7f)
             {
                 ids[i] = 7;
             }
             else
             {
-                int[] idsToSelect = new[] { 1, 2 };
+                int[] idsToSelect = new[] { 1, 2, 10 };
                 int randBool = (Random.value > 0.5f) ? 1 : 0;
                 ids[i] =  idsToSelect[randBool];
             }
 
-            if (randPos > 0.2f)
+            if (randPos >= 0.7f)
             {
                 ids[(levelSize - 1) * levelSize + i] = 8;
             }
             else
             {
-                int[] idsToSelect = new[] { 3, 4 };
+                int[] idsToSelect = new[] { 3, 4, 10 };
                 int randBool = (Random.value > 0.5f) ? 1 : 0;
                 ids[(levelSize - 1) * levelSize + i] =  idsToSelect[randBool];
             }

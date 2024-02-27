@@ -144,8 +144,8 @@ public class GameManager : MonoBehaviour
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         player.GetComponent<CharacterController>().enabled = false;
         player.transform.position = levelData.playerPos;
-        player.transform.rotation = levelData.playerRotation;
         player.GetComponent<CharacterController>().enabled = true;
+        player.transform.rotation = levelData.playerRotation;
         
         StartCoroutine(RemoveLoadingScreen());
     }

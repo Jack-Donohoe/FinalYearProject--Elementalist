@@ -28,7 +28,7 @@ public class Player_Exploration : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-        if (timer > 10)
+        if (timer > 20)
         {
             timer = 0;
             playerInfo = GameManager.Instance.GetPlayerInfo();
