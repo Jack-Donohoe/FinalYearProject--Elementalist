@@ -7,9 +7,12 @@ using System.IO;
 public class GameData
 {
     public Vector3 playerPos;
-    // public List<Element> elementInventory;
-    // public GameObject[] level;
-    // public List<(int, bool, Room.RoomType)> roomInfo;
+    public Quaternion playerRotation;
+    public int playerHealth;
+    public int playerMagic;
+    public int playerAttack;
+    public int playerDefence;
+    public List<Element> elementInventory;
     public int levelSize;
     public int[] ids;
     public bool[] roomsCompleted;

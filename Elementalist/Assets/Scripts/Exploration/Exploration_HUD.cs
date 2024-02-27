@@ -15,6 +15,8 @@ public class Exploration_HUD : MonoBehaviour
     public Button[] buttons;
     public TMP_Text[] buttonTexts;
     public TMP_Text selectedElementText;
+    public Slider PlayerHPSlider;
+    public Slider MPSlider;
 
     private void Start()
     {
@@ -98,6 +100,16 @@ public class Exploration_HUD : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         inGameHUD.SetActive(true);
+    }
+    
+    public void setPlayerHP(int hp)
+    {
+        PlayerHPSlider.value = hp;
+    }
+    
+    public void setMP(int mp)
+    {
+        MPSlider.value = mp;
     }
 
     public void OnMainMenuButton()

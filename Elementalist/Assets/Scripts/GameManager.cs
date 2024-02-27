@@ -12,12 +12,18 @@ public class GameManager : MonoBehaviour
 
     private int score;
 
+    // Player Info
+    private int health_points = 100;
+    private int magic_points = 50;
+    private int attack_power = 10;
+    private int defence_power = 5;
+    
+    // Element Info
     public List<Element> _elements = new List<Element>();
-
     public Element selectedElement;
 
+    // Level Objects
     public Exploration_HUD hud;
-
     private GameObject map;
 
     private void Awake()
@@ -81,6 +87,11 @@ public class GameManager : MonoBehaviour
         GameData levelData = new GameData
         {
             playerPos = GameObject.FindGameObjectWithTag("Player").transform.position,
+            playerRotation = GameObject.FindGameObjectWithTag("Player").transform.rotation,
+            playerHealth = health_points,
+            playerMagic = magic_points,
+            playerAttack = attack_power,
+            playerDefence = defence_power,
             levelSize = map.GetComponent<ProcGenV3>().GetIds().Length,
             ids = map.GetComponent<ProcGenV3>().GetIds(),
             roomsCompleted = map.GetComponent<ProcGenV3>().GetRoomsCompleted(),
@@ -129,10 +140,12 @@ public class GameManager : MonoBehaviour
         hud = GameObject.FindGameObjectWithTag("HUD").GetComponent<Exploration_HUD>();
         hud.SetScoreText("Enemies Defeated: " + score);
         
-        Debug.Log(levelData.playerPos);
-        GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterController>().enabled = false;
-        GameObject.FindGameObjectWithTag("Player").transform.position = levelData.playerPos;
-        GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterController>().enabled = true;
+        Debug.Log(levelData.playerRotation);
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        player.GetComponent<CharacterController>().enabled = false;
+        player.transform.position = levelData.playerPos;
+        player.transform.rotation = levelData.playerRotation;
+        player.GetComponent<CharacterController>().enabled = true;
         
         StartCoroutine(RemoveLoadingScreen());
     }
@@ -156,5 +169,18 @@ public class GameManager : MonoBehaviour
     public List<Element> GetElements()
     {
         return _elements;
+    }
+
+    public (int, int, int, int) GetPlayerInfo()
+    {
+        return (health_points, magic_points, attack_power, defence_power);
+    }
+
+    public void SetPlayerInfo((int,int,int,int) playerInfo)
+    {
+        health_points = playerInfo.Item1;
+        magic_points = playerInfo.Item2;
+        attack_power = playerInfo.Item3;
+        defence_power = playerInfo.Item4;
     }
 }

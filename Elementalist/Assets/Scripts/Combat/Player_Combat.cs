@@ -29,6 +29,12 @@ public class Player_Combat : MonoBehaviour
     void Start()
     {
         state = State.Idle;
+
+        (int, int, int, int) playerInfo = GameManager.Instance.GetPlayerInfo();
+        health_points = playerInfo.Item1;
+        magic_points = playerInfo.Item2;
+        attack_power = playerInfo.Item3;
+        defence_power = playerInfo.Item4;
         
         hud.setPlayerHP(health_points);
         hud.setMP(magic_points);
@@ -77,6 +83,7 @@ public class Player_Combat : MonoBehaviour
     {
         state = State.Idle;
         yield return new WaitForSeconds(2f);
+        GameManager.Instance.SetPlayerInfo((health_points,magic_points,attack_power,defence_power));
         manager.ChangeTurn();
     }
     
