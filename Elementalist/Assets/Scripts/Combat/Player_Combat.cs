@@ -134,7 +134,7 @@ public class Player_Combat : MonoBehaviour
         projectile.transform.LookAt(enemies[0].transform.position);
         projectile.GetComponent<Projectile>().SetMoveDirection(direction);
         
-        magic_points -= 5;
+        magic_points -= 10;
         hud.setMP(magic_points);
         
         damage = attack_power * element.GetDamageValue() * multiplier;

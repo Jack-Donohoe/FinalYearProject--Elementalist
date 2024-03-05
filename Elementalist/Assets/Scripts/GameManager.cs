@@ -40,6 +40,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         selectedElement = _elements[0];
+        map = GameObject.FindGameObjectWithTag("Map");
     }
 
     public void LoadMainMenu()
@@ -56,6 +57,7 @@ public class GameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         SceneManager.LoadScene("Level1");
+        ResetGameInfo();
         StartCoroutine(StartLevel());
     }
 
@@ -111,12 +113,14 @@ public class GameManager : MonoBehaviour
         if (score == 4)
         {
             SceneManager.LoadScene("WinScreen");
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
         else
         {
+            SceneManager.LoadScene("Level1");
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
-            SceneManager.LoadScene("Level1");
 
             StartCoroutine(ReloadLevel());
             
@@ -154,6 +158,8 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         SceneManager.LoadScene("DeathScreen");
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     public void AddElement(Element element)
@@ -182,5 +188,18 @@ public class GameManager : MonoBehaviour
         magic_points = playerInfo.Item2;
         attack_power = playerInfo.Item3;
         defence_power = playerInfo.Item4;
+    }
+
+    private void ResetGameInfo()
+    {
+        health_points = 100;
+        magic_points = 50;
+        attack_power = 10;
+        defence_power = 5;
+    }
+
+    public GameObject GetMap()
+    {
+        return map;
     }
 }

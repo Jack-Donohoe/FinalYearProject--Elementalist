@@ -112,6 +112,32 @@ public class Exploration_HUD : MonoBehaviour
         MPSlider.value = mp;
     }
 
+    public void OnSaveGameButton()
+    {
+        (int, int, int, int) playerInfo = GameManager.Instance.GetPlayerInfo();
+        GameObject map = GameManager.Instance.GetMap();
+        
+        GameData gameData = new GameData
+        {
+            playerPos = GameObject.FindGameObjectWithTag("Player").transform.position,
+            playerRotation = GameObject.FindGameObjectWithTag("Player").transform.rotation,
+            playerHealth = playerInfo.Item1,
+            playerMagic = playerInfo.Item2,
+            playerAttack = playerInfo.Item3,
+            playerDefence = playerInfo.Item4,
+            levelSize = map.GetComponent<ProcGenV3>().GetIds().Length,
+            ids = map.GetComponent<ProcGenV3>().GetIds(),
+            roomsCompleted = map.GetComponent<ProcGenV3>().GetRoomsCompleted(),
+            roomTypes = map.GetComponent<ProcGenV3>().GetRoomTypes()
+        };
+        DataManager.instance.SaveGameData(gameData);
+    }
+
+    public void OnLoadGameButton()
+    {
+        
+    }
+
     public void OnMainMenuButton()
     {
         UnloadMenu(pauseMenu);

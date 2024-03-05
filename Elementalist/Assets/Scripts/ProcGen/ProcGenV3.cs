@@ -89,7 +89,7 @@ public class ProcGenV3 : MonoBehaviour
             rand -= (rand % 0.1f);
             Debug.Log(rand);
 
-            if (rand >= 0.7f)
+            if (rand >= 0.8f)
             {
                 ids[i * levelSize + 0] = 5;
             }
@@ -100,7 +100,7 @@ public class ProcGenV3 : MonoBehaviour
                 ids[i * levelSize + 0] =  idsToSelect[randBool];
             }
 
-            if (randPos >= 0.7f)
+            if (randPos >= 0.8f)
             {
                 ids[i * levelSize + (levelSize - 1)] = 6;
             }
@@ -111,7 +111,7 @@ public class ProcGenV3 : MonoBehaviour
                 ids[i * levelSize + (levelSize - 1)] = idsToSelect[randBool];
             }
 
-            if (randPos >= 0.7f)
+            if (randPos >= 0.8f)
             {
                 ids[i] = 7;
             }
@@ -122,7 +122,7 @@ public class ProcGenV3 : MonoBehaviour
                 ids[i] =  idsToSelect[randBool];
             }
 
-            if (randPos >= 0.7f)
+            if (randPos >= 0.8f)
             {
                 ids[(levelSize - 1) * levelSize + i] = 8;
             }
