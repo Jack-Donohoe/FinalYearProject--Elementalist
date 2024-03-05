@@ -66,11 +66,11 @@ public class Combat_Manager : MonoBehaviour
         if (state == BattleState.Player_Won)
         {
             hud.DialogueText.text = "Player Won";
-            GameManager.instance.ReturnToLevel();
+            StartCoroutine(GameManager.Instance.ReturnToLevel());
         } else if (state == BattleState.Player_Lost)
         {
             hud.DialogueText.text = "Player Lost";
-            GameManager.instance.LoseGame();
+            StartCoroutine(GameManager.Instance.LoseGame());
         }
     }
 }
