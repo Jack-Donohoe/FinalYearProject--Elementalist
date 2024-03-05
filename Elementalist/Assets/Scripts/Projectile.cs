@@ -21,6 +21,7 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("Hit Enemy");
         if (other.gameObject.CompareTag("Enemy"))
         {
             Destroy(gameObject);
