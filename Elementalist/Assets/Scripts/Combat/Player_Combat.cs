@@ -79,10 +79,11 @@ public class Player_Combat : MonoBehaviour
         state = State.Ready;
     }
     
-    private IEnumerator EndTurn()
+    public IEnumerator EndTurn()
     {
         state = State.Idle;
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
+        Debug.Log("Ending Player Turn");
         GameManager.Instance.SetPlayerInfo((health_points,magic_points,attack_power,defence_power));
         manager.ChangeTurn();
     }
@@ -139,8 +140,6 @@ public class Player_Combat : MonoBehaviour
         
         damage = attack_power * element.GetDamageValue() * multiplier;
         hud.DialogueText.text = "Player uses " + element.GetAttackName() + " and deals " + damage + " damage to Enemy A";
-        
-        StartCoroutine(EndTurn());
     }
 
     public void TakeDamage(int damage)

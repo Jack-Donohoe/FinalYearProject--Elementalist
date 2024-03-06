@@ -42,26 +42,13 @@ public class Enemy_Exploration : MonoBehaviour
                     waypointCount = Random.Range(0, waypoints.Length);
                     //if (waypointCount > waypoints.Length - 1) waypointCount = 0;
                 }
-
-                enemyAgent.SetDestination(target.position);
+                
                 break;
             }
 
             case State.PlayerDetected:
             {
                 target = player.transform;
-
-                NavMeshPath path = new NavMeshPath();
-                enemyAgent.CalculatePath(target.position, path);
-
-                if (path.status != NavMeshPathStatus.PathInvalid)
-                {
-                    enemyAgent.SetDestination(target.position);
-                }
-                else
-                {
-                    enemyState = State.Patrol;
-                }
                 break;
             }
         }
@@ -112,7 +99,7 @@ public class Enemy_Exploration : MonoBehaviour
         {
             seenObject = hit.collider.gameObject.name;
             
-            if (seenObject == "Player" || inFOV)
+            if (seenObject == "Player" || inFOV)    
             {
                 enemyState = State.PlayerDetected;
             }

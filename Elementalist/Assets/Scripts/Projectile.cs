@@ -21,13 +21,16 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Hit Enemy");
         if (other.gameObject.CompareTag("Enemy"))
         {
             Destroy(gameObject);
+
+            Player_Combat playerCombat = GameObject.FindGameObjectWithTag("Player").GetComponent<Player_Combat>();
             
-            int damage = GameObject.FindGameObjectWithTag("Player").GetComponent<Player_Combat>().GetDamage();
+            int damage = playerCombat.GetDamage();
             other.gameObject.GetComponent<Grunt_Combat>().TakeDamage(damage);
+            
+            StartCoroutine(playerCombat.EndTurn());
         }
     }
 
