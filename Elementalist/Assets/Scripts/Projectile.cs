@@ -30,7 +30,7 @@ public class Projectile : MonoBehaviour
             int damage = playerCombat.GetDamage();
             other.gameObject.GetComponent<Grunt_Combat>().TakeDamage(damage);
             
-            StartCoroutine(playerCombat.EndTurn());
+            playerCombat.EndTurn();
         }
     }
 

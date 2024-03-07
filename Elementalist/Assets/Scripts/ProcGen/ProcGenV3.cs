@@ -66,13 +66,15 @@ public class ProcGenV3 : MonoBehaviour
             
             if (rand < enemyFrequency)
             {
-                ids[i] = Random.Range(0,14);
+                int[] possibleRooms = { 0, 5, 6, 7, 8, 9, 10};
+                ids[i] = possibleRooms[Random.Range(0,6)];
                 roomsCompleted[i] = false;
                 roomTypes[i] = Room.RoomType.Enemy;
             }
             else
             {
-                ids[i] = Random.Range(0,14);
+                int[] possibleRooms = { 0, 5, 6, 7, 8, 9, 10};
+                ids[i] = possibleRooms[Random.Range(0,6)];
                 roomsCompleted[i] = false;
                 roomTypes[i] = Room.RoomType.Empty;
             }
@@ -89,7 +91,7 @@ public class ProcGenV3 : MonoBehaviour
             rand -= (rand % 0.1f);
             Debug.Log(rand);
 
-            if (rand >= 0.8f)
+            if (rand >= 0.4f)
             {
                 ids[i * levelSize + 0] = 5;
             }
@@ -100,7 +102,7 @@ public class ProcGenV3 : MonoBehaviour
                 ids[i * levelSize + 0] =  idsToSelect[randBool];
             }
 
-            if (randPos >= 0.8f)
+            if (randPos >= 0.4f)
             {
                 ids[i * levelSize + (levelSize - 1)] = 6;
             }
@@ -111,7 +113,7 @@ public class ProcGenV3 : MonoBehaviour
                 ids[i * levelSize + (levelSize - 1)] = idsToSelect[randBool];
             }
 
-            if (randPos >= 0.8f)
+            if (randPos >= 0.4f)
             {
                 ids[i] = 7;
             }
@@ -122,7 +124,7 @@ public class ProcGenV3 : MonoBehaviour
                 ids[i] =  idsToSelect[randBool];
             }
 
-            if (randPos >= 0.8f)
+            if (randPos >= 0.4f)
             {
                 ids[(levelSize - 1) * levelSize + i] = 8;
             }
@@ -153,13 +155,13 @@ public class ProcGenV3 : MonoBehaviour
 
                 if (rooms.TryGetValue(id, out (GameObject, (float, float, float)) roomInfo))
                 {
-                    GameObject room = Instantiate(roomInfo.Item1, new Vector3(j * 20f, 0f, i * 20f), Quaternion.identity, this.transform);
+                    GameObject room = Instantiate(roomInfo.Item1, new Vector3(j * 35f, 0f, i * 35f), Quaternion.identity, this.transform);
                     room.name = "Room" + (i * levelSize + j);
                     room.transform.Rotate(roomInfo.Item2.Item1, roomInfo.Item2.Item2, roomInfo.Item2.Item3);
                     
                     if (type == Room.RoomType.Start)
                     {
-                        startPos = new Vector3(j * 20f, 0f, i * 20f);
+                        startPos = new Vector3(j * 35f, 0f, i * 35f);
                     } else if (type == Room.RoomType.Enemy)
                     {
                         if (completed == false)
@@ -204,16 +206,16 @@ public class ProcGenV3 : MonoBehaviour
     
     public (int,bool,Room.RoomType) GetRoom(Vector3 roomPos)
     {
-        int x = (int) roomPos.x / 20;
-        int z = (int) roomPos.z / 20;
+        int x = (int) roomPos.x / 35;
+        int z = (int) roomPos.z / 35;
 
         return (ids[x * levelSize + z], roomsCompleted[x * levelSize + z], roomTypes[x * levelSize + z]);
     }
 
     public void SetRoomCompleted(Vector3 roomPos, bool roomCompleted)
     {
-        int x = (int) roomPos.x / 20;
-        int z = (int) roomPos.z / 20;
+        int x = (int) roomPos.x / 35;
+        int z = (int) roomPos.z / 35;
         Debug.Log(z * levelSize + x);
 
         roomsCompleted[z * levelSize + x] = roomCompleted;

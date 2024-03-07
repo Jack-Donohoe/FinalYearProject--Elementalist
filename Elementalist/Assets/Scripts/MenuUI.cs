@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class MenuUI : MonoBehaviour
 {
+    public void GoToMainMenu()
+    {
+        GameManager.Instance.LoadMainMenu();
+    }
+    
     public void RestartGame()
     {
         GameManager.Instance.LoadLevel();

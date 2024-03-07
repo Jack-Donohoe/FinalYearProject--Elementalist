@@ -15,7 +15,7 @@ public class Grunt_Combat : MonoBehaviour
 
     public Combat_Manager manager;
     
-    public enum State { Idle, Attack, Heal, ElementalAttack }
+    public enum State { Idle, Attack, Heal, ElementalAttack, Dead }
 
     public State state;
     
@@ -36,6 +36,11 @@ public class Grunt_Combat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (dead)
+        {
+            state = State.Dead;
+        }
+        
         switch (state)
         {
             case State.Idle:

@@ -15,7 +15,7 @@ public class Player_Combat : MonoBehaviour
 
     public Combat_Manager manager;
     
-    public enum State { Idle, Ready, Attack, Heal, ElementalAttack }
+    public enum State { Idle, Ready, Attack, Heal, ElementalAttack, Dead }
 
     public State state;
     
@@ -46,6 +46,11 @@ public class Player_Combat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (dead)
+        {
+            state = State.Dead;
+        }
+        
         switch (state)
         {
             case State.Idle:
@@ -79,10 +84,10 @@ public class Player_Combat : MonoBehaviour
         state = State.Ready;
     }
     
-    public IEnumerator EndTurn()
+    public void EndTurn()
     {
         state = State.Idle;
-        yield return new WaitForSeconds(1f);
+        //yield return new WaitForSeconds(1f);
         Debug.Log("Ending Player Turn");
         GameManager.Instance.SetPlayerInfo((health_points,magic_points,attack_power,defence_power));
         manager.ChangeTurn();
@@ -97,8 +102,14 @@ public class Player_Combat : MonoBehaviour
         damage = attack_power * multiplier;
         enemies[0].GetComponent<Grunt_Combat>().TakeDamage(damage);
         hud.DialogueText.text = "Player attacks and deals " + damage + " damage to Enemy A";
-        
-        StartCoroutine(EndTurn());
+
+        StartCoroutine(EndAttack());
+    }
+
+    private IEnumerator EndAttack()
+    {
+        yield return new WaitForSeconds(1f);
+        EndTurn();
     }
 
     private void Heal()
@@ -119,7 +130,7 @@ public class Player_Combat : MonoBehaviour
         hud.setMP(magic_points);
         hud.DialogueText.text = "Player heals and restores 5HP";
         
-        StartCoroutine(EndTurn());
+        EndTurn();
     }
 
     private void ElementalAttack()
