@@ -5122,15 +5122,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1461047130830799701, guid: c9ae9cc906decd14eac7b34946a43d9e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 206.89157
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1461047130830799701, guid: c9ae9cc906decd14eac7b34946a43d9e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 657.20593
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1461047130830799701, guid: c9ae9cc906decd14eac7b34946a43d9e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -55.278683
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1461047130830799701, guid: c9ae9cc906decd14eac7b34946a43d9e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -5170,6 +5170,10 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 580725dd379310843b1444491619d888, type: 2}
     - target: {fileID: 7154253464818492262, guid: c9ae9cc906decd14eac7b34946a43d9e, type: 3}
       propertyPath: m_Name
+      value: CombatManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 7154253464818492262, guid: c9ae9cc906decd14eac7b34946a43d9e, type: 3}
+      propertyPath: m_TagString
       value: CombatManager
       objectReference: {fileID: 0}
     m_RemovedComponents: []

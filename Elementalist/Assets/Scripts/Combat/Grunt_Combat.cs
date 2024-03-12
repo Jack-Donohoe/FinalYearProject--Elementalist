@@ -4,10 +4,47 @@ using UnityEngine;
 
 public class Grunt_Combat : MonoBehaviour
 {
+    private int max_health = 50;
+    public int Max_Health
+    {
+        get => max_health;
+        set => max_health = value;
+    }
+    
     private int health_points = 50;
+    public int HP
+    {
+        get => health_points;
+        set => health_points = value;
+    }
+    
+    private int max_magic = 50;
+    public int Max_Magic
+    {
+        get => max_magic;
+        set => max_magic = value;
+    }
+    
     private int magic_points = 20;
-    public int attack_power = 10;
+    public int MP
+    {
+        get => magic_points;
+        set => magic_points = value;
+    }
+    
+    private int attack_power = 10;
+    public int Attack_Power
+    {
+        get => attack_power;
+        set => attack_power = value;
+    }
+    
     private int defence_power = 5;
+    public int Defence_Power
+    {
+        get => defence_power;
+        set => defence_power = value;
+    }
     
     private int multiplier;
     
@@ -20,6 +57,7 @@ public class Grunt_Combat : MonoBehaviour
     public State state;
     
     private bool dead = false;
+    public bool Dead => dead;
 
     private Player_Combat player;
     
@@ -97,7 +135,7 @@ public class Grunt_Combat : MonoBehaviour
 
         multiplier = (rand <= 8)? 2: 1;
 
-        int damage = attack_power * multiplier - player.GetDefencePower();
+        int damage = (attack_power/10) * 10 * multiplier - player.Defence_Power;
         player.TakeDamage(damage);
         hud.DialogueText.text = "Enemy A attacks and deals " + damage + " damage!";
         
@@ -134,7 +172,7 @@ public class Grunt_Combat : MonoBehaviour
         
         multiplier = (rand <= 8)? 2: 1;
         
-        int damage = attack_power * 2 * multiplier - player.GetDefencePower();
+        int damage = (attack_power/10) * 20 * multiplier - player.Defence_Power;
         player.TakeDamage(damage);
         magic_points -= 5;
         string textToDisplay = "Enemy A uses an Elemental Attack and deals " + damage + " damage!";
@@ -160,15 +198,5 @@ public class Grunt_Combat : MonoBehaviour
         } 
         
         hud.setEnemyHP(health_points);
-    }
-    
-    public bool IsDead()
-    {
-        return dead;
-    }
-    
-    public int GetDefencePower()
-    {
-        return defence_power;
     }
 }

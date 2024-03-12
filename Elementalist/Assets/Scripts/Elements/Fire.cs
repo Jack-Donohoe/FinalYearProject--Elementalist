@@ -12,6 +12,8 @@ public class Fire : Element
     [SerializeField] private float speed;
 
     [SerializeField] private int damage_value;
+    
+    [SerializeField] private int magic_cost;
 
     [SerializeField] private string attack_name;
 
@@ -33,6 +35,11 @@ public class Fire : Element
     public override int GetDamageValue()
     {
         return damage_value;
+    }
+
+    public override int GetMagicCost()
+    {
+        return magic_cost;
     }
 
     public override string GetAttackName()

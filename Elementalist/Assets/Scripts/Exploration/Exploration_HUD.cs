@@ -114,17 +114,16 @@ public class Exploration_HUD : MonoBehaviour
 
     public void OnSaveGameButton()
     {
-        (int, int, int, int) playerInfo = GameManager.Instance.GetPlayerInfo();
-        GameObject map = GameManager.Instance.GetMap();
+        GameObject map = GameManager.Instance.Map;
         
         GameData gameData = new GameData
         {
             playerPos = GameObject.FindGameObjectWithTag("Player").transform.position,
             playerRotation = GameObject.FindGameObjectWithTag("Player").transform.rotation,
-            playerHealth = playerInfo.Item1,
-            playerMagic = playerInfo.Item2,
-            playerAttack = playerInfo.Item3,
-            playerDefence = playerInfo.Item4,
+            playerHealth = GameManager.Instance.HP,
+            playerMagic = GameManager.Instance.MP,
+            playerAttack = GameManager.Instance.Attack_Power,
+            playerDefence = GameManager.Instance.Defence_Power,
             levelSize = map.GetComponent<ProcGenV3>().GetIds().Length,
             ids = map.GetComponent<ProcGenV3>().GetIds(),
             roomsCompleted = map.GetComponent<ProcGenV3>().GetRoomsCompleted(),

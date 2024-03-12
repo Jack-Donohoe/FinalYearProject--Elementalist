@@ -13,10 +13,47 @@ public class GameManager : MonoBehaviour
     private int score;
 
     // Player Info
+    private int max_health = 100;
+    public int Max_Health
+    {
+        get => max_health;
+        set => max_health = value;
+    }
+    
     private int health_points = 100;
-    private int magic_points = 50;
-    private int attack_power = 10;
+    public int HP
+    {
+        get => health_points;
+        set => health_points = value;
+    }
+    
+    private int max_magic = 60;
+    public int Max_Magic
+    {
+        get => max_magic;
+        set => max_magic = value;
+    }
+    
+    private int magic_points = 60;
+    public int MP
+    {
+        get => magic_points;
+        set => magic_points = value;
+    }
+    
+    private int attack_power = 1;
+    public int Attack_Power
+    {
+        get => attack_power;
+        set => attack_power = value;
+    }
+    
     private int defence_power = 5;
+    public int Defence_Power
+    {
+        get => defence_power;
+        set => defence_power = value;
+    }
     
     // Element Info
     public List<Element> _elements = new List<Element>();
@@ -25,6 +62,7 @@ public class GameManager : MonoBehaviour
     // Level Objects
     public Exploration_HUD hud;
     private GameObject map;
+    public GameObject Map => map;
 
     private void Awake()
     {
@@ -57,7 +95,7 @@ public class GameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         SceneManager.LoadScene("Level1");
-        ResetGameInfo();
+        ResetPlayerInfo();
         StartCoroutine(StartLevel());
     }
 
@@ -177,29 +215,27 @@ public class GameManager : MonoBehaviour
         return _elements;
     }
 
-    public (int, int, int, int) GetPlayerInfo()
+    public void SetPlayerResources(int hp, int mp)
     {
-        return (health_points, magic_points, attack_power, defence_power);
+        health_points = hp;
+        magic_points = mp;
+    }
+    
+    public void SetPlayerStats(int maxHP, int maxMP, int attackPow, int defencePow)
+    {
+        max_health = maxHP;
+        max_magic = maxMP;
+        attack_power = attackPow;
+        defence_power = defencePow;
     }
 
-    public void SetPlayerInfo((int,int,int,int) playerInfo)
+    private void ResetPlayerInfo()
     {
-        health_points = playerInfo.Item1;
-        magic_points = playerInfo.Item2;
-        attack_power = playerInfo.Item3;
-        defence_power = playerInfo.Item4;
-    }
-
-    private void ResetGameInfo()
-    {
+        max_health = 100;
+        max_magic = 60;
         health_points = 100;
-        magic_points = 50;
+        magic_points = 60;
         attack_power = 10;
         defence_power = 5;
-    }
-
-    public GameObject GetMap()
-    {
-        return map;
     }
 }

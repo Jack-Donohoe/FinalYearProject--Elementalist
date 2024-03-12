@@ -31,13 +31,13 @@ public class Combat_Manager : MonoBehaviour
 
     private void Update()
     {
-        if (player.IsDead())
+        if (player.Dead)
         {
             state = BattleState.Player_Lost;
             EndCombat();
         }
 
-        if (enemies[0].GetComponent<Grunt_Combat>().IsDead())
+        if (enemies[0].GetComponent<Grunt_Combat>().Dead)
         {
             state = BattleState.Player_Won;
             EndCombat();
@@ -66,11 +66,20 @@ public class Combat_Manager : MonoBehaviour
         if (state == BattleState.Player_Won)
         {
             hud.DialogueText.text = "Player Won";
+            
+            (int, int) combatRewards = player.CalculateCombatRewards();
+            GameManager.Instance.SetPlayerResources(combatRewards.Item1, combatRewards.Item2);
+            
             StartCoroutine(GameManager.Instance.ReturnToLevel());
         } else if (state == BattleState.Player_Lost)
         {
             hud.DialogueText.text = "Player Lost";
             StartCoroutine(GameManager.Instance.LoseGame());
         }
+    }
+
+    public GameObject GetEnemy(int i)
+    {
+        return enemies[i];
     }
 }

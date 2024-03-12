@@ -4,10 +4,47 @@ using UnityEngine;
 
 public class Player_Combat : MonoBehaviour
 {
+    private int max_health = 100;
+    public int Max_Health
+    {
+        get => max_health;
+        set => max_health = value;
+    }
+    
     private int health_points = 100;
-    private int magic_points = 50;
+    public int HP
+    {
+        get => health_points;
+        set => health_points = value;
+    }
+    
+    private int max_magic = 60;
+    public int Max_Magic
+    {
+        get => max_magic;
+        set => max_magic = value;
+    }
+    
+    private int magic_points = 60;
+    public int MP
+    {
+        get => magic_points;
+        set => magic_points = value;
+    }
+    
     private int attack_power = 10;
+    public int Attack_Power
+    {
+        get => attack_power;
+        set => attack_power = value;
+    }
+    
     private int defence_power = 5;
+    public int Defence_Power
+    {
+        get => defence_power;
+        set => defence_power = value;
+    }
     
     private int multiplier;
     
@@ -20,21 +57,24 @@ public class Player_Combat : MonoBehaviour
     public State state;
     
     private bool dead = false;
+    public bool Dead => dead;
 
     private GameObject[] enemies;
 
     private int damage;
+    public int Damage => damage;
     
     // Start is called before the first frame update
     void Start()
     {
         state = State.Idle;
 
-        (int, int, int, int) playerInfo = GameManager.Instance.GetPlayerInfo();
-        health_points = playerInfo.Item1;
-        magic_points = playerInfo.Item2;
-        attack_power = playerInfo.Item3;
-        defence_power = playerInfo.Item4;
+        max_health = GameManager.Instance.Max_Health;
+        
+        health_points = GameManager.Instance.HP;
+        magic_points = GameManager.Instance.MP;
+        attack_power = GameManager.Instance.Attack_Power;
+        defence_power = GameManager.Instance.Defence_Power;
         
         hud.setPlayerHP(health_points);
         hud.setMP(magic_points);
@@ -78,27 +118,14 @@ public class Player_Combat : MonoBehaviour
             }
         }
     }
-
-    public void StartTurn()
-    {
-        state = State.Ready;
-    }
-    
-    public void EndTurn()
-    {
-        //yield return new WaitForSeconds(1f);
-        Debug.Log("Ending Player Turn");
-        GameManager.Instance.SetPlayerInfo((health_points,magic_points,attack_power,defence_power));
-        manager.ChangeTurn();
-    }
     
     private void Attack()
     {
         int rand = Random.Range(0, 100);
 
         multiplier = (rand <= 8)? 2: 1;
-
-        damage = attack_power * multiplier - enemies[0].GetComponent<Grunt_Combat>().GetDefencePower();
+        
+        damage = (attack_power/10) * 15 * multiplier - enemies[0].GetComponent<Grunt_Combat>().Defence_Power;
         enemies[0].GetComponent<Grunt_Combat>().TakeDamage(damage);
         string textToDisplay = "Player attacks and deals " + damage + " damage!";
         
@@ -124,9 +151,9 @@ public class Player_Combat : MonoBehaviour
         int healthToRestore = (Random.value > 0.7f) ? 10 : 5;
         health_points += healthToRestore;
         
-        if (health_points > 100)
+        if (health_points > max_health)
         {
-            health_points = 100;
+            health_points = max_health;
         }
         
         hud.setPlayerHP(health_points);
@@ -152,10 +179,10 @@ public class Player_Combat : MonoBehaviour
         projectile.transform.LookAt(enemies[0].transform.position);
         projectile.GetComponent<Projectile>().SetMoveDirection(direction);
         
-        magic_points -= 10;
+        magic_points -= element.GetMagicCost();
         hud.setMP(magic_points);
         
-        damage = attack_power * element.GetDamageValue() * multiplier - enemies[0].GetComponent<Grunt_Combat>().GetDefencePower();
+        damage = (attack_power/10) * element.GetDamageValue() * multiplier - enemies[0].GetComponent<Grunt_Combat>().Defence_Power;
         string textToDisplay = "Player attacks with a " + element.GetAttackName() + " and deals " + damage + " damage!";
 
         if (multiplier == 2)
@@ -180,20 +207,23 @@ public class Player_Combat : MonoBehaviour
         
         hud.setPlayerHP(health_points);
     }
-
-    public bool IsDead()
+    
+    public void StartTurn()
     {
-        return dead;
+        state = State.Ready;
+    }
+    
+    public void EndTurn()
+    {
+        Debug.Log("Ending Player Turn");
+        GameManager.Instance.SetPlayerResources(health_points, magic_points);
+        //GameManager.Instance.SetPlayerStats(max_health, max_magic, attack_power, defence_power);
+        manager.ChangeTurn();
     }
 
-    public int GetDamage()
+    public (int,int) CalculateCombatRewards()
     {
-        return damage;
-    }
-
-    public int GetDefencePower()
-    {
-        return defence_power;
+        return (health_points + max_health / 10, magic_points + max_magic / 10);
     }
     
     public void onAttackButton()
@@ -206,7 +236,8 @@ public class Player_Combat : MonoBehaviour
 
     public void onFireballButton()
     {
-        if (state != State.Ready || magic_points == 0)
+        Element element = GameManager.Instance.selectedElement;
+        if (state != State.Ready || magic_points < element.GetMagicCost())
             return;
 
         ElementalAttack();
@@ -214,7 +245,7 @@ public class Player_Combat : MonoBehaviour
 
     public void onHealButton()
     {
-        if (state != State.Ready || magic_points == 0)
+        if (state != State.Ready || magic_points < 5)
             return;
 
         Heal();

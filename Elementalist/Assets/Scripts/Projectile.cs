@@ -27,7 +27,7 @@ public class Projectile : MonoBehaviour
 
             Player_Combat playerCombat = GameObject.FindGameObjectWithTag("Player").GetComponent<Player_Combat>();
             
-            int damage = playerCombat.GetDamage();
+            int damage = playerCombat.Damage;
             other.gameObject.GetComponent<Grunt_Combat>().TakeDamage(damage);
             
             playerCombat.EndTurn();

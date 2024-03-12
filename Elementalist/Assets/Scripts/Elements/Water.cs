@@ -13,6 +13,8 @@ public class Water : Element
 
     [SerializeField] private int damage_value;
     
+    [SerializeField] private int magic_cost;
+    
     [SerializeField] private string attack_name;
     
     public override string GetName()
@@ -33,6 +35,11 @@ public class Water : Element
     public override int GetDamageValue()
     {
         return damage_value;
+    }
+    
+    public override int GetMagicCost()
+    {
+        return magic_cost;
     }
     
     public override string GetAttackName()

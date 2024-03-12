@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   element_name: Water
   waterball: {fileID: 27301545086308959, guid: 40539d1de6731bb408b4c88bebedc258, type: 3}
-  speed: 4
-  damage_value: 1
+  speed: 5
+  damage_value: 20
+  magic_cost: 10
   attack_name: Water Bolt
