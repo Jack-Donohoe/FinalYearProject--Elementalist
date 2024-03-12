@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Grunt_Combat : MonoBehaviour
 {
-    private int health_points = 40;
+    private int health_points = 50;
     private int magic_points = 20;
     public int attack_power = 10;
-    private int defence_power = 0;
+    private int defence_power = 5;
     
     private int multiplier;
     
@@ -95,29 +95,35 @@ public class Grunt_Combat : MonoBehaviour
     {
         int rand = Random.Range(0, 100);
 
-        multiplier = (rand <= 5)? 2: 1;
+        multiplier = (rand <= 8)? 2: 1;
 
-        int damage = attack_power * multiplier;
+        int damage = attack_power * multiplier - player.GetDefencePower();
         player.TakeDamage(damage);
-        hud.DialogueText.text = "Enemy A attacks and deals " + damage + " damage to the Player";
+        hud.DialogueText.text = "Enemy A attacks and deals " + damage + " damage!";
         
         StartCoroutine(EndTurn());
     }
 
     private void Heal()
     {
-        if (health_points < 100)
-        {
-            health_points += 5;
-        } 
-        else
+        int healthToRestore = (Random.value > 0.7f) ? 10 : 5;
+        health_points += healthToRestore;
+        
+        if (health_points > 100)
         {
             health_points = 100;
         }
         
         hud.setEnemyHP(health_points);
         magic_points -= 5;
-        hud.DialogueText.text = "Enemy A heals and restores 5 HP";
+        string textToDisplay = "Enemy A uses Heal and restores " + healthToRestore + "HP";
+        
+        if (multiplier == 2)
+        {
+            textToDisplay += " Critical Hit!";
+        }
+
+        hud.DialogueText.text = textToDisplay;
         
         StartCoroutine(EndTurn());
     }
@@ -126,19 +132,26 @@ public class Grunt_Combat : MonoBehaviour
     {
         int rand = Random.Range(0, 100);
         
-        multiplier = (rand <= 5)? 2: 1;
+        multiplier = (rand <= 8)? 2: 1;
         
-        int damage = attack_power * 2 * multiplier;
+        int damage = attack_power * 2 * multiplier - player.GetDefencePower();
         player.TakeDamage(damage);
         magic_points -= 5;
-        hud.DialogueText.text = "Enemy A uses an Elemental Attack and deals " + damage + " damage to Enemy A";
+        string textToDisplay = "Enemy A uses an Elemental Attack and deals " + damage + " damage!";
+        
+        if (multiplier == 2)
+        {
+            textToDisplay += " Critical Hit!";
+        }
+
+        hud.DialogueText.text = textToDisplay;
         
         StartCoroutine(EndTurn());
     }
 
     public void TakeDamage(int damage)
     {
-        health_points -= damage - defence_power;
+        health_points -= damage;
         
         if (health_points <= 0)
         {
@@ -152,5 +165,10 @@ public class Grunt_Combat : MonoBehaviour
     public bool IsDead()
     {
         return dead;
+    }
+    
+    public int GetDefencePower()
+    {
+        return defence_power;
     }
 }

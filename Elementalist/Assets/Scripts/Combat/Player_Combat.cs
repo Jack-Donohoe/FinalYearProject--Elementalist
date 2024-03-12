@@ -86,7 +86,6 @@ public class Player_Combat : MonoBehaviour
     
     public void EndTurn()
     {
-        state = State.Idle;
         //yield return new WaitForSeconds(1f);
         Debug.Log("Ending Player Turn");
         GameManager.Instance.SetPlayerInfo((health_points,magic_points,attack_power,defence_power));
@@ -97,47 +96,54 @@ public class Player_Combat : MonoBehaviour
     {
         int rand = Random.Range(0, 100);
 
-        multiplier = (rand <= 5)? 2: 1;
+        multiplier = (rand <= 8)? 2: 1;
 
-        damage = attack_power * multiplier;
+        damage = attack_power * multiplier - enemies[0].GetComponent<Grunt_Combat>().GetDefencePower();
         enemies[0].GetComponent<Grunt_Combat>().TakeDamage(damage);
-        hud.DialogueText.text = "Player attacks and deals " + damage + " damage to Enemy A";
+        string textToDisplay = "Player attacks and deals " + damage + " damage!";
+        
+        if (multiplier == 2)
+        {
+            textToDisplay += " Critical Hit!";
+        }
 
-        StartCoroutine(EndAttack());
+        hud.DialogueText.text = textToDisplay;
+
+        state = State.Idle;
+        StartCoroutine(StartEndTurn());
     }
 
-    private IEnumerator EndAttack()
+    private IEnumerator StartEndTurn()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.5f);
         EndTurn();
     }
 
     private void Heal()
     {
-        if (health_points < 100)
-        {
-            health_points += 5;
-        } 
-        else
+        int healthToRestore = (Random.value > 0.7f) ? 10 : 5;
+        health_points += healthToRestore;
+        
+        if (health_points > 100)
         {
             health_points = 100;
         }
         
-        Debug.Log(health_points);
         hud.setPlayerHP(health_points);
         
         magic_points -= 5;
         hud.setMP(magic_points);
-        hud.DialogueText.text = "Player heals and restores 5HP";
+        hud.DialogueText.text = "Player uses Heal and restores " + healthToRestore + "HP.";
         
-        EndTurn();
+        state = State.Idle;
+        StartCoroutine(StartEndTurn());
     }
 
     private void ElementalAttack()
     {
         int rand = Random.Range(0, 100);
         
-        multiplier = (rand <= 5)? 2: 1;
+        multiplier = (rand <= 8)? 2: 1;
 
         Element element = GameManager.Instance.selectedElement;
         GameObject projectile = Instantiate(element.GetProjectile(),transform.position, Quaternion.identity);
@@ -149,13 +155,22 @@ public class Player_Combat : MonoBehaviour
         magic_points -= 10;
         hud.setMP(magic_points);
         
-        damage = attack_power * element.GetDamageValue() * multiplier;
-        hud.DialogueText.text = "Player uses " + element.GetAttackName() + " and deals " + damage + " damage to Enemy A";
+        damage = attack_power * element.GetDamageValue() * multiplier - enemies[0].GetComponent<Grunt_Combat>().GetDefencePower();
+        string textToDisplay = "Player attacks with a " + element.GetAttackName() + " and deals " + damage + " damage!";
+
+        if (multiplier == 2)
+        {
+            textToDisplay += " Critical Hit!";
+        }
+
+        hud.DialogueText.text = textToDisplay;
+        
+        state = State.Idle;
     }
 
     public void TakeDamage(int damage)
     {
-        health_points -= damage - defence_power;
+        health_points -= damage;
         
         if (health_points <= 0)
         {
@@ -174,6 +189,11 @@ public class Player_Combat : MonoBehaviour
     public int GetDamage()
     {
         return damage;
+    }
+
+    public int GetDefencePower()
+    {
+        return defence_power;
     }
     
     public void onAttackButton()
