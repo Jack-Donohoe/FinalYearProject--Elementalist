@@ -137,13 +137,7 @@ public class Player_Combat : MonoBehaviour
         hud.DialogueText.text = textToDisplay;
 
         state = State.Idle;
-        StartCoroutine(StartEndTurn());
-    }
-
-    private IEnumerator StartEndTurn()
-    {
-        yield return new WaitForSeconds(1.5f);
-        EndTurn();
+        StartCoroutine(EndTurn());
     }
 
     private void Heal()
@@ -163,7 +157,7 @@ public class Player_Combat : MonoBehaviour
         hud.DialogueText.text = "Player uses Heal and restores " + healthToRestore + "HP.";
         
         state = State.Idle;
-        StartCoroutine(StartEndTurn());
+        StartCoroutine(EndTurn());
     }
 
     private void ElementalAttack()
@@ -211,10 +205,18 @@ public class Player_Combat : MonoBehaviour
     public void StartTurn()
     {
         state = State.Ready;
+        hud.TogglePlayerActions();
+    }
+
+    public void StartEndTurn()
+    {
+        StartCoroutine(EndTurn());
     }
     
-    public void EndTurn()
+    private IEnumerator EndTurn()
     {
+        hud.TogglePlayerActions();
+        yield return new WaitForSeconds(1.5f);
         Debug.Log("Ending Player Turn");
         GameManager.Instance.SetPlayerResources(health_points, magic_points);
         //GameManager.Instance.SetPlayerStats(max_health, max_magic, attack_power, defence_power);
@@ -223,7 +225,7 @@ public class Player_Combat : MonoBehaviour
 
     public (int,int) CalculateCombatRewards()
     {
-        return (health_points + max_health / 10, magic_points + max_magic / 10);
+        return (health_points + max_health / 10, magic_points + 10);
     }
     
     public void onAttackButton()

@@ -135,7 +135,7 @@ public class Grunt_Combat : MonoBehaviour
 
         multiplier = (rand <= 8)? 2: 1;
 
-        int damage = (attack_power/10) * 10 * multiplier - player.Defence_Power;
+        int damage = (attack_power/10) * 15 * multiplier - player.Defence_Power;
         player.TakeDamage(damage);
         hud.DialogueText.text = "Enemy A attacks and deals " + damage + " damage!";
         
@@ -172,7 +172,7 @@ public class Grunt_Combat : MonoBehaviour
         
         multiplier = (rand <= 8)? 2: 1;
         
-        int damage = (attack_power/10) * 20 * multiplier - player.Defence_Power;
+        int damage = (attack_power/10) * 25 * multiplier - player.Defence_Power;
         player.TakeDamage(damage);
         magic_points -= 5;
         string textToDisplay = "Enemy A uses an Elemental Attack and deals " + damage + " damage!";

@@ -298,7 +298,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 510, y: 465}
+  m_AnchoredPosition: {x: 510, y: 400}
   m_SizeDelta: {x: 450, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &63879156
@@ -1272,7 +1272,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &309778637
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1570,7 +1570,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &349718427
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2314,7 +2314,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 12.5, y: 280}
+  m_AnchoredPosition: {x: 12.5, y: 260}
   m_SizeDelta: {x: -385, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &672805927
@@ -2921,6 +2921,9 @@ MonoBehaviour:
   MPSlider: {fileID: 1573842333}
   CombatUI: {fileID: 1192510788}
   PauseMenu: {fileID: 1509588101}
+  AttackButton: {fileID: 1139638086}
+  ElementalAttackButton: {fileID: 309778636}
+  HealButton: {fileID: 349718426}
 --- !u!1 &724258614
 GameObject:
   m_ObjectHideFlags: 0
@@ -3882,7 +3885,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1139638087
 RectTransform:
   m_ObjectHideFlags: 0

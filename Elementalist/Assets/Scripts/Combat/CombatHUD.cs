@@ -12,7 +12,7 @@ public class CombatHUD : MonoBehaviour
     public Slider EnemyHPSlider;
     public Slider MPSlider;
 
-    public GameObject CombatUI, PauseMenu;
+    public GameObject CombatUI, PauseMenu, AttackButton, ElementalAttackButton, HealButton;
 
     public void Start()
     {
@@ -88,5 +88,13 @@ public class CombatHUD : MonoBehaviour
     public void setMP(int mp)
     {
         MPSlider.value = mp;
+    }
+
+    public void TogglePlayerActions()
+    {
+        AttackButton.SetActive(!AttackButton.activeSelf);
+        ElementalAttackButton.SetActive(!ElementalAttackButton.activeSelf);
+        HealButton.SetActive(!HealButton.activeSelf);
+        Debug.Log(AttackButton.activeSelf);
     }
 }

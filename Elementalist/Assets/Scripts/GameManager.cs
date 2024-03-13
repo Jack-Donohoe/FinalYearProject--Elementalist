@@ -128,7 +128,9 @@ public class GameManager : MonoBehaviour
         {
             playerPos = GameObject.FindGameObjectWithTag("Player").transform.position,
             playerRotation = GameObject.FindGameObjectWithTag("Player").transform.rotation,
+            playerMaxHealth = max_health,
             playerHealth = health_points,
+            playerMaxMagic = max_magic,
             playerMagic = magic_points,
             playerAttack = attack_power,
             playerDefence = defence_power,

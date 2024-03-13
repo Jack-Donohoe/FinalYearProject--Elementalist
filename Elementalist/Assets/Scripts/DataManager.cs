@@ -8,7 +8,9 @@ public class GameData
 {
     public Vector3 playerPos;
     public Quaternion playerRotation;
+    public int playerMaxHealth;
     public int playerHealth;
+    public int playerMaxMagic;
     public int playerMagic;
     public int playerAttack;
     public int playerDefence;

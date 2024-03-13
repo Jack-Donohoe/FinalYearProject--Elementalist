@@ -16,8 +16,11 @@ public class Exploration_HUD : MonoBehaviour
     public TMP_Text[] buttonTexts;
     public TMP_Text selectedElementText;
     public Slider PlayerHPSlider;
+    public TMP_Text HPValue;
     public Slider MPSlider;
-
+    public TMP_Text MPValue;
+    
+    
     private void Start()
     {
         selectedElementText.text = "Selected Element: " + GameManager.Instance.selectedElement.GetName();
@@ -102,14 +105,16 @@ public class Exploration_HUD : MonoBehaviour
         inGameHUD.SetActive(true);
     }
     
-    public void setPlayerHP(int hp)
+    public void setPlayerHP(int hp, int maxHP)
     {
         PlayerHPSlider.value = hp;
+        HPValue.text = hp + "/" + maxHP;
     }
     
-    public void setMP(int mp)
+    public void setMP(int mp, int maxMP)
     {
         MPSlider.value = mp;
+        MPValue.text = mp + "/" + maxMP;
     }
 
     public void OnSaveGameButton()

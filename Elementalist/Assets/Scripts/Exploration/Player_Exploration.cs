@@ -7,8 +7,10 @@ using UnityEngine.InputSystem;
 public class Player_Exploration : MonoBehaviour
 {
     private Exploration_HUD hud;
-    
+
+    private int max_health;
     private int health;
+    private int max_magic;
     private int magic;
     
     // float timer = 0f;
@@ -16,10 +18,12 @@ public class Player_Exploration : MonoBehaviour
     private void Start()
     {
         hud = GameObject.FindGameObjectWithTag("HUD").GetComponent<Exploration_HUD>();
+        max_health = GameManager.Instance.Max_Health;
         health = GameManager.Instance.HP;
+        max_magic = GameManager.Instance.Max_Magic;
         magic = GameManager.Instance.MP;
-        hud.setPlayerHP(health);
-        hud.setMP(magic);
+        hud.setPlayerHP(health, max_health);
+        hud.setMP(magic, max_magic);
     }
     
     private void Update()
