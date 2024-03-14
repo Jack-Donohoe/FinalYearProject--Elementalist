@@ -56,7 +56,7 @@ public class GameManager : MonoBehaviour
     }
     
     // Element Info
-    public List<Element> _elements = new List<Element>();
+    public List<Element> elementInventory = new List<Element>();
     public Element selectedElement;
 
     // Level Objects
@@ -77,7 +77,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        selectedElement = _elements[0];
+        selectedElement = elementInventory[0];
         map = GameObject.FindGameObjectWithTag("Map");
     }
 
@@ -202,25 +202,34 @@ public class GameManager : MonoBehaviour
         Cursor.visible = true;
     }
 
-    public void AddElement(Element element)
+    public string AddElement(Element element)
     {
-        _elements.Add(element);
+        if (!elementInventory.Contains(element))
+        {
+            elementInventory.Add(element);
+            return "You Created: " + element.GetName();
+        }
+        else
+        {
+            return "Element Already Exists";
+        }
     }
     
     public Element GetElement(int i)
     {
-        return _elements[i];
+        return elementInventory[i];
     }
 
     public List<Element> GetElements()
     {
-        return _elements;
+        return elementInventory;
     }
 
     public void SetPlayerResources(int hp, int mp)
     {
         health_points = hp;
         magic_points = mp;
+        Debug.Log("HP=" + hp +" MP=" + mp);
     }
     
     public void SetPlayerStats(int maxHP, int maxMP, int attackPow, int defencePow)

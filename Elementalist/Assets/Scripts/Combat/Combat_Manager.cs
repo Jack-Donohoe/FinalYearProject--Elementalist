@@ -31,16 +31,20 @@ public class Combat_Manager : MonoBehaviour
 
     private void Update()
     {
-        if (player.Dead)
+        if (state != BattleState.Player_Won && state != BattleState.Player_Lost)
         {
-            state = BattleState.Player_Lost;
-            EndCombat();
-        }
+            if (player.Dead)
+            {
+                state = BattleState.Player_Lost;
+                EndCombat();
+            }
 
-        if (enemies[0].GetComponent<Grunt_Combat>().Dead)
-        {
-            state = BattleState.Player_Won;
-            EndCombat();
+            if (enemies[0].GetComponent<Grunt_Combat>().Dead)
+            {
+                state = BattleState.Player_Won;
+                enemies[0].SetActive(false);
+                EndCombat();
+            }
         }
     }
 
@@ -65,15 +69,15 @@ public class Combat_Manager : MonoBehaviour
     {
         if (state == BattleState.Player_Won)
         {
-            hud.DialogueText.text = "Player Won";
+            hud.DialogueText.text = "Player Wins!";
             
             (int, int) combatRewards = player.CalculateCombatRewards();
-            GameManager.Instance.SetPlayerResources(combatRewards.Item1, combatRewards.Item2);
+            GameManager.Instance.SetPlayerResources(combatRewards.Item1, combatRewards.Item2);  
             
             StartCoroutine(GameManager.Instance.ReturnToLevel());
         } else if (state == BattleState.Player_Lost)
         {
-            hud.DialogueText.text = "Player Lost";
+            hud.DialogueText.text = "Player was Defeated";
             StartCoroutine(GameManager.Instance.LoseGame());
         }
     }

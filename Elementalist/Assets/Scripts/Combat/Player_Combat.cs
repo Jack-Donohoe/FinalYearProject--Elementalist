@@ -137,6 +137,7 @@ public class Player_Combat : MonoBehaviour
         hud.DialogueText.text = textToDisplay;
 
         state = State.Idle;
+        hud.TogglePlayerActions();
         StartCoroutine(EndTurn());
     }
 
@@ -157,6 +158,7 @@ public class Player_Combat : MonoBehaviour
         hud.DialogueText.text = "Player uses Heal and restores " + healthToRestore + "HP.";
         
         state = State.Idle;
+        hud.TogglePlayerActions();
         StartCoroutine(EndTurn());
     }
 
@@ -187,6 +189,7 @@ public class Player_Combat : MonoBehaviour
         hud.DialogueText.text = textToDisplay;
         
         state = State.Idle;
+        hud.TogglePlayerActions();
     }
 
     public void TakeDamage(int damage)
@@ -215,11 +218,8 @@ public class Player_Combat : MonoBehaviour
     
     private IEnumerator EndTurn()
     {
-        hud.TogglePlayerActions();
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1f);
         Debug.Log("Ending Player Turn");
-        GameManager.Instance.SetPlayerResources(health_points, magic_points);
-        //GameManager.Instance.SetPlayerStats(max_health, max_magic, attack_power, defence_power);
         manager.ChangeTurn();
     }
 

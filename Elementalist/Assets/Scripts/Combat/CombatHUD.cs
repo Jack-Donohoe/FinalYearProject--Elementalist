@@ -95,6 +95,5 @@ public class CombatHUD : MonoBehaviour
         AttackButton.SetActive(!AttackButton.activeSelf);
         ElementalAttackButton.SetActive(!ElementalAttackButton.activeSelf);
         HealButton.SetActive(!HealButton.activeSelf);
-        Debug.Log(AttackButton.activeSelf);
     }
 }

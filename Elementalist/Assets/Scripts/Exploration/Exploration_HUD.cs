@@ -12,9 +12,10 @@ public class Exploration_HUD : MonoBehaviour
     public TMP_Text scoreText;
     public GameObject pauseMenu;
     public GameObject inventoryMenu;
+    public GameObject[] inventoryViews;
     public Button[] buttons;
     public TMP_Text[] buttonTexts;
-    public TMP_Text selectedElementText;
+    public RawImage[] buttonImages;
     public Slider PlayerHPSlider;
     public TMP_Text HPValue;
     public Slider MPSlider;
@@ -23,7 +24,7 @@ public class Exploration_HUD : MonoBehaviour
     
     private void Start()
     {
-        selectedElementText.text = "Selected Element: " + GameManager.Instance.selectedElement.GetName();
+        
     }
 
     public void SetScoreText(string text)
@@ -90,6 +91,7 @@ public class Exploration_HUD : MonoBehaviour
         {
             buttons[i].gameObject.SetActive(true);
             buttonTexts[i].text = elements[i].GetName();
+            buttonImages[i].texture = elements[i].GetIcon();
         }
         
         inventoryMenu.SetActive(true);
@@ -153,6 +155,27 @@ public class Exploration_HUD : MonoBehaviour
         Application.Quit();
     }
 
+    public void OnToElementsButton()
+    {
+        inventoryViews[0].SetActive(false);
+        inventoryViews[1].SetActive(true);
+        inventoryViews[2].SetActive(false);
+    }
+    
+    public void OnToCombinationButton()
+    {
+        inventoryViews[0].SetActive(false);
+        inventoryViews[1].SetActive(false);
+        inventoryViews[2].SetActive(true);
+    }
+    
+    public void OnToStatsButton()
+    {
+        inventoryViews[0].SetActive(true);
+        inventoryViews[1].SetActive(false);
+        inventoryViews[2].SetActive(false);
+    }
+
     public void OnElementButton(Button button)
     {
         for (int i = 0; i < buttons.Length; i++)
@@ -160,8 +183,17 @@ public class Exploration_HUD : MonoBehaviour
             if (buttons[i] == button)
             {
                 GameManager.Instance.selectedElement = GameManager.Instance.GetElement(i);
-                selectedElementText.text = "Selected Element: " + GameManager.Instance.selectedElement.GetName();
+                Debug.Log(GameManager.Instance.selectedElement.GetName());
             }
         }
+    }
+
+    public void OnCombineButton()
+    {
+        Element element1 = GameManager.Instance.GetElement(0);
+        Element element2 = GameManager.Instance.GetElement(1);
+        
+        Element newElement = ElementManager.Instance.CombineElements((element1.GetName(),element2.GetName()));
+        Debug.Log(GameManager.Instance.AddElement(newElement));
     }
 }

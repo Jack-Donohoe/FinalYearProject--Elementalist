@@ -18,3 +18,4 @@ MonoBehaviour:
   damage_value: 25
   magic_cost: 20
   attack_name: Fireball
+  icon: {fileID: 2800000, guid: 60bd93c229ea6ee42bb7d74db941c6e3, type: 3}

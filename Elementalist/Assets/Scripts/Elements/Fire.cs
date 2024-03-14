@@ -17,6 +17,8 @@ public class Fire : Element
 
     [SerializeField] private string attack_name;
 
+    [SerializeField] private Texture2D icon;
+
     public override string GetName()
     {
         return element_name;
@@ -45,5 +47,10 @@ public class Fire : Element
     public override string GetAttackName()
     {
         return attack_name;
+    }
+
+    public override Texture2D GetIcon()
+    {
+        return icon;
     }
 }
