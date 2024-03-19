@@ -14717,6 +14717,7 @@ GameObject:
   - component: {fileID: 105577871693057835}
   - component: {fileID: -6020351599604916695}
   - component: {fileID: 8109713507299600924}
+  - component: {fileID: 2829796927622068334}
   - component: {fileID: -21370794180475957}
   m_Layer: 0
   m_Name: Grunt
@@ -14794,6 +14795,27 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.5, y: 1, z: 2.75}
   m_Center: {x: 0, y: 0.15, z: 0.35}
+--- !u!95 &2829796927622068334
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4709504129376466749}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 07b69e3ee2509be42a12eec8f20d2e34, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &-21370794180475957
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14806,7 +14828,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48c6f17702173144a8ad7a9b8960f7ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attack_power: 10
   hud: {fileID: 0}
   manager: {fileID: 0}
   state: 0

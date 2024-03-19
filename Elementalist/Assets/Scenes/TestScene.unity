@@ -478,7 +478,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 233068872}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.45574266, y: 0.000000015315592, z: -0.000000007841679, w: 0.8901116}
+  m_LocalRotation: {x: 0.45574266, y: -0.000000015315603, z: 0.000000007841684, w: 0.8901116}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -557,7 +557,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 253401148}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.47185794, y: -0.000000021454222, z: 0.0000000114819505, w: 0.88167465}
+  m_LocalRotation: {x: 0.47185794, y: 0.000000021454227, z: -0.000000011481954, w: 0.88167465}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -836,7 +836,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 994870281}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.47185796, y: -0.00000006254928, z: 0.000000033475363, w: 0.8816746}
+  m_LocalRotation: {x: 0.47185796, y: 0.00000006254928, z: -0.000000033475363, w: 0.8816746}
   m_LocalPosition: {x: 0.13419937, y: 5.75, z: 13.517883}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1483,11 +1483,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 105577871693057835, guid: 8bcf7ddc324e35742b5ca10ab37301b5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.2
       objectReference: {fileID: 0}
     - target: {fileID: 105577871693057835, guid: 8bcf7ddc324e35742b5ca10ab37301b5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.45
       objectReference: {fileID: 0}
     - target: {fileID: 105577871693057835, guid: 8bcf7ddc324e35742b5ca10ab37301b5, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1524,6 +1524,10 @@ PrefabInstance:
     - target: {fileID: 4709504129376466749, guid: 8bcf7ddc324e35742b5ca10ab37301b5, type: 3}
       propertyPath: m_Name
       value: Grunt
+      objectReference: {fileID: 0}
+    - target: {fileID: 7579823594499567320, guid: 8bcf7ddc324e35742b5ca10ab37301b5, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

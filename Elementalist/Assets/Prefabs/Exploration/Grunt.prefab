@@ -14718,6 +14718,7 @@ GameObject:
   - component: {fileID: 8109713507299600924}
   - component: {fileID: 8766620659205134399}
   - component: {fileID: 5888050312879639803}
+  - component: {fileID: 7579823594499567320}
   m_Layer: 0
   m_Name: Grunt
   m_TagString: Enemy
@@ -14802,6 +14803,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyState: 0
+--- !u!95 &7579823594499567320
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4709504129376466749}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 07b69e3ee2509be42a12eec8f20d2e34, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6434921274246733767
 GameObject:
   m_ObjectHideFlags: 0
