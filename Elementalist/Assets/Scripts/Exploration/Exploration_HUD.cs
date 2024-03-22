@@ -131,10 +131,7 @@ public class Exploration_HUD : MonoBehaviour
             playerMagic = GameManager.Instance.MP,
             playerAttack = GameManager.Instance.Attack_Power,
             playerDefence = GameManager.Instance.Defence_Power,
-            levelSize = map.GetComponent<ProcGenV3>().GetIds().Length,
-            ids = map.GetComponent<ProcGenV3>().GetIds(),
-            roomsCompleted = map.GetComponent<ProcGenV3>().GetRoomsCompleted(),
-            roomTypes = map.GetComponent<ProcGenV3>().GetRoomTypes()
+            level = map.GetComponent<ProcGenV4>().level
         };
         DataManager.instance.SaveGameData(gameData);
     }

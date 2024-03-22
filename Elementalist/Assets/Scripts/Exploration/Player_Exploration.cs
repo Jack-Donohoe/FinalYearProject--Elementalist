@@ -58,7 +58,7 @@ public class Player_Exploration : MonoBehaviour
     {
         if (collider.gameObject.tag.Equals("Enemy"))
         {
-            GameObject.FindGameObjectWithTag("Map").GetComponent<ProcGenV3>().SetRoomCompleted(collider.gameObject.transform.parent.transform.position, true);
+            GameObject.FindGameObjectWithTag("Map").GetComponent<ProcGenV4>().SetRoomCompleted(collider.gameObject.transform.parent.transform.position, true);
             GameManager.Instance.StartCombat();
         }
     }

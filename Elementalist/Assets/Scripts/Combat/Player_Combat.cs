@@ -225,7 +225,19 @@ public class Player_Combat : MonoBehaviour
 
     public (int,int) CalculateCombatRewards()
     {
-        return (health_points + max_health / 10, magic_points + 10);
+        int newHealth = health_points + max_health / 10;
+        if (newHealth > max_health)
+        {
+            newHealth = max_health;
+        }
+
+        int newMagic = magic_points + 15;
+        if (newMagic > max_magic)
+        {
+            newMagic = max_magic;
+        }
+        
+        return (newHealth, newMagic);
     }
     
     public void onAttackButton()

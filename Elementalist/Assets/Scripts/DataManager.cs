@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using Newtonsoft.Json;
 
 public class GameData
 {
@@ -15,10 +16,7 @@ public class GameData
     public int playerAttack;
     public int playerDefence;
     public List<Element> elementInventory;
-    public int levelSize;
-    public int[] ids;
-    public bool[] roomsCompleted;
-    public Room.RoomType[] roomTypes;
+    public RoomV2[,] level;
 }
 
 public class DataManager : MonoBehaviour
@@ -67,25 +65,25 @@ public class DataManager : MonoBehaviour
 
         return null;
     }
-
+    
     public void SaveLevelData(GameData gameData)
     {
-        string dataToSave = JsonUtility.ToJson(gameData);
+        string dataToSave = JsonConvert.SerializeObject(gameData);
         
         Debug.Log(dataToSave);
         File.WriteAllText(inGameDataPath, dataToSave);
     }
-
+    
     public GameData LoadLevelData()
     {
         if (File.Exists(inGameDataPath))
         {
             string dataToLoad = File.ReadAllText(inGameDataPath);
-            GameData gameData = JsonUtility.FromJson<GameData>(dataToLoad);
+            GameData gameData = JsonConvert.DeserializeObject<GameData>(dataToLoad);
             
             return gameData;
         }
-
+    
         return null;
     }
 }

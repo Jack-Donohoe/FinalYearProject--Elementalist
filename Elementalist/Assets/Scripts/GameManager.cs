@@ -103,10 +103,10 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForNextFrameUnit();
         map = GameObject.FindGameObjectWithTag("Map");
-        map.GetComponent<ProcGenV3>().OnLevelLoad();
+        map.GetComponent<ProcGenV4>().OnLevelLoad();
         
         GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterController>().enabled = false;
-        GameObject.FindGameObjectWithTag("Player").transform.position = map.GetComponent<ProcGenV3>().GetStartPos();
+        GameObject.FindGameObjectWithTag("Player").transform.position = map.GetComponent<ProcGenV4>().startPos;
         GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterController>().enabled = true;
         
         hud = GameObject.FindGameObjectWithTag("HUD").GetComponent<Exploration_HUD>();
@@ -134,10 +134,7 @@ public class GameManager : MonoBehaviour
             playerMagic = magic_points,
             playerAttack = attack_power,
             playerDefence = defence_power,
-            levelSize = map.GetComponent<ProcGenV3>().GetIds().Length,
-            ids = map.GetComponent<ProcGenV3>().GetIds(),
-            roomsCompleted = map.GetComponent<ProcGenV3>().GetRoomsCompleted(),
-            roomTypes = map.GetComponent<ProcGenV3>().GetRoomTypes()
+            level = map.GetComponent<ProcGenV4>().level
         };
         DataManager.instance.SaveLevelData(levelData);
 
@@ -174,12 +171,7 @@ public class GameManager : MonoBehaviour
         GameData levelData = DataManager.instance.LoadLevelData();
         map = GameObject.FindGameObjectWithTag("Map");
         
-        // Reinitialize arrays in map with saved arrays
-        map.GetComponent<ProcGenV3>().SetIds(levelData.ids);
-        map.GetComponent<ProcGenV3>().SetRoomsCompleted(levelData.roomsCompleted);
-        map.GetComponent<ProcGenV3>().SetRoomTypes(levelData.roomTypes);
-        
-        map.GetComponent<ProcGenV3>().GenerateMap(levelData.ids, levelData.roomsCompleted, levelData.roomTypes);
+        map.GetComponent<ProcGenV4>().GenerateLevel(levelData.level);
 
         hud = GameObject.FindGameObjectWithTag("HUD").GetComponent<Exploration_HUD>();
         hud.SetScoreText("Enemies Defeated: " + score);
