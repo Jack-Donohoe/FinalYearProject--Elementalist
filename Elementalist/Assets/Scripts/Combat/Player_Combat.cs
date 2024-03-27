@@ -63,6 +63,8 @@ public class Player_Combat : MonoBehaviour
 
     private int damage;
     public int Damage => damage;
+
+    public Animator animator;
     
     // Start is called before the first frame update
     void Start()
@@ -81,6 +83,8 @@ public class Player_Combat : MonoBehaviour
 
         enemies = manager.enemies;
         Debug.Log(enemies.Length);
+
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -169,17 +173,15 @@ public class Player_Combat : MonoBehaviour
         multiplier = (rand <= 8)? 2: 1;
 
         Element element = GameManager.Instance.selectedElement;
-        GameObject projectile = Instantiate(element.GetProjectile(),transform.position, Quaternion.identity);
-
-        Vector3 direction = (enemies[0].transform.position - projectile.transform.position).normalized * (element.GetProjectileSpeed() * Time.deltaTime);
-        projectile.transform.LookAt(enemies[0].transform.position);
-        projectile.GetComponent<Projectile>().SetMoveDirection(direction);
-        
-        magic_points -= element.GetMagicCost();
-        hud.setMP(magic_points);
+        GameObject projectile = element.GetProjectile();
         
         damage = (attack_power/10) * element.GetDamageValue() * multiplier - enemies[0].GetComponent<Grunt_Combat>().Defence_Power;
         string textToDisplay = "Player attacks with a " + element.GetAttackName() + " and deals " + damage + " damage!";
+        
+        StartCoroutine(LaunchProjectile(element, projectile));
+        
+        magic_points -= element.GetMagicCost();
+        hud.setMP(magic_points);
 
         if (multiplier == 2)
         {
@@ -190,6 +192,16 @@ public class Player_Combat : MonoBehaviour
         
         state = State.Idle;
         hud.TogglePlayerActions();
+    }
+
+    private IEnumerator LaunchProjectile(Element element, GameObject projectile)
+    {
+        yield return new WaitForSeconds(0.6f);
+        GameObject projectileToLaunch = Instantiate(projectile, new Vector3(transform.position.x, 1f, transform.position.z), Quaternion.identity);
+        
+        Vector3 direction = (enemies[0].transform.position - projectileToLaunch.transform.position).normalized * (element.GetProjectileSpeed() * Time.deltaTime);
+        projectileToLaunch.transform.LookAt(enemies[0].transform.position);
+        projectileToLaunch.GetComponent<Projectile>().SetMoveDirection(direction);
     }
 
     public void TakeDamage(int damage)
@@ -255,6 +267,7 @@ public class Player_Combat : MonoBehaviour
             return;
 
         ElementalAttack();
+        animator.SetBool("Attacking", true);
     }
 
     public void onHealButton()

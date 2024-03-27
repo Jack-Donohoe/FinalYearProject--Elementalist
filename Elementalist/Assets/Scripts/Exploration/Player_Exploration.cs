@@ -52,6 +52,16 @@ public class Player_Exploration : MonoBehaviour
         //     hud.setMP(magic);
         //     Debug.Log("Health: " + health + " Magic: " + magic);
         // }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            hud.HandlePauseMenu();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            hud.HandleInventoryMenu();
+        }
     }
 
     private void OnTriggerEnter(Collider collider)
@@ -61,15 +71,5 @@ public class Player_Exploration : MonoBehaviour
             GameObject.FindGameObjectWithTag("Map").GetComponent<ProcGenV4>().SetRoomCompleted(collider.gameObject.transform.parent.transform.position, true);
             GameManager.Instance.StartCombat();
         }
-    }
-
-    public void OnPause()
-    {
-        hud.HandlePauseMenu();
-    }
-    
-    public void OnInventory()
-    {
-        hud.HandleInventoryMenu();
     }
 }

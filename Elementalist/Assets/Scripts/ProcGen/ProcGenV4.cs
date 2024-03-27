@@ -347,7 +347,7 @@ public class ProcGenV4 : MonoBehaviour
                 }
                 else if (levelToGenerate[i, j].roomType == RoomV2.RoomType.Start)
                 {
-                    startPos = new Vector3(j * 35f, 0f, i * 35f);
+                    startPos = new Vector3(j * 35f, 0.25f, i * 35f);
                     GameObject room = Instantiate(roomTemplates[5], new Vector3(j * 35f, 0f, i * 35f),
                         Quaternion.identity, this.transform);
                     room.name = "Room" + j + " " + i;

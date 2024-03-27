@@ -184,11 +184,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1216168805152820574, guid: 4f56d6cb49354014d95e736344002eeb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.4
+      value: 0.35
       objectReference: {fileID: 0}
     - target: {fileID: 1216168805152820574, guid: 4f56d6cb49354014d95e736344002eeb, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.2
+      value: -0.25
       objectReference: {fileID: 0}
     - target: {fileID: 1216168805152820574, guid: 4f56d6cb49354014d95e736344002eeb, type: 3}
       propertyPath: m_LocalRotation.w
@@ -296,7 +296,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6189129542414226728, guid: 4f56d6cb49354014d95e736344002eeb, type: 3}
       propertyPath: InitialModule.startLifetime.scalar
-      value: 0.8
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7189532715603981810, guid: 4f56d6cb49354014d95e736344002eeb, type: 3}
       propertyPath: m_Name
@@ -348,8 +348,8 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 0.30561107, b: 0, a: 1}
-  m_Intensity: 2
-  m_Range: 15
+  m_Intensity: 10
+  m_Range: 50
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -387,7 +387,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
