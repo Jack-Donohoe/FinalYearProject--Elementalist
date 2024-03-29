@@ -320,29 +320,29 @@ public class ProcGenV4 : MonoBehaviour
                             room.GetComponent<NavMeshSurface>().enabled = false;
                         }
 
-                        if (connections.Item1)
-                        {
-                            Instantiate(door, new Vector3(room.transform.position.x, 2f, room.transform.position.z - 17.5f), Quaternion.Euler(new Vector3(0f, 90f, 0f)),
-                                room.transform);
-                        }
+                        // if (connections.Item1)
+                        // {
+                        //     Instantiate(door, new Vector3(room.transform.position.x, 2f, room.transform.position.z - 17.5f), Quaternion.Euler(new Vector3(0f, 90f, 0f)),
+                        //         room.transform);
+                        // }
+                        //
+                        // if (connections.Item2)
+                        // {
+                        //     Instantiate(door, new Vector3(room.transform.position.x - 17.5f, 2f, room.transform.position.z), Quaternion.identity,
+                        //         room.transform);
+                        // }
                         
-                        if (connections.Item2)
-                        {
-                            Instantiate(door, new Vector3(room.transform.position.x - 17.5f, 2f, room.transform.position.z), Quaternion.identity,
-                                room.transform);
-                        }
-                        
-                        if (connections.Item3)
-                        {
-                            Instantiate(door, new Vector3(room.transform.position.x, 2f, room.transform.position.z + 17.5f), Quaternion.Euler(new Vector3(0f, 90f, 0f)),
-                                room.transform);
-                        }
-                        
-                        if (connections.Item4)
-                        {
-                            Instantiate(door, new Vector3(room.transform.position.x + 17.5f, 2f, room.transform.position.z), Quaternion.identity,
-                                room.transform);
-                        }
+                        // if (connections.Item3)
+                        // {
+                        //     Instantiate(door, new Vector3(room.transform.position.x, 2f, room.transform.position.z + 17.5f), Quaternion.Euler(new Vector3(0f, 90f, 0f)),
+                        //         room.transform);
+                        // }
+                        //
+                        // if (connections.Item4)
+                        // {
+                        //     Instantiate(door, new Vector3(room.transform.position.x + 17.5f, 2f, room.transform.position.z), Quaternion.identity,
+                        //         room.transform);
+                        // }
                     }
                 }
                 else if (levelToGenerate[i, j].roomType == RoomV2.RoomType.Start)
@@ -353,29 +353,29 @@ public class ProcGenV4 : MonoBehaviour
                     room.name = "Room" + j + " " + i;
                     room.transform.Rotate(0f, 0f, 0f);
                     
-                    if (connections.Item1)
-                    {
-                        Instantiate(door, new Vector3(room.transform.position.x, 2f, room.transform.position.z + 17.5f), Quaternion.Euler(new Vector3(0f, 90f, 0f)),
-                            room.transform);
-                    }
+                    // if (connections.Item1)
+                    // {
+                    //     Instantiate(door, new Vector3(room.transform.position.x, 2f, room.transform.position.z + 17.5f), Quaternion.Euler(new Vector3(0f, 90f, 0f)),
+                    //         room.transform);
+                    // }
+                    //     
+                    // if (connections.Item2)
+                    // {
+                    //     Instantiate(door, new Vector3(room.transform.position.x + 17.5f, 2f, room.transform.position.z), Quaternion.identity,
+                    //         room.transform);
+                    // }
                         
-                    if (connections.Item2)
-                    {
-                        Instantiate(door, new Vector3(room.transform.position.x + 17.5f, 2f, room.transform.position.z), Quaternion.identity,
-                            room.transform);
-                    }
-                        
-                    if (connections.Item3)
-                    {
-                        Instantiate(door, new Vector3(room.transform.position.x, 2f, room.transform.position.z - 17.5f), Quaternion.Euler(new Vector3(0f, 90f, 0f)),
-                            room.transform);
-                    }
-                        
-                    if (connections.Item4)
-                    {
-                        Instantiate(door, new Vector3(room.transform.position.x - 17.5f, 2f, room.transform.position.z), Quaternion.identity,
-                            room.transform);
-                    }
+                    // if (connections.Item3)
+                    // {
+                    //     Instantiate(door, new Vector3(room.transform.position.x, 2f, room.transform.position.z - 17.5f), Quaternion.Euler(new Vector3(0f, 90f, 0f)),
+                    //         room.transform);
+                    // }
+                    //     
+                    // if (connections.Item4)
+                    // {
+                    //     Instantiate(door, new Vector3(room.transform.position.x - 17.5f, 2f, room.transform.position.z), Quaternion.identity,
+                    //         room.transform);
+                    // }
                 }
                 else if (levelToGenerate[i, j].roomType == RoomV2.RoomType.End)
                 {
@@ -384,29 +384,29 @@ public class ProcGenV4 : MonoBehaviour
                     room.name = "Room" + j + " " + i;
                     room.transform.Rotate(0f, 180f, 0f);
                     
-                    if (connections.Item1)
-                    {
-                        Instantiate(door, new Vector3(room.transform.position.x, 2f, room.transform.position.z + 17.5f), Quaternion.Euler(new Vector3(0f, 90f, 0f)),
-                            room.transform);
-                    }
+                    // if (connections.Item1)
+                    // {
+                    //     Instantiate(door, new Vector3(room.transform.position.x, 2f, room.transform.position.z + 17.5f), Quaternion.Euler(new Vector3(0f, 90f, 0f)),
+                    //         room.transform);
+                    // }
+                    //     
+                    // if (connections.Item2)
+                    // {
+                    //     Instantiate(door, new Vector3(room.transform.position.x + 17.5f, 2f, room.transform.position.z), Quaternion.identity,
+                    //         room.transform);
+                    // }
                         
-                    if (connections.Item2)
-                    {
-                        Instantiate(door, new Vector3(room.transform.position.x + 17.5f, 2f, room.transform.position.z), Quaternion.identity,
-                            room.transform);
-                    }
-                        
-                    if (connections.Item3)
-                    {
-                        Instantiate(door, new Vector3(room.transform.position.x, 2f, room.transform.position.z - 17.5f), Quaternion.Euler(new Vector3(0f, 90f, 0f)),
-                            room.transform);
-                    }
-                        
-                    if (connections.Item4)
-                    {
-                        Instantiate(door, new Vector3(room.transform.position.x - 17.5f, 2f, room.transform.position.z), Quaternion.identity,
-                            room.transform);
-                    }
+                    // if (connections.Item3)
+                    // {
+                    //     Instantiate(door, new Vector3(room.transform.position.x, 2f, room.transform.position.z - 17.5f), Quaternion.Euler(new Vector3(0f, 90f, 0f)),
+                    //         room.transform);
+                    // }
+                    //     
+                    // if (connections.Item4)
+                    // {
+                    //     Instantiate(door, new Vector3(room.transform.position.x - 17.5f, 2f, room.transform.position.z), Quaternion.identity,
+                    //         room.transform);
+                    // }
                 }
             }
         }

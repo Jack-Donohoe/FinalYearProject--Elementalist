@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
 
     public Vector3 _moveDirection;
     public float MoveSpeed;
-    private float _lookDampening = 10f;
+    private float _lookDampening = 25f;
 
     private Animator _animator;
 

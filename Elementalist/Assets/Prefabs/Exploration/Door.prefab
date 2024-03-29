@@ -84,7 +84,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &3433703450738873007
 Transform:
@@ -197,6 +197,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 818127886576182042}
+  - component: {fileID: 2594108379625075379}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -225,6 +226,39 @@ Transform:
   - {fileID: 602486593989521723}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2594108379625075379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2695179254593617800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f924e48b177ce34d8e4eda16bedfcb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  releaseShaders: 1
+  m_RendererInfo:
+  - renderer: {fileID: 2095448532619382936}
+    lightmapIndex: 0
+    lightmapOffsetScale: {x: 0.22825103, y: 0.22825103, z: -0.00092573283, w: 0.8238295}
+  - renderer: {fileID: 7003550703043968869}
+    lightmapIndex: 0
+    lightmapOffsetScale: {x: 0.21152574, y: 0.21152574, z: 0.2569546, w: 0.7938974}
+  - renderer: {fileID: 2204864049200693640}
+    lightmapIndex: 0
+    lightmapOffsetScale: {x: 0.21152574, y: 0.21152574, z: 0.2569546, w: 0.6547106}
+  - renderer: {fileID: 957247934378416414}
+    lightmapIndex: 0
+    lightmapOffsetScale: {x: 0.25776625, y: 0.25776625, z: -0.0010454396, w: 0.654523}
+  m_Lightmaps:
+  - {fileID: 2800000, guid: 9f13a3153cf6b8f44b545b3f6361d109, type: 3}
+  m_LightmapsDir:
+  - {fileID: 2800000, guid: 698d5288f22c22e40a73f0c8074a646c, type: 3}
+  m_ShadowMasks:
+  - {fileID: 0}
+  m_LightInfo: []
 --- !u!1 &3579283087409067174
 GameObject:
   m_ObjectHideFlags: 0
@@ -309,7 +343,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1627270984097176956
 Transform:
@@ -431,7 +465,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &6232933481122373776
 Transform:
@@ -553,7 +587,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &8202313867404194571
 Transform:

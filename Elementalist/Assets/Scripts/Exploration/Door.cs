@@ -47,8 +47,7 @@ public class Door : MonoBehaviour
         {
             GameObject player = GameObject.FindGameObjectWithTag("Player");
             player.GetComponent<CharacterController>().enabled = false;
-            player.transform.position = new Vector3(otherTeleporter.transform.position.x, 0.25f,
-                otherTeleporter.transform.position.z);
+            player.transform.position = new Vector3(otherTeleporter.transform.position.x, 0.25f, otherTeleporter.transform.position.z);
             player.GetComponent<CharacterController>().enabled = true;
         }
     }

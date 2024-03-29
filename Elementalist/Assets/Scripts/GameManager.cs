@@ -89,7 +89,7 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("StartScreen");
     }
 
-    public void LoadLevel()
+    public void LoadGame()
     {
         score = 0;
         Cursor.lockState = CursorLockMode.Locked;
@@ -97,6 +97,25 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("Level1");
         ResetPlayerInfo();
         StartCoroutine(StartLevel());
+    }
+
+    public void LoadNextLevel()
+    {
+        if (SceneManager.GetActiveScene().name == "Level1")
+        {
+            SceneManager.LoadScene("Level2");
+            StartCoroutine(StartLevel());
+        }
+        else if (SceneManager.GetActiveScene().name == "Level2")
+        {
+            SceneManager.LoadScene("Level3");
+            StartCoroutine(StartLevel());
+        } else if (SceneManager.GetActiveScene().name == "Level3")
+        {
+            SceneManager.LoadScene("WinScreen");
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
     }
 
     private IEnumerator StartLevel()

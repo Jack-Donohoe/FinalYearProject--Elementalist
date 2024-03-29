@@ -196,8 +196,8 @@ public class Player_Combat : MonoBehaviour
 
     private IEnumerator LaunchProjectile(Element element, GameObject projectile)
     {
-        yield return new WaitForSeconds(0.6f);
-        GameObject projectileToLaunch = Instantiate(projectile, new Vector3(transform.position.x, 1f, transform.position.z), Quaternion.identity);
+        yield return new WaitForSeconds(0.7f);
+        GameObject projectileToLaunch = Instantiate(projectile, new Vector3(transform.position.x, 1.5f, transform.position.z), Quaternion.identity);
         
         Vector3 direction = (enemies[0].transform.position - projectileToLaunch.transform.position).normalized * (element.GetProjectileSpeed() * Time.deltaTime);
         projectileToLaunch.transform.LookAt(enemies[0].transform.position);
