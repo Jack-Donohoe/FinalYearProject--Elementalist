@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 
 public class GameData
 {
+    public string levelName;
     public Vector3 playerPos;
     public Quaternion playerRotation;
     public int playerMaxHealth;
@@ -15,7 +16,20 @@ public class GameData
     public int playerMagic;
     public int playerAttack;
     public int playerDefence;
-    public List<Element> elementInventory;
+    public List<Element> elements;
+    public RoomV2[,] level;
+}
+
+public class LevelData
+{
+    public Vector3 playerPos;
+    public Quaternion playerRotation;
+    public int playerMaxHealth;
+    public int playerHealth;
+    public int playerMaxMagic;
+    public int playerMagic;
+    public int playerAttack;
+    public int playerDefence;
     public RoomV2[,] level;
 }
 
@@ -48,8 +62,9 @@ public class DataManager : MonoBehaviour
 
     public void SaveGameData(GameData gameData)
     {
-        string dataToSave = JsonUtility.ToJson(gameData);
+        string dataToSave = JsonConvert.SerializeObject(gameData);
         
+        Debug.Log(dataToSave);
         File.WriteAllText(gameDataPath, dataToSave);
     }
 
@@ -58,30 +73,31 @@ public class DataManager : MonoBehaviour
         if (File.Exists(gameDataPath))
         {
             string dataToLoad = File.ReadAllText(gameDataPath);
-            GameData gameData = JsonUtility.FromJson<GameData>(dataToLoad);
-
+            GameData gameData = JsonConvert.DeserializeObject<GameData>(dataToLoad);
+            
+            Debug.Log(gameData.level[0,0]);
             return gameData;
         }
 
         return null;
     }
     
-    public void SaveLevelData(GameData gameData)
+    public void SaveLevelData(LevelData levelData)
     {
-        string dataToSave = JsonConvert.SerializeObject(gameData);
+        string dataToSave = JsonConvert.SerializeObject(levelData);
         
         Debug.Log(dataToSave);
         File.WriteAllText(inGameDataPath, dataToSave);
     }
     
-    public GameData LoadLevelData()
+    public LevelData LoadLevelData()
     {
         if (File.Exists(inGameDataPath))
         {
             string dataToLoad = File.ReadAllText(inGameDataPath);
-            GameData gameData = JsonConvert.DeserializeObject<GameData>(dataToLoad);
+            LevelData levelData = JsonConvert.DeserializeObject<LevelData>(dataToLoad);
             
-            return gameData;
+            return levelData;
         }
     
         return null;

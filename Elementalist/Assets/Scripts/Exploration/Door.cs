@@ -5,19 +5,19 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-    private GameObject otherTeleporter;
+    public GameObject warpPoint;
     private bool nearDoor;
 
     private void Start()
     {
-        if (gameObject.name == "Teleporter 1")
-        {
-            otherTeleporter = transform.parent.Find("Teleporter 2").gameObject;
-        }
-        else if (gameObject.name == "Teleporter 2")
-        {
-            otherTeleporter = transform.parent.Find("Teleporter 1").gameObject;
-        }
+        // if (gameObject.name == "Teleporter 1")
+        // {
+        //     warpPoint = transform.parent.Find("WarpPoint 2").gameObject;
+        // }
+        // else if (gameObject.name == "Teleporter 2")
+        // {
+        //     warpPoint = transform.parent.Find("WarpPoint 1").gameObject;
+        // }
     }
 
     private void Update()
@@ -47,7 +47,7 @@ public class Door : MonoBehaviour
         {
             GameObject player = GameObject.FindGameObjectWithTag("Player");
             player.GetComponent<CharacterController>().enabled = false;
-            player.transform.position = new Vector3(otherTeleporter.transform.position.x, 0.25f, otherTeleporter.transform.position.z);
+            player.transform.position = new Vector3(warpPoint.transform.position.x, 0.25f, warpPoint.transform.position.z);
             player.GetComponent<CharacterController>().enabled = true;
         }
     }

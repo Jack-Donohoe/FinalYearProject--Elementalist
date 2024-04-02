@@ -121,24 +121,13 @@ public class Exploration_HUD : MonoBehaviour
 
     public void OnSaveGameButton()
     {
-        GameObject map = GameManager.Instance.Map;
-        
-        GameData gameData = new GameData
-        {
-            playerPos = GameObject.FindGameObjectWithTag("Player").transform.position,
-            playerRotation = GameObject.FindGameObjectWithTag("Player").transform.rotation,
-            playerHealth = GameManager.Instance.HP,
-            playerMagic = GameManager.Instance.MP,
-            playerAttack = GameManager.Instance.Attack_Power,
-            playerDefence = GameManager.Instance.Defence_Power,
-            level = map.GetComponent<ProcGenV4>().level
-        };
-        DataManager.instance.SaveGameData(gameData);
+        GameManager.Instance.SaveGame();
     }
 
     public void OnLoadGameButton()
     {
-        
+        UnloadMenu(pauseMenu);
+        GameManager.Instance.StartLoadGame();
     }
 
     public void OnMainMenuButton()

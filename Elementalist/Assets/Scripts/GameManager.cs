@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     private static GameManager _instance;
     public static GameManager Instance { get { return _instance; } }
 
-    private int score;
+    public string levelName;
 
     // Player Info
     private int max_health = 100;
@@ -78,23 +78,21 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         selectedElement = elementInventory[0];
-        map = GameObject.FindGameObjectWithTag("Map");
     }
 
     public void LoadMainMenu()
     {
-        score = 0;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         SceneManager.LoadScene("StartScreen");
     }
 
-    public void LoadGame()
+    public void StartGame()
     {
-        score = 0;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         SceneManager.LoadScene("Level1");
+        levelName = "Level1";
         ResetPlayerInfo();
         StartCoroutine(StartLevel());
     }
@@ -105,17 +103,67 @@ public class GameManager : MonoBehaviour
         {
             SceneManager.LoadScene("Level2");
             StartCoroutine(StartLevel());
+            levelName = "Level2";
         }
         else if (SceneManager.GetActiveScene().name == "Level2")
         {
             SceneManager.LoadScene("Level3");
             StartCoroutine(StartLevel());
+            levelName = "Level3";
         } else if (SceneManager.GetActiveScene().name == "Level3")
         {
             SceneManager.LoadScene("WinScreen");
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
+    }
+
+    public void SaveGame()
+    { 
+        map = GameObject.FindGameObjectWithTag("Map");
+        
+        GameData gameData = new GameData
+        {
+            levelName = levelName,
+            playerPos = GameObject.FindGameObjectWithTag("Player").transform.position,
+            playerRotation = GameObject.FindGameObjectWithTag("Player").transform.rotation,
+            playerMaxHealth = max_health,
+            playerHealth = health_points,
+            playerMaxMagic = max_magic,
+            playerMagic = magic_points,
+            playerAttack = attack_power,
+            playerDefence = defence_power,
+            //elements = elementInventory,
+            level = map.GetComponent<ProcGenV4>().level
+        };
+        DataManager.instance.SaveGameData(gameData);
+    }
+
+    public void StartLoadGame()
+    {
+        GameData gameData = DataManager.instance.LoadGameData();
+
+        SceneManager.LoadScene(gameData.levelName);
+        levelName = gameData.levelName;
+
+        StartCoroutine(LoadGame(gameData));
+    }
+
+    private IEnumerator LoadGame(GameData gameData)
+    {
+        yield return new WaitForNextFrameUnit();
+        
+        map = GameObject.FindGameObjectWithTag("Map");
+        
+        map.GetComponent<ProcGenV4>().GenerateLevel(gameData.level);
+        
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        player.GetComponent<CharacterController>().enabled = false;
+        player.transform.position = gameData.playerPos;
+        player.GetComponent<CharacterController>().enabled = true;
+        player.transform.rotation = gameData.playerRotation;
+        
+        StartCoroutine(RemoveLoadingScreen());
     }
 
     private IEnumerator StartLevel()
@@ -135,6 +183,7 @@ public class GameManager : MonoBehaviour
     private IEnumerator RemoveLoadingScreen()
     {
         yield return new WaitForSecondsRealtime(1.5f);
+        hud = GameObject.FindGameObjectWithTag("HUD").GetComponent<Exploration_HUD>();
         hud.loadingScreen.gameObject.SetActive(false);
         hud.inGameHUD.gameObject.SetActive(true);
     }
@@ -143,7 +192,7 @@ public class GameManager : MonoBehaviour
     {
         map = GameObject.FindGameObjectWithTag("Map");
             
-        GameData levelData = new GameData
+        LevelData levelData = new LevelData
         {
             playerPos = GameObject.FindGameObjectWithTag("Player").transform.position,
             playerRotation = GameObject.FindGameObjectWithTag("Player").transform.rotation,
@@ -165,37 +214,22 @@ public class GameManager : MonoBehaviour
     public IEnumerator ReturnToLevel()
     {
         yield return new WaitForSeconds(2f);
-        
-        if (score == 4)
-        {
-            SceneManager.LoadScene("WinScreen");
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-        }
-        else
-        {
-            SceneManager.LoadScene("Level1");
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
 
-            StartCoroutine(ReloadLevel());
-            
-            score++;
-        }
+        SceneManager.LoadScene(levelName);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
+        StartCoroutine(ReloadLevel());
     }
 
     private IEnumerator ReloadLevel()
     {
         yield return new WaitForNextFrameUnit();
-        GameData levelData = DataManager.instance.LoadLevelData();
+        LevelData levelData = DataManager.instance.LoadLevelData();
         map = GameObject.FindGameObjectWithTag("Map");
         
         map.GetComponent<ProcGenV4>().GenerateLevel(levelData.level);
-
-        hud = GameObject.FindGameObjectWithTag("HUD").GetComponent<Exploration_HUD>();
-        hud.SetScoreText("Enemies Defeated: " + score);
         
-        Debug.Log(levelData.playerRotation);
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         player.GetComponent<CharacterController>().enabled = false;
         player.transform.position = levelData.playerPos;

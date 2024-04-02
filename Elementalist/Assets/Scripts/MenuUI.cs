@@ -11,7 +11,7 @@ public class MenuUI : MonoBehaviour
     
     public void RestartGame()
     {
-        GameManager.Instance.LoadGame();
+        GameManager.Instance.StartGame();
     }
 
     public void QuitGame()
