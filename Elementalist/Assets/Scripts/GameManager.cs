@@ -10,21 +10,59 @@ public class GameManager : MonoBehaviour
     private static GameManager _instance;
     public static GameManager Instance { get { return _instance; } }
 
-    private int score;
+    public string levelName;
 
     // Player Info
+    private int max_health = 100;
+    public int Max_Health
+    {
+        get => max_health;
+        set => max_health = value;
+    }
+    
     private int health_points = 100;
-    private int magic_points = 50;
-    private int attack_power = 10;
+    public int HP
+    {
+        get => health_points;
+        set => health_points = value;
+    }
+    
+    private int max_magic = 60;
+    public int Max_Magic
+    {
+        get => max_magic;
+        set => max_magic = value;
+    }
+    
+    private int magic_points = 60;
+    public int MP
+    {
+        get => magic_points;
+        set => magic_points = value;
+    }
+    
+    private int attack_power = 1;
+    public int Attack_Power
+    {
+        get => attack_power;
+        set => attack_power = value;
+    }
+    
     private int defence_power = 5;
+    public int Defence_Power
+    {
+        get => defence_power;
+        set => defence_power = value;
+    }
     
     // Element Info
-    public List<Element> _elements = new List<Element>();
+    public List<Element> elementInventory = new List<Element>();
     public Element selectedElement;
 
     // Level Objects
     public Exploration_HUD hud;
     private GameObject map;
+    public GameObject Map => map;
 
     private void Awake()
     {
@@ -39,36 +77,103 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        selectedElement = _elements[0];
-        map = GameObject.FindGameObjectWithTag("Map");
+        selectedElement = elementInventory[0];
     }
 
     public void LoadMainMenu()
     {
-        score = 0;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         SceneManager.LoadScene("StartScreen");
     }
 
-    public void LoadLevel()
+    public void StartGame()
     {
-        score = 0;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         SceneManager.LoadScene("Level1");
-        ResetGameInfo();
+        levelName = "Level1";
+        ResetPlayerInfo();
         StartCoroutine(StartLevel());
+    }
+
+    public void LoadNextLevel()
+    {
+        if (SceneManager.GetActiveScene().name == "Level1")
+        {
+            SceneManager.LoadScene("Level2");
+            StartCoroutine(StartLevel());
+            levelName = "Level2";
+        }
+        else if (SceneManager.GetActiveScene().name == "Level2")
+        {
+            SceneManager.LoadScene("Level3");
+            StartCoroutine(StartLevel());
+            levelName = "Level3";
+        } else if (SceneManager.GetActiveScene().name == "Level3")
+        {
+            SceneManager.LoadScene("WinScreen");
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+    }
+
+    public void SaveGame()
+    { 
+        map = GameObject.FindGameObjectWithTag("Map");
+        
+        GameData gameData = new GameData
+        {
+            levelName = levelName,
+            playerPos = GameObject.FindGameObjectWithTag("Player").transform.position,
+            playerRotation = GameObject.FindGameObjectWithTag("Player").transform.rotation,
+            playerMaxHealth = max_health,
+            playerHealth = health_points,
+            playerMaxMagic = max_magic,
+            playerMagic = magic_points,
+            playerAttack = attack_power,
+            playerDefence = defence_power,
+            //elements = elementInventory,
+            level = map.GetComponent<ProcGenV4>().level
+        };
+        DataManager.instance.SaveGameData(gameData);
+    }
+
+    public void StartLoadGame()
+    {
+        GameData gameData = DataManager.instance.LoadGameData();
+
+        SceneManager.LoadScene(gameData.levelName);
+        levelName = gameData.levelName;
+
+        StartCoroutine(LoadGame(gameData));
+    }
+
+    private IEnumerator LoadGame(GameData gameData)
+    {
+        yield return new WaitForNextFrameUnit();
+        
+        map = GameObject.FindGameObjectWithTag("Map");
+        
+        map.GetComponent<ProcGenV4>().GenerateLevel(gameData.level);
+        
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        player.GetComponent<CharacterController>().enabled = false;
+        player.transform.position = gameData.playerPos;
+        player.GetComponent<CharacterController>().enabled = true;
+        player.transform.rotation = gameData.playerRotation;
+        
+        StartCoroutine(RemoveLoadingScreen());
     }
 
     private IEnumerator StartLevel()
     {
         yield return new WaitForNextFrameUnit();
         map = GameObject.FindGameObjectWithTag("Map");
-        map.GetComponent<ProcGenV3>().OnLevelLoad();
+        map.GetComponent<ProcGenV4>().OnLevelLoad();
         
         GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterController>().enabled = false;
-        GameObject.FindGameObjectWithTag("Player").transform.position = map.GetComponent<ProcGenV3>().GetStartPos();
+        GameObject.FindGameObjectWithTag("Player").transform.position = map.GetComponent<ProcGenV4>().startPos;
         GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterController>().enabled = true;
         
         hud = GameObject.FindGameObjectWithTag("HUD").GetComponent<Exploration_HUD>();
@@ -78,6 +183,7 @@ public class GameManager : MonoBehaviour
     private IEnumerator RemoveLoadingScreen()
     {
         yield return new WaitForSecondsRealtime(1.5f);
+        hud = GameObject.FindGameObjectWithTag("HUD").GetComponent<Exploration_HUD>();
         hud.loadingScreen.gameObject.SetActive(false);
         hud.inGameHUD.gameObject.SetActive(true);
     }
@@ -86,18 +192,17 @@ public class GameManager : MonoBehaviour
     {
         map = GameObject.FindGameObjectWithTag("Map");
             
-        GameData levelData = new GameData
+        LevelData levelData = new LevelData
         {
             playerPos = GameObject.FindGameObjectWithTag("Player").transform.position,
             playerRotation = GameObject.FindGameObjectWithTag("Player").transform.rotation,
+            playerMaxHealth = max_health,
             playerHealth = health_points,
+            playerMaxMagic = max_magic,
             playerMagic = magic_points,
             playerAttack = attack_power,
             playerDefence = defence_power,
-            levelSize = map.GetComponent<ProcGenV3>().GetIds().Length,
-            ids = map.GetComponent<ProcGenV3>().GetIds(),
-            roomsCompleted = map.GetComponent<ProcGenV3>().GetRoomsCompleted(),
-            roomTypes = map.GetComponent<ProcGenV3>().GetRoomTypes()
+            level = map.GetComponent<ProcGenV4>().level
         };
         DataManager.instance.SaveLevelData(levelData);
 
@@ -109,42 +214,22 @@ public class GameManager : MonoBehaviour
     public IEnumerator ReturnToLevel()
     {
         yield return new WaitForSeconds(2f);
-        
-        if (score == 4)
-        {
-            SceneManager.LoadScene("WinScreen");
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-        }
-        else
-        {
-            SceneManager.LoadScene("Level1");
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
 
-            StartCoroutine(ReloadLevel());
-            
-            score++;
-        }
+        SceneManager.LoadScene(levelName);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
+        StartCoroutine(ReloadLevel());
     }
 
     private IEnumerator ReloadLevel()
     {
         yield return new WaitForNextFrameUnit();
-        GameData levelData = DataManager.instance.LoadLevelData();
+        LevelData levelData = DataManager.instance.LoadLevelData();
         map = GameObject.FindGameObjectWithTag("Map");
         
-        // Reinitialize arrays in map with saved arrays
-        map.GetComponent<ProcGenV3>().SetIds(levelData.ids);
-        map.GetComponent<ProcGenV3>().SetRoomsCompleted(levelData.roomsCompleted);
-        map.GetComponent<ProcGenV3>().SetRoomTypes(levelData.roomTypes);
+        map.GetComponent<ProcGenV4>().GenerateLevel(levelData.level);
         
-        map.GetComponent<ProcGenV3>().GenerateMap(levelData.ids, levelData.roomsCompleted, levelData.roomTypes);
-
-        hud = GameObject.FindGameObjectWithTag("HUD").GetComponent<Exploration_HUD>();
-        hud.SetScoreText("Enemies Defeated: " + score);
-        
-        Debug.Log(levelData.playerRotation);
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         player.GetComponent<CharacterController>().enabled = false;
         player.transform.position = levelData.playerPos;
@@ -162,44 +247,51 @@ public class GameManager : MonoBehaviour
         Cursor.visible = true;
     }
 
-    public void AddElement(Element element)
+    public string AddElement(Element element)
     {
-        _elements.Add(element);
+        if (!elementInventory.Contains(element))
+        {
+            elementInventory.Add(element);
+            return "You Created: " + element.GetName();
+        }
+        else
+        {
+            return "Element Already Exists";
+        }
     }
     
     public Element GetElement(int i)
     {
-        return _elements[i];
+        return elementInventory[i];
     }
 
     public List<Element> GetElements()
     {
-        return _elements;
+        return elementInventory;
     }
 
-    public (int, int, int, int) GetPlayerInfo()
+    public void SetPlayerResources(int hp, int mp)
     {
-        return (health_points, magic_points, attack_power, defence_power);
+        health_points = hp;
+        magic_points = mp;
+        Debug.Log("HP=" + hp +" MP=" + mp);
+    }
+    
+    public void SetPlayerStats(int maxHP, int maxMP, int attackPow, int defencePow)
+    {
+        max_health = maxHP;
+        max_magic = maxMP;
+        attack_power = attackPow;
+        defence_power = defencePow;
     }
 
-    public void SetPlayerInfo((int,int,int,int) playerInfo)
+    private void ResetPlayerInfo()
     {
-        health_points = playerInfo.Item1;
-        magic_points = playerInfo.Item2;
-        attack_power = playerInfo.Item3;
-        defence_power = playerInfo.Item4;
-    }
-
-    private void ResetGameInfo()
-    {
+        max_health = 100;
+        max_magic = 60;
         health_points = 100;
-        magic_points = 50;
+        magic_points = 60;
         attack_power = 10;
         defence_power = 5;
-    }
-
-    public GameObject GetMap()
-    {
-        return map;
     }
 }

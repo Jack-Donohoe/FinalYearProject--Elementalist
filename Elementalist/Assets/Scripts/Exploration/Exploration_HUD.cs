@@ -12,15 +12,19 @@ public class Exploration_HUD : MonoBehaviour
     public TMP_Text scoreText;
     public GameObject pauseMenu;
     public GameObject inventoryMenu;
+    public GameObject[] inventoryViews;
     public Button[] buttons;
     public TMP_Text[] buttonTexts;
-    public TMP_Text selectedElementText;
+    public RawImage[] buttonImages;
     public Slider PlayerHPSlider;
+    public TMP_Text HPValue;
     public Slider MPSlider;
-
+    public TMP_Text MPValue;
+    
+    
     private void Start()
     {
-        selectedElementText.text = "Selected Element: " + GameManager.Instance.selectedElement.GetName();
+        
     }
 
     public void SetScoreText(string text)
@@ -87,6 +91,7 @@ public class Exploration_HUD : MonoBehaviour
         {
             buttons[i].gameObject.SetActive(true);
             buttonTexts[i].text = elements[i].GetName();
+            buttonImages[i].texture = elements[i].GetIcon();
         }
         
         inventoryMenu.SetActive(true);
@@ -102,40 +107,27 @@ public class Exploration_HUD : MonoBehaviour
         inGameHUD.SetActive(true);
     }
     
-    public void setPlayerHP(int hp)
+    public void setPlayerHP(int hp, int maxHP)
     {
         PlayerHPSlider.value = hp;
+        HPValue.text = hp + "/" + maxHP;
     }
     
-    public void setMP(int mp)
+    public void setMP(int mp, int maxMP)
     {
         MPSlider.value = mp;
+        MPValue.text = mp + "/" + maxMP;
     }
 
     public void OnSaveGameButton()
     {
-        (int, int, int, int) playerInfo = GameManager.Instance.GetPlayerInfo();
-        GameObject map = GameManager.Instance.GetMap();
-        
-        GameData gameData = new GameData
-        {
-            playerPos = GameObject.FindGameObjectWithTag("Player").transform.position,
-            playerRotation = GameObject.FindGameObjectWithTag("Player").transform.rotation,
-            playerHealth = playerInfo.Item1,
-            playerMagic = playerInfo.Item2,
-            playerAttack = playerInfo.Item3,
-            playerDefence = playerInfo.Item4,
-            levelSize = map.GetComponent<ProcGenV3>().GetIds().Length,
-            ids = map.GetComponent<ProcGenV3>().GetIds(),
-            roomsCompleted = map.GetComponent<ProcGenV3>().GetRoomsCompleted(),
-            roomTypes = map.GetComponent<ProcGenV3>().GetRoomTypes()
-        };
-        DataManager.instance.SaveGameData(gameData);
+        GameManager.Instance.SaveGame();
     }
 
     public void OnLoadGameButton()
     {
-        
+        UnloadMenu(pauseMenu);
+        GameManager.Instance.StartLoadGame();
     }
 
     public void OnMainMenuButton()
@@ -149,6 +141,27 @@ public class Exploration_HUD : MonoBehaviour
         Application.Quit();
     }
 
+    public void OnToElementsButton()
+    {
+        inventoryViews[0].SetActive(false);
+        inventoryViews[1].SetActive(true);
+        inventoryViews[2].SetActive(false);
+    }
+    
+    public void OnToCombinationButton()
+    {
+        inventoryViews[0].SetActive(false);
+        inventoryViews[1].SetActive(false);
+        inventoryViews[2].SetActive(true);
+    }
+    
+    public void OnToStatsButton()
+    {
+        inventoryViews[0].SetActive(true);
+        inventoryViews[1].SetActive(false);
+        inventoryViews[2].SetActive(false);
+    }
+
     public void OnElementButton(Button button)
     {
         for (int i = 0; i < buttons.Length; i++)
@@ -156,8 +169,17 @@ public class Exploration_HUD : MonoBehaviour
             if (buttons[i] == button)
             {
                 GameManager.Instance.selectedElement = GameManager.Instance.GetElement(i);
-                selectedElementText.text = "Selected Element: " + GameManager.Instance.selectedElement.GetName();
+                Debug.Log(GameManager.Instance.selectedElement.GetName());
             }
         }
+    }
+
+    public void OnCombineButton()
+    {
+        Element element1 = GameManager.Instance.GetElement(0);
+        Element element2 = GameManager.Instance.GetElement(1);
+        
+        Element newElement = ElementManager.Instance.CombineElements((element1.GetName(),element2.GetName()));
+        Debug.Log(GameManager.Instance.AddElement(newElement));
     }
 }

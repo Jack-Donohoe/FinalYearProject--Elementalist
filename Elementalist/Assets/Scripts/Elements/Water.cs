@@ -13,13 +13,17 @@ public class Water : Element
 
     [SerializeField] private int damage_value;
     
+    [SerializeField] private int magic_cost;
+    
     [SerializeField] private string attack_name;
+    
+    [SerializeField] private Texture2D icon;
     
     public override string GetName()
     {
         return element_name;
     }
-    
+
     public override GameObject GetProjectile()
     {
         return waterball;
@@ -35,8 +39,18 @@ public class Water : Element
         return damage_value;
     }
     
+    public override int GetMagicCost()
+    {
+        return magic_cost;
+    }
+    
     public override string GetAttackName()
     {
         return attack_name;
+    }
+    
+    public override Texture2D GetIcon()
+    {
+        return icon;
     }
 }

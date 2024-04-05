@@ -4,10 +4,47 @@ using UnityEngine;
 
 public class Grunt_Combat : MonoBehaviour
 {
-    private int health_points = 40;
+    private int max_health = 50;
+    public int Max_Health
+    {
+        get => max_health;
+        set => max_health = value;
+    }
+    
+    private int health_points = 50;
+    public int HP
+    {
+        get => health_points;
+        set => health_points = value;
+    }
+    
+    private int max_magic = 50;
+    public int Max_Magic
+    {
+        get => max_magic;
+        set => max_magic = value;
+    }
+    
     private int magic_points = 20;
-    public int attack_power = 10;
-    private int defence_power = 0;
+    public int MP
+    {
+        get => magic_points;
+        set => magic_points = value;
+    }
+    
+    private int attack_power = 10;
+    public int Attack_Power
+    {
+        get => attack_power;
+        set => attack_power = value;
+    }
+    
+    private int defence_power = 5;
+    public int Defence_Power
+    {
+        get => defence_power;
+        set => defence_power = value;
+    }
     
     private int multiplier;
     
@@ -15,11 +52,12 @@ public class Grunt_Combat : MonoBehaviour
 
     public Combat_Manager manager;
     
-    public enum State { Idle, Attack, Heal, ElementalAttack }
+    public enum State { Idle, Attack, Heal, ElementalAttack, Dead }
 
     public State state;
     
     private bool dead = false;
+    public bool Dead => dead;
 
     private Player_Combat player;
     
@@ -36,6 +74,11 @@ public class Grunt_Combat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (dead)
+        {
+            state = State.Dead;
+        }
+        
         switch (state)
         {
             case State.Idle:
@@ -90,29 +133,35 @@ public class Grunt_Combat : MonoBehaviour
     {
         int rand = Random.Range(0, 100);
 
-        multiplier = (rand <= 5)? 2: 1;
+        multiplier = (rand <= 8)? 2: 1;
 
-        int damage = attack_power * multiplier;
+        int damage = (attack_power/10) * 15 * multiplier - player.Defence_Power;
         player.TakeDamage(damage);
-        hud.DialogueText.text = "Enemy A attacks and deals " + damage + " damage to the Player";
+        hud.DialogueText.text = "Enemy A attacks and deals " + damage + " damage!";
         
         StartCoroutine(EndTurn());
     }
 
     private void Heal()
     {
-        if (health_points < 100)
-        {
-            health_points += 5;
-        } 
-        else
+        int healthToRestore = (Random.value > 0.7f) ? 10 : 5;
+        health_points += healthToRestore;
+        
+        if (health_points > 100)
         {
             health_points = 100;
         }
         
         hud.setEnemyHP(health_points);
         magic_points -= 5;
-        hud.DialogueText.text = "Enemy A heals and restores 5 HP";
+        string textToDisplay = "Enemy A uses Heal and restores " + healthToRestore + "HP";
+        
+        if (multiplier == 2)
+        {
+            textToDisplay += " Critical Hit!";
+        }
+
+        hud.DialogueText.text = textToDisplay;
         
         StartCoroutine(EndTurn());
     }
@@ -121,19 +170,26 @@ public class Grunt_Combat : MonoBehaviour
     {
         int rand = Random.Range(0, 100);
         
-        multiplier = (rand <= 5)? 2: 1;
+        multiplier = (rand <= 8)? 2: 1;
         
-        int damage = attack_power * 2 * multiplier;
+        int damage = (attack_power/10) * 25 * multiplier - player.Defence_Power;
         player.TakeDamage(damage);
         magic_points -= 5;
-        hud.DialogueText.text = "Enemy A uses an Elemental Attack and deals " + damage + " damage to Enemy A";
+        string textToDisplay = "Enemy A uses an Elemental Attack and deals " + damage + " damage!";
+        
+        if (multiplier == 2)
+        {
+            textToDisplay += " Critical Hit!";
+        }
+
+        hud.DialogueText.text = textToDisplay;
         
         StartCoroutine(EndTurn());
     }
 
     public void TakeDamage(int damage)
     {
-        health_points -= damage - defence_power;
+        health_points -= damage;
         
         if (health_points <= 0)
         {
@@ -142,10 +198,5 @@ public class Grunt_Combat : MonoBehaviour
         } 
         
         hud.setEnemyHP(health_points);
-    }
-    
-    public bool IsDead()
-    {
-        return dead;
     }
 }

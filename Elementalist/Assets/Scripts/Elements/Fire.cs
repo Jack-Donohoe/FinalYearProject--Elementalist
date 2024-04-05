@@ -12,8 +12,12 @@ public class Fire : Element
     [SerializeField] private float speed;
 
     [SerializeField] private int damage_value;
+    
+    [SerializeField] private int magic_cost;
 
     [SerializeField] private string attack_name;
+
+    [SerializeField] private Texture2D icon;
 
     public override string GetName()
     {
@@ -35,8 +39,18 @@ public class Fire : Element
         return damage_value;
     }
 
+    public override int GetMagicCost()
+    {
+        return magic_cost;
+    }
+
     public override string GetAttackName()
     {
         return attack_name;
+    }
+
+    public override Texture2D GetIcon()
+    {
+        return icon;
     }
 }

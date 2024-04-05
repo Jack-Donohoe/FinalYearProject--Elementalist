@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4409371078044398196}
-  - component: {fileID: 3006817402543295379}
+  - component: {fileID: 8678700396775573637}
   m_Layer: 0
   m_Name: Map
   m_TagString: Map
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3006817402543295379
+--- !u!114 &8678700396775573637
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,14 +41,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 3291189320026974927}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6da527b95e606e49a8af17ab3932185, type: 3}
+  m_Script: {fileID: 11500000, guid: 7096aaf27751bc749af1ed39b6b1edd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   levelSize: 10
-  enemyFrequency: 0.20000000298023224
   roomTemplates:
-  - {fileID: 6829605029688163466, guid: f0aec29ab433cca4d97ad874cb14777a, type: 3}
-  - {fileID: 8052021891597134991, guid: cc645cb3f9b9dad458a4ba515a8a3a4e, type: 3}
-  - {fileID: 6883810412256738501, guid: 12f1eacaf34388747be10542b01f6c1c, type: 3}
-  - {fileID: 8776208258515102377, guid: 1fe8948973beebe4689e5d842b93f949, type: 3}
   - {fileID: 584235366811809531, guid: 0b6d5d051e5eacb40b2f45403487745b, type: 3}
+  - {fileID: 8052021891597134991, guid: cc645cb3f9b9dad458a4ba515a8a3a4e, type: 3}
+  - {fileID: 8776208258515102377, guid: 1fe8948973beebe4689e5d842b93f949, type: 3}
+  - {fileID: 6883810412256738501, guid: 12f1eacaf34388747be10542b01f6c1c, type: 3}
+  - {fileID: 6829605029688163466, guid: f0aec29ab433cca4d97ad874cb14777a, type: 3}
+  - {fileID: 6883810412256738501, guid: 504ac546d421cb148bb6e9e970e0e4ff, type: 3}
+  - {fileID: 6883810412256738501, guid: d76782cd056f5334abdfb0bb28455d64, type: 3}
+  door: {fileID: 2695179254593617800, guid: 4b56445707e75314bb6101ad7f08e4a4, type: 3}

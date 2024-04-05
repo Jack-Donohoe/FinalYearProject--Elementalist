@@ -11,6 +11,10 @@ public abstract class Element : ScriptableObject
     public abstract float GetProjectileSpeed();
 
     public abstract int GetDamageValue();
+    
+    public abstract int GetMagicCost();
 
     public abstract string GetAttackName();
+
+    public abstract Texture2D GetIcon();
 }

@@ -9,6 +9,7 @@ TagManager:
   - Map
   - HUD
   - Waypoint
+  - CombatManager
   layers:
   - Default
   - TransparentFX
