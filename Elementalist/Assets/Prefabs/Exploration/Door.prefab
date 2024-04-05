@@ -245,13 +245,13 @@ MonoBehaviour:
   m_RendererInfo:
   - renderer: {fileID: 2095448532619382936}
     lightmapIndex: 0
-    lightmapOffsetScale: {x: 0.22825103, y: 0.22825103, z: -0.00092573283, w: 0.8238295}
+    lightmapOffsetScale: {x: 0.23120254, y: 0.23120254, z: -0.0009377035, w: 0.8238175}
   - renderer: {fileID: 7003550703043968869}
     lightmapIndex: 0
-    lightmapOffsetScale: {x: 0.21152574, y: 0.21152574, z: 0.2569546, w: 0.7938974}
+    lightmapOffsetScale: {x: 0.21447726, y: 0.21447726, z: 0.25694263, w: 0.7958003}
   - renderer: {fileID: 2204864049200693640}
     lightmapIndex: 0
-    lightmapOffsetScale: {x: 0.21152574, y: 0.21152574, z: 0.2569546, w: 0.6547106}
+    lightmapOffsetScale: {x: 0.21447726, y: 0.21447726, z: 0.25694263, w: 0.6546986}
   - renderer: {fileID: 957247934378416414}
     lightmapIndex: 0
     lightmapOffsetScale: {x: 0.25776625, y: 0.25776625, z: -0.0010454396, w: 0.654523}
@@ -260,7 +260,7 @@ MonoBehaviour:
   m_LightmapsDir:
   - {fileID: 2800000, guid: 698d5288f22c22e40a73f0c8074a646c, type: 3}
   m_ShadowMasks:
-  - {fileID: 0}
+  - {fileID: 2800000, guid: 54974bb140224734ba42128f87ddd078, type: 3}
   m_LightInfo: []
 --- !u!1 &3579283087409067174
 GameObject:

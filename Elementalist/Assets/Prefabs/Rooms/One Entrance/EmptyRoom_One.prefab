@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 584235366811809531}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 70}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -114,7 +114,7 @@ MonoBehaviour:
     lightmapOffsetScale: {x: 1.0074527, y: 1.0074527, z: -0.004085993, w: -0.004085993}
   - renderer: {fileID: 210479381411395071}
     lightmapIndex: 2
-    lightmapOffsetScale: {x: 0.6345772, y: 0.6345772, z: -0.002573697, w: -0.002573697}
+    lightmapOffsetScale: {x: 0.6345772, y: 0.6345772, z: -0.002573697, w: 0.4110805}
   - renderer: {fileID: 9178781435486719390}
     lightmapIndex: 3
     lightmapOffsetScale: {x: 0.6345772, y: 0.6345772, z: -0.002573697, w: 0.4110805}
@@ -128,53 +128,53 @@ MonoBehaviour:
     lightmapIndex: 6
     lightmapOffsetScale: {x: 0.9612123, y: 0.9612123, z: -0.0038984525, w: -0.0038984525}
   m_Lightmaps:
-  - {fileID: 2800000, guid: 2a9ea59af103b154b989a156ee468ee5, type: 3}
   - {fileID: 2800000, guid: b38beaed69287a94f8bb012d8e1660f1, type: 3}
+  - {fileID: 2800000, guid: 6439323871d939f44b80117dc0fa6839, type: 3}
   - {fileID: 2800000, guid: ed2fbf0ee723fe240bb3e1494bdab02d, type: 3}
-  - {fileID: 2800000, guid: 79dc33c31c78086419ea239ccffbf1d5, type: 3}
-  - {fileID: 2800000, guid: 7568041aecd5ba342b8b93cd183f0226, type: 3}
+  - {fileID: 2800000, guid: 15e21bfa85fe36242a6b4fc91dc22c7c, type: 3}
+  - {fileID: 2800000, guid: 634cb29e39c51c94abf3335d288173c9, type: 3}
+  - {fileID: 2800000, guid: ac414d007979d764b80e012c6cb7733d, type: 3}
   - {fileID: 2800000, guid: a2ef440e36d55164c9dfa8c00a861d11, type: 3}
-  - {fileID: 2800000, guid: 7cf2d01854b2d8344b371de5462bed87, type: 3}
   m_LightmapsDir:
-  - {fileID: 2800000, guid: d5e3875c3d5188b48ae488267be516d0, type: 3}
   - {fileID: 2800000, guid: 14161b96b5de9d24d92f4ff5fd4ca973, type: 3}
+  - {fileID: 2800000, guid: b2fc5c6bfc01fe0439fba4acf07b7888, type: 3}
   - {fileID: 2800000, guid: dd723fa8288b9444c9760555b293aaae, type: 3}
-  - {fileID: 2800000, guid: fb4e8a4c5cf23ed4eab09d36fc2496c7, type: 3}
-  - {fileID: 2800000, guid: 4e5ce968d9032f443910edadb078b2a5, type: 3}
+  - {fileID: 2800000, guid: b29c8ac17d81c9a4aae65a7f2ff09828, type: 3}
+  - {fileID: 2800000, guid: 7ac51cb2668bf9040b6fd8c7f972b3a7, type: 3}
+  - {fileID: 2800000, guid: e03f11c004f23964389a586d4665eab4, type: 3}
   - {fileID: 2800000, guid: c245fed5ee692c84792237bfc9eb3b50, type: 3}
-  - {fileID: 2800000, guid: 311ac343938c7f344b07d35d50a9c535, type: 3}
   m_ShadowMasks:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 2800000, guid: cb74c297f3c254e4685fbb1dd657125f, type: 3}
+  - {fileID: 2800000, guid: 144c678f742585c498f7f46e26d7848c, type: 3}
+  - {fileID: 2800000, guid: f71e391cef0f38647a2bb87e813cbd6c, type: 3}
+  - {fileID: 2800000, guid: 915b1958739d2db4d836bae1fb71b42d, type: 3}
+  - {fileID: 2800000, guid: 9be003bd4e4949041826f5532826feaf, type: 3}
+  - {fileID: 2800000, guid: 7f006850a5af86242810dd1d1889a693, type: 3}
+  - {fileID: 2800000, guid: 68d6c7c22166bbc48a9566c1b2433938, type: 3}
   m_LightInfo:
   - light: {fileID: 6032031056783087947}
-    lightmapBaketype: 2
+    lightmapBaketype: 1
     mixedLightingMode: 2
   - light: {fileID: 317230363714565026}
-    lightmapBaketype: 2
+    lightmapBaketype: 1
     mixedLightingMode: 2
   - light: {fileID: 6399869528980129997}
-    lightmapBaketype: 2
+    lightmapBaketype: 1
     mixedLightingMode: 2
   - light: {fileID: 5449247405324434532}
-    lightmapBaketype: 2
+    lightmapBaketype: 1
     mixedLightingMode: 2
   - light: {fileID: 5580992645355914270}
-    lightmapBaketype: 2
+    lightmapBaketype: 1
     mixedLightingMode: 2
   - light: {fileID: 2900842723400751632}
-    lightmapBaketype: 2
+    lightmapBaketype: 1
     mixedLightingMode: 2
   - light: {fileID: 2980403267191943401}
-    lightmapBaketype: 2
+    lightmapBaketype: 1
     mixedLightingMode: 2
   - light: {fileID: 3802123928928883544}
-    lightmapBaketype: 2
+    lightmapBaketype: 1
     mixedLightingMode: 2
 --- !u!1 &812054045025078978
 GameObject:
