@@ -254,10 +254,19 @@ public class GameManager : MonoBehaviour
             elementInventory.Add(element);
             return "You Created: " + element.GetName();
         }
-        else
+
+        return "Element Already Exists";
+    }
+
+    public string RemoveElement(Element element)
+    {
+        if (elementInventory.Contains(element))
         {
-            return "Element Already Exists";
+            elementInventory.Remove(element);
+            return "Removed: " + element.GetName();
         }
+
+        return "Element Does Not Exist";
     }
     
     public Element GetElement(int i)

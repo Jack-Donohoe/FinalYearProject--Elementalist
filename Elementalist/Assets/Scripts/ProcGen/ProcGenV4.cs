@@ -275,7 +275,7 @@ public class ProcGenV4 : MonoBehaviour
         int rand = Random.Range(1, levelSize - 2);
         currentLevel[0, rand].roomType = RoomV2.RoomType.Start;
         currentLevel[0, rand].SetAllConnections((true, true, false, true));
-        currentLevel[1, rand].connections["bottom"] = true;
+        currentLevel[1, rand].connections["top"] = true;
         currentLevel[0, rand - 1].connections["right"] = true;
         currentLevel[0, rand + 1].connections["left"] = true;
         
@@ -283,7 +283,7 @@ public class ProcGenV4 : MonoBehaviour
         rand = Random.Range(1, levelSize - 2);
         currentLevel[levelSize - 1, rand].roomType = RoomV2.RoomType.End;
         currentLevel[levelSize - 1, rand].SetAllConnections((false, true, true, true));
-        currentLevel[levelSize - 2, rand].connections["top"] = true;
+        currentLevel[levelSize - 2, rand].connections["bottom"] = true;
         currentLevel[levelSize - 1, rand - 1].connections["right"] = true;
         currentLevel[levelSize - 1, rand + 1].connections["left"] = true;
 

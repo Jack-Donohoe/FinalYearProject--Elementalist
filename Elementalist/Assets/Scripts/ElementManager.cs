@@ -11,6 +11,8 @@ public class ElementManager : MonoBehaviour
 
     private Dictionary<(string, string), Element> combinations;
     
+    private Dictionary<(string, string), float> damage_multipliers;
+    
     private void Awake()
     {
         if (_instance != null && _instance != this)
@@ -30,6 +32,16 @@ public class ElementManager : MonoBehaviour
             { ("Fire", "Water"), FindElement("Steam") },
             { ("Fire", "Earth"), FindElement("Magma") },
         };
+
+        damage_multipliers = new Dictionary<(string, string), float>()
+        {
+            { ("Fire", "Water"), 0.5f },
+            { ("Fire", "Fire"), 0.5f },
+            { ("Water", "Fire"), 2f },
+            { ("Water", "Water"), 0.5f },
+            { ("Steam", "Water"), 1f },
+            { ("Steam", "Fire"), 2f },
+        };
     }
 
     public Element CombineElements((string, string) names)
@@ -48,5 +60,10 @@ public class ElementManager : MonoBehaviour
         }
 
         return null;
+    }
+
+    public float GetDamageMultiplier((string, string) names)
+    {
+        return damage_multipliers[names];
     }
 }

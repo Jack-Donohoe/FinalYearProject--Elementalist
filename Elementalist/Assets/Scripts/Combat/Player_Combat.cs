@@ -46,7 +46,7 @@ public class Player_Combat : MonoBehaviour
         set => defence_power = value;
     }
     
-    private int multiplier;
+    private int crit_multiplier;
     
     public CombatHUD hud;
 
@@ -127,13 +127,13 @@ public class Player_Combat : MonoBehaviour
     {
         int rand = Random.Range(0, 100);
 
-        multiplier = (rand <= 8)? 2: 1;
+        crit_multiplier = (rand <= 5)? 2: 1;
         
-        damage = (attack_power/10) * 15 * multiplier - enemies[0].GetComponent<Grunt_Combat>().Defence_Power;
+        damage = Mathf.RoundToInt(attack_power + Random.Range(5,10) * crit_multiplier - enemies[0].GetComponent<Grunt_Combat>().Defence_Power);
         enemies[0].GetComponent<Grunt_Combat>().TakeDamage(damage);
         string textToDisplay = "Player attacks and deals " + damage + " damage!";
         
-        if (multiplier == 2)
+        if (crit_multiplier == 2)
         {
             textToDisplay += " Critical Hit!";
         }
@@ -170,12 +170,15 @@ public class Player_Combat : MonoBehaviour
     {
         int rand = Random.Range(0, 100);
         
-        multiplier = (rand <= 8)? 2: 1;
+        crit_multiplier = (rand <= 5)? 2: 1;
 
         Element element = GameManager.Instance.selectedElement;
         GameObject projectile = element.GetProjectile();
-        
-        damage = (attack_power/10) * element.GetDamageValue() * multiplier - enemies[0].GetComponent<Grunt_Combat>().Defence_Power;
+        int damageVal = element.GetDamageValue();
+        Grunt_Combat enemyCombat = enemies[0].GetComponent<Grunt_Combat>();
+
+        damage = Mathf.RoundToInt(attack_power + Random.Range(damageVal - 5, damageVal) * crit_multiplier
+                                  * ElementManager.Instance.GetDamageMultiplier((element.GetName(), enemyCombat.element.GetName())) - enemyCombat.Defence_Power);
         string textToDisplay = "Player attacks with a " + element.GetAttackName() + " and deals " + damage + " damage!";
         
         StartCoroutine(LaunchProjectile(element, projectile));
@@ -183,7 +186,7 @@ public class Player_Combat : MonoBehaviour
         magic_points -= element.GetMagicCost();
         hud.setMP(magic_points);
 
-        if (multiplier == 2)
+        if (crit_multiplier == 2)
         {
             textToDisplay += " Critical Hit!";
         }

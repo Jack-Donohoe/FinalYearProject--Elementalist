@@ -46,7 +46,7 @@ public class Grunt_Combat : MonoBehaviour
         set => defence_power = value;
     }
     
-    private int multiplier;
+    private int crit_multiplier;
     
     public CombatHUD hud;
 
@@ -60,6 +60,8 @@ public class Grunt_Combat : MonoBehaviour
     public bool Dead => dead;
 
     private Player_Combat player;
+
+    public Element element;
     
     // Start is called before the first frame update
     void Start()
@@ -90,11 +92,6 @@ public class Grunt_Combat : MonoBehaviour
                 Attack();
                 break;
             }
-            case State.Heal:
-            {
-                Heal();
-                break;
-            }
             case State.ElementalAttack:
             {
                 ElementalAttack();
@@ -108,16 +105,13 @@ public class Grunt_Combat : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         int rand = Random.Range(0, 100);
 
-        if (rand >= 30)
-        {
-            state = State.Attack;
-        } else if (rand is > 20 and < 30 && magic_points >= 5)
-        {
-            state = State.Heal;
-        }
-        else if (rand <= 20 && magic_points >= 5)
+        if (rand < 40 && magic_points >= 5)
         {
             state = State.ElementalAttack;
+        }
+        else
+        {
+            state = State.Attack;
         }
     }
 
@@ -133,35 +127,11 @@ public class Grunt_Combat : MonoBehaviour
     {
         int rand = Random.Range(0, 100);
 
-        multiplier = (rand <= 8)? 2: 1;
+        crit_multiplier = (rand <= 5)? 2: 1;
 
-        int damage = (attack_power/10) * 15 * multiplier - player.Defence_Power;
+        int damage = Mathf.RoundToInt(attack_power + Random.Range(5,10) * crit_multiplier - player.Defence_Power);
         player.TakeDamage(damage);
         hud.DialogueText.text = "Enemy A attacks and deals " + damage + " damage!";
-        
-        StartCoroutine(EndTurn());
-    }
-
-    private void Heal()
-    {
-        int healthToRestore = (Random.value > 0.7f) ? 10 : 5;
-        health_points += healthToRestore;
-        
-        if (health_points > 100)
-        {
-            health_points = 100;
-        }
-        
-        hud.setEnemyHP(health_points);
-        magic_points -= 5;
-        string textToDisplay = "Enemy A uses Heal and restores " + healthToRestore + "HP";
-        
-        if (multiplier == 2)
-        {
-            textToDisplay += " Critical Hit!";
-        }
-
-        hud.DialogueText.text = textToDisplay;
         
         StartCoroutine(EndTurn());
     }
@@ -170,14 +140,14 @@ public class Grunt_Combat : MonoBehaviour
     {
         int rand = Random.Range(0, 100);
         
-        multiplier = (rand <= 8)? 2: 1;
+        crit_multiplier = (rand <= 5)? 2: 1;
         
-        int damage = (attack_power/10) * 25 * multiplier - player.Defence_Power;
+        int damage = Mathf.RoundToInt(attack_power + Random.Range(15,20) * crit_multiplier - player.Defence_Power);
         player.TakeDamage(damage);
         magic_points -= 5;
         string textToDisplay = "Enemy A uses an Elemental Attack and deals " + damage + " damage!";
         
-        if (multiplier == 2)
+        if (crit_multiplier == 2)
         {
             textToDisplay += " Critical Hit!";
         }

@@ -15,7 +15,7 @@ MonoBehaviour:
   element_name: Fire
   fireball: {fileID: 7189532715603981810, guid: 4f56d6cb49354014d95e736344002eeb, type: 3}
   speed: 6
-  damage_value: 25
+  damage_value: 20
   magic_cost: 20
   attack_name: Fireball
   icon: {fileID: 2800000, guid: 60bd93c229ea6ee42bb7d74db941c6e3, type: 3}

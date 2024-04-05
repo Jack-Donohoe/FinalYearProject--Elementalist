@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,27 +10,31 @@ public class Exploration_HUD : MonoBehaviour
 {
     public GameObject loadingScreen;
     public GameObject inGameHUD;
-    public TMP_Text scoreText;
+    
     public GameObject pauseMenu;
     public GameObject inventoryMenu;
     public GameObject[] inventoryViews;
-    public Button[] buttons;
-    public TMP_Text[] buttonTexts;
-    public RawImage[] buttonImages;
+    
+    public Button[] elementButtons;
+    public TMP_Text[] elementButtonTexts;
+    public RawImage[] elementButtonImages;
+    
     public Slider PlayerHPSlider;
     public TMP_Text HPValue;
     public Slider MPSlider;
     public TMP_Text MPValue;
-    
+
+    public Button[] comboButtons;
+    public RawImage[] comboButtonImages;
+    public TMP_Text resultText;
+
+    private Element firstSelectedElement;
+    private Element secondSelectedElement;
+    private int selectedCounter;
     
     private void Start()
     {
-        
-    }
-
-    public void SetScoreText(string text)
-    {
-        scoreText.text = text;
+        selectedCounter = 0;
     }
 
     public void HandlePauseMenu()
@@ -89,12 +94,51 @@ public class Exploration_HUD : MonoBehaviour
         
         for(int i = 0; i < elements.Count; i++)
         {
-            buttons[i].gameObject.SetActive(true);
-            buttonTexts[i].text = elements[i].GetName();
-            buttonImages[i].texture = elements[i].GetIcon();
+            elementButtons[i].gameObject.SetActive(true);
+            elementButtonTexts[i].text = elements[i].GetName();
+            elementButtonImages[i].texture = elements[i].GetIcon();
+
+            string[] baseElements = {"Fire", "Water", "Earth", "Air"};
+
+            if (baseElements.Contains(elements[i].GetName()))
+            {
+                comboButtons[i].gameObject.SetActive(true);
+                comboButtonImages[i].texture = elements[i].GetIcon();
+            }
         }
         
         inventoryMenu.SetActive(true);
+    }
+
+    private void UpdateInventoryMenu()
+    {
+        List<Element> elements = GameManager.Instance.GetElements();
+        
+        foreach (var button in elementButtons)
+        {
+            button.gameObject.SetActive(false);
+        }
+        
+        foreach (var button in comboButtons)
+        {
+            button.gameObject.SetActive(false);
+        }
+        
+        for(int i = 0; i < elements.Count; i++)
+        {
+            Debug.Log(elements[i].GetName());
+            elementButtons[i].gameObject.SetActive(true);
+            elementButtonTexts[i].text = elements[i].GetName();
+            elementButtonImages[i].texture = elements[i].GetIcon();
+
+            string[] baseElements = {"Fire", "Water", "Earth", "Air"};
+
+            if (baseElements.Contains(elements[i].GetName()))
+            {
+                comboButtons[i].gameObject.SetActive(true);
+                comboButtonImages[i].texture = elements[i].GetIcon();
+            }
+        }
     }
 
     private void UnloadMenu(GameObject menu)
@@ -164,9 +208,9 @@ public class Exploration_HUD : MonoBehaviour
 
     public void OnElementButton(Button button)
     {
-        for (int i = 0; i < buttons.Length; i++)
+        for (int i = 0; i < elementButtons.Length; i++)
         {
-            if (buttons[i] == button)
+            if (elementButtons[i] == button)
             {
                 GameManager.Instance.selectedElement = GameManager.Instance.GetElement(i);
                 Debug.Log(GameManager.Instance.selectedElement.GetName());
@@ -174,12 +218,39 @@ public class Exploration_HUD : MonoBehaviour
         }
     }
 
+    public void OnCombineElementsButton(Button button)
+    {
+        for (int i = 0; i < comboButtons.Length; i++)
+        {
+            if (comboButtons[i] == button)
+            {
+                if (selectedCounter == 0)
+                {
+                    selectedCounter++;
+                    firstSelectedElement = GameManager.Instance.GetElement(i);
+                    Debug.Log(firstSelectedElement);
+                } else
+                {
+                    selectedCounter = 0;
+                    secondSelectedElement = GameManager.Instance.GetElement(i);
+                    Debug.Log(secondSelectedElement);
+                }
+            }
+        }
+    }
+
     public void OnCombineButton()
     {
-        Element element1 = GameManager.Instance.GetElement(0);
-        Element element2 = GameManager.Instance.GetElement(1);
-        
-        Element newElement = ElementManager.Instance.CombineElements((element1.GetName(),element2.GetName()));
-        Debug.Log(GameManager.Instance.AddElement(newElement));
+        if (firstSelectedElement != null && secondSelectedElement != null)
+        {
+            Element newElement = ElementManager.Instance.CombineElements((firstSelectedElement.GetName(), secondSelectedElement.GetName()));
+            resultText.text = "You Created: " + newElement.GetName();
+            
+            Debug.Log(GameManager.Instance.AddElement(newElement));
+            Debug.Log(GameManager.Instance.RemoveElement(firstSelectedElement));
+            Debug.Log(GameManager.Instance.RemoveElement(secondSelectedElement));
+            
+            UpdateInventoryMenu();
+        }
     }
 }
