@@ -1290,7 +1290,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73cb73d768a239d49a8ec78c2621b14b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 4709504129376466749, guid: 8bcf7ddc324e35742b5ca10ab37301b5, type: 3}
+  enemyTypes:
+  - {fileID: 4709504129376466749, guid: 8bcf7ddc324e35742b5ca10ab37301b5, type: 3}
+  - {fileID: 4709504129376466749, guid: c3a16d2a2700773438660dfef50978d0, type: 3}
   waypoints:
   - {fileID: 2824826912030338037}
   - {fileID: 8193417778418517071}

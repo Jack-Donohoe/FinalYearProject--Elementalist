@@ -1,13 +1,24 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Combat_Manager : MonoBehaviour
 {
     public CombatHUD hud;
     
-    public GameObject[] enemies;
+    public GameObject[] enemyTypes;
+
+    public GameObject[] spawnedEnemies;
+
+    private Vector3[] spawnLocations = new[]
+    {
+        new Vector3(-1.5f, 1.5f, 0f), 
+        new Vector3(-0.5f, 1.5f, 0f), 
+        new Vector3(0.5f, 1.5f, 0f), 
+        new Vector3(1.5f, 1.5f, 0f),
+    };
 
     enum BattleState { PlayerTurn, EnemyTurn, Player_Won, Player_Lost }
 
@@ -15,35 +26,76 @@ public class Combat_Manager : MonoBehaviour
     
     private Player_Combat player;
 
-    private void Awake()
-    {
-        enemies = GameObject.FindGameObjectsWithTag("Enemy");
-    }
+    private bool started = false;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         state = BattleState.PlayerTurn;
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player_Combat>();
+        
         player.StartTurn();
         hud.DialogueText.text = "Player Turn";
     }
 
     private void Update()
     {
-        if (state != BattleState.Player_Won && state != BattleState.Player_Lost)
+        if (started)
         {
-            if (player.Dead)
+            if (state != BattleState.Player_Won && state != BattleState.Player_Lost)
             {
-                state = BattleState.Player_Lost;
-                EndCombat();
-            }
+                if (player.Dead)
+                {
+                    state = BattleState.Player_Lost;
+                    EndCombat();
+                }
 
-            if (enemies[0].GetComponent<Grunt_Combat>().Dead)
+                if (spawnedEnemies[0].GetComponent<Grunt_Combat>().Dead)
+                {
+                    state = BattleState.Player_Won;
+                    spawnedEnemies[0].SetActive(false);
+                    EndCombat();
+                }
+            }
+        }
+    }
+    
+    public IEnumerator StartUp(Element enemyElement)
+    {
+        yield return new WaitForNextFrameUnit();
+        Debug.Log("Starting Up...");
+        SpawnEnemies(enemyElement, 1);
+        started = true;
+        hud.StartUp();
+        player.SetEnemies();
+    }
+
+    void SpawnEnemies(Element enemyElement, int amount)
+    {
+        spawnedEnemies = new GameObject[amount];
+        
+        for (int i = 0; i < amount; i++)
+        {
+            Vector3 spawnLocation;
+            
+            if (amount == 1)
             {
-                state = BattleState.Player_Won;
-                enemies[0].SetActive(false);
-                EndCombat();
+                spawnLocation = new Vector3(0f, 1.5f, 0f);
+            }
+            else if (amount == 2)
+            {
+                spawnLocation = spawnLocations[i + 1];
+            }
+            else
+            {
+                spawnLocation = spawnLocations[i];
+            }
+            
+            foreach (GameObject enemyType in enemyTypes)
+            {
+                if (enemyType.GetComponent<Grunt_Combat>().element == enemyElement)
+                {
+                    spawnedEnemies[i] = Instantiate(enemyType, spawnLocation, Quaternion.Euler(new Vector3(0f,180f,0f)));
+                }
             }
         }
     }
@@ -55,7 +107,7 @@ public class Combat_Manager : MonoBehaviour
             state = BattleState.EnemyTurn;
             hud.DialogueText.text = "Enemy Turn";
             
-            StartCoroutine(enemies[0].GetComponent<Grunt_Combat>().StartTurn());
+            StartCoroutine(spawnedEnemies[0].GetComponent<Grunt_Combat>().StartTurn());
         } else if (state == BattleState.EnemyTurn)
         {
             state = BattleState.PlayerTurn;
@@ -84,6 +136,6 @@ public class Combat_Manager : MonoBehaviour
 
     public GameObject GetEnemy(int i)
     {
-        return enemies[i];
+        return spawnedEnemies[i];
     }
 }

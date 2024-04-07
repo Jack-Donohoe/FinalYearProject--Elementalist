@@ -166,7 +166,7 @@ public class ProcGenV3 : MonoBehaviour
                     {
                         if (completed == false)
                         {
-                            room.GetComponent<Level_Room>().SpawnEnemy();
+                            room.GetComponent<Level_Room>().SpawnEnemy(0);
                         }
                     }
                 }

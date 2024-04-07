@@ -15,6 +15,18 @@ public class ProcGenV4 : MonoBehaviour
     public Vector3 startPos { get; set; }
 
     public GameObject door;
+
+    [Range(0,1)]
+    public float fireEnemyFrequency = 0f;
+    
+    [Range(0,1)]
+    public float waterEnemyFrequency = 0f;
+    
+    [Range(0,1)]
+    public float earthEnemyFrequency = 0f;
+    
+    [Range(0,1)]
+    public float airEnemyFrequency = 0f;
         
     // Start is called before the first frame update
     void Start()
@@ -313,7 +325,18 @@ public class ProcGenV4 : MonoBehaviour
                         {
                             if (levelToGenerate[i, j].completed == false)
                             {
-                                room.GetComponent<Level_Room>().SpawnEnemy();
+                                int enemyNum = 0;
+
+                                if (Random.value < fireEnemyFrequency)
+                                {
+                                    enemyNum = 0;
+                                }
+                                else if (Random.value < waterEnemyFrequency)
+                                {
+                                    enemyNum = 1;
+                                }
+                                
+                                room.GetComponent<Level_Room>().SpawnEnemy(enemyNum);
                             }
                         }
                         else

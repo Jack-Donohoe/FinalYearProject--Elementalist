@@ -14,7 +14,7 @@ public class CombatHUD : MonoBehaviour
 
     public GameObject CombatUI, PauseMenu, AttackButton, ElementalAttackButton, HealButton;
 
-    public void Start()
+    public void StartUp()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         PlayerHPSlider.maxValue = player.GetComponent<Player_Combat>().Max_Health;

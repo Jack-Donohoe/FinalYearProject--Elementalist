@@ -66,8 +66,11 @@ public class Grunt_Combat : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        state = State.Idle;
+        manager = GameObject.FindGameObjectWithTag("CombatManager").GetComponent<Combat_Manager>();
         
+        state = State.Idle;
+
+        hud = GameObject.FindGameObjectWithTag("HUD").GetComponent<CombatHUD>();
         hud.setEnemyHP(health_points);
         
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player_Combat>();

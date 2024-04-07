@@ -472,6 +472,14 @@ PrefabInstance:
       propertyPath: levelSize
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 8678700396775573637, guid: 4ceef7d7fabf74043b6c026422050b82, type: 3}
+      propertyPath: fireEnemyFrequency
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8678700396775573637, guid: 4ceef7d7fabf74043b6c026422050b82, type: 3}
+      propertyPath: waterEnemyFrequency
+      value: 0.3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -943,11 +951,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3015184475136833939, guid: fb588c631153d504899f9ff906a2376a, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000018890344
+      value: -0.000000018890214
       objectReference: {fileID: 0}
     - target: {fileID: 3015184475136833939, guid: fb588c631153d504899f9ff906a2376a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0000000036379475
+      value: 0.0000000036379224
       objectReference: {fileID: 0}
     - target: {fileID: 4198915191753203844, guid: fb588c631153d504899f9ff906a2376a, type: 3}
       propertyPath: XYAxis

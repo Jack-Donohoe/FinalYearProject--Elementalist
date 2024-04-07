@@ -484,6 +484,14 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8678700396775573637, guid: 4ceef7d7fabf74043b6c026422050b82, type: 3}
+      propertyPath: fireEnemyFrequency
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8678700396775573637, guid: 4ceef7d7fabf74043b6c026422050b82, type: 3}
+      propertyPath: waterEnemyFrequency
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8678700396775573637, guid: 4ceef7d7fabf74043b6c026422050b82, type: 3}
       propertyPath: roomTemplates.Array.size
       value: 7
       objectReference: {fileID: 0}

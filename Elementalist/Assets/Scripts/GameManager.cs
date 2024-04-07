@@ -188,7 +188,7 @@ public class GameManager : MonoBehaviour
         hud.inGameHUD.gameObject.SetActive(true);
     }
     
-    public void StartCombat()
+    public void StartCombat(Element enemyElement)
     {
         map = GameObject.FindGameObjectWithTag("Map");
             
@@ -206,9 +206,15 @@ public class GameManager : MonoBehaviour
         };
         DataManager.instance.SaveLevelData(levelData);
 
-        SceneManager.LoadScene("CombatScene");
+        var loadScene = SceneManager.LoadSceneAsync("CombatScene");
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+
+        loadScene.completed += (x) =>
+        {
+            GameObject manager = GameObject.FindGameObjectWithTag("CombatManager");
+            StartCoroutine(manager.GetComponent<Combat_Manager>().StartUp(enemyElement));
+        };
     }
 
     public IEnumerator ReturnToLevel()

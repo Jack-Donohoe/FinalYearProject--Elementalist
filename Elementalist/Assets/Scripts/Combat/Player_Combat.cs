@@ -81,10 +81,13 @@ public class Player_Combat : MonoBehaviour
         hud.setPlayerHP(health_points);
         hud.setMP(magic_points);
 
-        enemies = manager.enemies;
-        Debug.Log(enemies.Length);
-
         animator = GetComponent<Animator>();
+    }
+
+    public void SetEnemies()
+    {
+        enemies = manager.spawnedEnemies;
+        Debug.Log(enemies.Length);
     }
 
     // Update is called once per frame

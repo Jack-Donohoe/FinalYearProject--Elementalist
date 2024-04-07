@@ -5,15 +5,15 @@ using UnityEngine;
 
 public class Level_Room : MonoBehaviour
 {
-    public GameObject enemy;
+    public GameObject[] enemyTypes;
 
     public GameObject[] waypoints;
 
     private GameObject createdEnemy;
 
-    public void SpawnEnemy()
+    public void SpawnEnemy(int enemyNum)
     {
-        createdEnemy = Instantiate(enemy, transform.position, Quaternion.identity, this.transform);
+        createdEnemy = Instantiate(enemyTypes[enemyNum], transform.position, Quaternion.identity, transform);
         createdEnemy.GetComponent<Enemy_Exploration>().SetWaypoints(waypoints);
         createdEnemy.GetComponent<Enemy_Exploration>().Setup();
     }
