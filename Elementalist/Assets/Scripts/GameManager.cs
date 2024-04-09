@@ -210,6 +210,7 @@ public class GameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
+        hud.loadingScreen.gameObject.SetActive(true);
         loadScene.completed += (x) =>
         {
             GameObject manager = GameObject.FindGameObjectWithTag("CombatManager");
