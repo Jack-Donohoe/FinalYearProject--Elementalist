@@ -14803,7 +14803,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4709504129376466749}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 07b69e3ee2509be42a12eec8f20d2e34, type: 2}
   m_CullingMode: 0
@@ -14830,7 +14830,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hud: {fileID: 0}
   manager: {fileID: 0}
-  state: 0
+  enemy_Number: 0
   element: {fileID: 11400000, guid: 51f4cc4b598eaa64c893482717fba1e8, type: 2}
 --- !u!1 &6434921274246733767
 GameObject:

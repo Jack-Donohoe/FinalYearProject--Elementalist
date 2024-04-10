@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Grunt_Combat : MonoBehaviour
 {
@@ -52,14 +54,12 @@ public class Grunt_Combat : MonoBehaviour
 
     public Combat_Manager manager;
     
-    public enum State { Idle, Attack, Heal, ElementalAttack, Dead }
-
-    public State state;
-    
     private bool dead = false;
     public bool Dead => dead;
 
     private Player_Combat player;
+
+    public String enemy_Name = "Grunt";
 
     public Element element;
     
@@ -67,8 +67,6 @@ public class Grunt_Combat : MonoBehaviour
     void Start()
     {
         manager = GameObject.FindGameObjectWithTag("CombatManager").GetComponent<Combat_Manager>();
-        
-        state = State.Idle;
 
         hud = GameObject.FindGameObjectWithTag("HUD").GetComponent<CombatHUD>();
         hud.setEnemyHP(health_points);
@@ -76,88 +74,56 @@ public class Grunt_Combat : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player_Combat>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public (int, String) SelectAction()
     {
-        if (dead)
-        {
-            state = State.Dead;
-        }
-        
-        switch (state)
-        {
-            case State.Idle:
-            {
-                break;
-            }
-            case State.Attack:
-            {
-                Attack();
-                break;
-            }
-            case State.ElementalAttack:
-            {
-                ElementalAttack();
-                break;
-            }
-        }
-    }
-
-    public IEnumerator StartTurn()
-    {
-        yield return new WaitForSeconds(0.5f);
+        (int, String) action;
         int rand = Random.Range(0, 100);
 
         if (rand < 40 && magic_points >= 5)
         {
-            state = State.ElementalAttack;
+            action = Attack();
         }
         else
         {
-            state = State.Attack;
+            action = ElementalAttack();
         }
+
+        return action;
     }
 
-    private IEnumerator EndTurn()
-    {
-        state = State.Idle;
-        
-        yield return new WaitForSeconds(1.5f);
-        manager.ChangeTurn();
-    }
-
-    private void Attack()
+    private (int, String) Attack()
     {
         int rand = Random.Range(0, 100);
 
         crit_multiplier = (rand <= 5)? 2: 1;
 
         int damage = Mathf.RoundToInt(attack_power + Random.Range(5,10) * crit_multiplier - player.Defence_Power);
-        player.TakeDamage(damage);
-        hud.DialogueText.text = "Enemy A attacks and deals " + damage + " damage!";
-        
-        StartCoroutine(EndTurn());
-    }
-
-    private void ElementalAttack()
-    {
-        int rand = Random.Range(0, 100);
-        
-        crit_multiplier = (rand <= 5)? 2: 1;
-        
-        int damage = Mathf.RoundToInt(attack_power + Random.Range(15,20) * crit_multiplier - player.Defence_Power);
-        player.TakeDamage(damage);
-        magic_points -= 5;
-        string textToDisplay = "Enemy A uses an Elemental Attack and deals " + damage + " damage!";
+        string textToDisplay = enemy_Name +" attacks and deals " + damage + " damage!";
         
         if (crit_multiplier == 2)
         {
             textToDisplay += " Critical Hit!";
         }
 
-        hud.DialogueText.text = textToDisplay;
+        return (damage, textToDisplay);
+    }
+
+    private (int, String) ElementalAttack()
+    {
+        int rand = Random.Range(0, 100);
         
-        StartCoroutine(EndTurn());
+        crit_multiplier = (rand <= 5)? 2: 1;
+        
+        int damage = Mathf.RoundToInt(attack_power + Random.Range(15,20) * crit_multiplier - player.Defence_Power);
+        magic_points -= 5;
+        string textToDisplay = enemy_Name + " uses an Elemental Attack and deals " + damage + " damage!";
+        
+        if (crit_multiplier == 2)
+        {
+            textToDisplay += " Critical Hit!";
+        }
+        
+        return (damage, textToDisplay);
     }
 
     public void TakeDamage(int damage)

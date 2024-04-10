@@ -1,6 +1,6 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -12,12 +12,12 @@ public class Combat_Manager : MonoBehaviour
 
     public GameObject[] spawnedEnemies;
 
-    private Vector3[] spawnLocations = new[]
+    private Vector3[] spawnLocations =
     {
-        new Vector3(-1.5f, 1.5f, 0f), 
-        new Vector3(-0.5f, 1.5f, 0f), 
-        new Vector3(0.5f, 1.5f, 0f), 
-        new Vector3(1.5f, 1.5f, 0f),
+        new (-4.5f, 1.5f, 0f), 
+        new (-1.5f, 1.5f, 0f), 
+        new (1.5f, 1.5f, 0f), 
+        new (4.5f, 1.5f, 0f),
     };
 
     enum BattleState { PlayerTurn, EnemyTurn, Player_Won, Player_Lost }
@@ -25,6 +25,8 @@ public class Combat_Manager : MonoBehaviour
     private BattleState state;
     
     private Player_Combat player;
+
+    private (int, String)[] enemyActions;
 
     private bool started = false;
 
@@ -63,10 +65,12 @@ public class Combat_Manager : MonoBehaviour
     {
         yield return new WaitForNextFrameUnit();
         Debug.Log("Starting Up...");
-        SpawnEnemies(enemyElement, 1);
+        SpawnEnemies(enemyElement, 2);
+        
         started = true;
         hud.StartUp();
         player.SetEnemies();
+        enemyActions = new (int, string)[spawnedEnemies.Length];
     }
 
     void SpawnEnemies(Element enemyElement, int amount)
@@ -95,6 +99,10 @@ public class Combat_Manager : MonoBehaviour
                 if (enemyType.GetComponent<Grunt_Combat>().element == enemyElement)
                 {
                     spawnedEnemies[i] = Instantiate(enemyType, spawnLocation, Quaternion.Euler(new Vector3(0f,180f,0f)));
+
+                    String enemy_Name = spawnedEnemies[i].GetComponent<Grunt_Combat>().enemy_Name + " " +  (i + 1);
+                    spawnedEnemies[i].GetComponent<Grunt_Combat>().enemy_Name = enemy_Name;
+                    hud.targetButtonTexts[i].GetComponent<TMP_Text>().text = enemy_Name;
                 }
             }
         }
@@ -106,14 +114,46 @@ public class Combat_Manager : MonoBehaviour
         {
             state = BattleState.EnemyTurn;
             hud.DialogueText.text = "Enemy Turn";
-            
-            StartCoroutine(spawnedEnemies[0].GetComponent<Grunt_Combat>().StartTurn());
+
+            StartCoroutine(EnemyTurn());
         } else if (state == BattleState.EnemyTurn)
         {
             state = BattleState.PlayerTurn;
             hud.DialogueText.text = "Player Turn";
             
             player.StartTurn();
+        }
+    }
+
+    IEnumerator EnemyTurn()
+    {
+        for (int i = 0; i < enemyActions.Length; i++)
+        {
+            enemyActions[i] = spawnedEnemies[i].GetComponent<Grunt_Combat>().SelectAction();
+        }
+        
+        for (int i = 0; i < enemyActions.Length; i++)
+        {
+            hud.DialogueText.text = spawnedEnemies[i].GetComponent<Grunt_Combat>().enemy_Name + "'s Turn";
+            
+            (int, string) action = enemyActions[i];
+            StartCoroutine(EnemyAction(action.Item1, action.Item2, i));
+            yield return new WaitForSecondsRealtime(1.5f);
+        }
+    }
+
+    IEnumerator EnemyAction(int damage, string dialogue, int counter)
+    {
+        yield return new WaitForSecondsRealtime(1f);
+        player.TakeDamage(damage);
+        hud.DialogueText.text = dialogue;
+
+        counter++;
+
+        if (counter == enemyActions.Length)
+        {
+            yield return new WaitForSecondsRealtime(1f);
+            ChangeTurn();
         }
     }
 

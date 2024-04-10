@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player_Combat : MonoBehaviour
 {
@@ -61,8 +62,12 @@ public class Player_Combat : MonoBehaviour
 
     private GameObject[] enemies;
 
+    private string action;
+
     private int damage;
     public int Damage => damage;
+
+    private string dialogue;
 
     public Animator animator;
     
@@ -133,19 +138,14 @@ public class Player_Combat : MonoBehaviour
         crit_multiplier = (rand <= 5)? 2: 1;
         
         damage = Mathf.RoundToInt(attack_power + Random.Range(5,10) * crit_multiplier - enemies[0].GetComponent<Grunt_Combat>().Defence_Power);
-        enemies[0].GetComponent<Grunt_Combat>().TakeDamage(damage);
-        string textToDisplay = "Player attacks and deals " + damage + " damage!";
+        dialogue = "Player attacks and deals " + damage + " damage!";
         
         if (crit_multiplier == 2)
         {
-            textToDisplay += " Critical Hit!";
+            dialogue += " Critical Hit!";
         }
 
-        hud.DialogueText.text = textToDisplay;
-
-        state = State.Idle;
-        hud.TogglePlayerActions();
-        StartCoroutine(EndTurn());
+        action = "Attack";
     }
 
     private void Heal()
@@ -176,39 +176,54 @@ public class Player_Combat : MonoBehaviour
         crit_multiplier = (rand <= 5)? 2: 1;
 
         Element element = GameManager.Instance.selectedElement;
-        GameObject projectile = element.GetProjectile();
         int damageVal = element.GetDamageValue();
         Grunt_Combat enemyCombat = enemies[0].GetComponent<Grunt_Combat>();
 
         damage = Mathf.RoundToInt(attack_power + Random.Range(damageVal - 5, damageVal) * crit_multiplier
                                   * ElementManager.Instance.GetDamageMultiplier((element.GetName(), enemyCombat.element.GetName())) - enemyCombat.Defence_Power);
-        string textToDisplay = "Player attacks with a " + element.GetAttackName() + " and deals " + damage + " damage!";
-        
-        StartCoroutine(LaunchProjectile(element, projectile));
+        dialogue = "Player attacks with a " + element.GetAttackName() + " and deals " + damage + " damage!";
         
         magic_points -= element.GetMagicCost();
         hud.setMP(magic_points);
 
         if (crit_multiplier == 2)
         {
-            textToDisplay += " Critical Hit!";
+            dialogue += " Critical Hit!";
         }
 
-        hud.DialogueText.text = textToDisplay;
-        
-        state = State.Idle;
-        hud.TogglePlayerActions();
+        action = "Elemental Attack";
     }
 
-    private IEnumerator LaunchProjectile(Element element, GameObject projectile)
+    private IEnumerator LaunchProjectile(GameObject attackTarget)
     {
         yield return new WaitForSeconds(0.7f);
-        GameObject projectileToLaunch = Instantiate(projectile, new Vector3(transform.position.x, 1.5f, transform.position.z), Quaternion.identity);
         
-        Vector3 direction = (enemies[0].transform.position - projectileToLaunch.transform.position).normalized * (element.GetProjectileSpeed() * Time.deltaTime);
+        Element element = GameManager.Instance.selectedElement;
+        GameObject projectileToLaunch = Instantiate(element.GetProjectile(), new Vector3(transform.position.x, 1.5f, transform.position.z), Quaternion.identity);
+        
+        Vector3 direction = (attackTarget.transform.position - projectileToLaunch.transform.position).normalized * (element.GetProjectileSpeed() * Time.deltaTime);
         projectileToLaunch.transform.LookAt(enemies[0].transform.position);
         projectileToLaunch.GetComponent<Projectile>().SetMoveDirection(direction);
     }
+
+    private void PerformAction(GameObject attackTarget)
+    {
+        if (action == "Elemental Attack")
+        {
+            animator.SetBool("Attacking", true);
+            StartCoroutine(LaunchProjectile(attackTarget));
+        }
+        else if (action == "Attack")
+        {
+            attackTarget.GetComponent<Grunt_Combat>().TakeDamage(damage);
+            StartCoroutine(EndTurn());
+        }
+        
+        hud.DialogueText.text = dialogue;
+        
+        state = State.Idle;
+        hud.TogglePlayerActions();
+    } 
 
     public void TakeDamage(int damage)
     {
@@ -237,7 +252,6 @@ public class Player_Combat : MonoBehaviour
     private IEnumerator EndTurn()
     {
         yield return new WaitForSeconds(1f);
-        Debug.Log("Ending Player Turn");
         manager.ChangeTurn();
     }
 
@@ -257,6 +271,13 @@ public class Player_Combat : MonoBehaviour
         
         return (newHealth, newMagic);
     }
+
+    private void ShowTargetOptions()
+    {
+        hud.ActionPanel.SetActive(false);
+        hud.TargetPanel.SetActive(true);
+        hud.DialogueText.text = "Select Target";
+    }
     
     public void onAttackButton()
     {
@@ -264,16 +285,19 @@ public class Player_Combat : MonoBehaviour
             return;
 
         Attack();
+        
+        ShowTargetOptions();
     }
 
-    public void onFireballButton()
+    public void onElementAttackButton()
     {
         Element element = GameManager.Instance.selectedElement;
         if (state != State.Ready || magic_points < element.GetMagicCost())
             return;
 
         ElementalAttack();
-        animator.SetBool("Attacking", true);
+        
+        ShowTargetOptions();
     }
 
     public void onHealButton()
@@ -282,5 +306,19 @@ public class Player_Combat : MonoBehaviour
             return;
 
         Heal();
+    }
+
+    public void onTargetButton(Button button)
+    {
+        Button[] targetButtons = hud.targetButtons;
+        
+        for (int i = 0; i < targetButtons.Length; i++)
+        {
+            if (button == targetButtons[i])
+            {
+                Debug.Log("Target Selected");
+                PerformAction(enemies[i]);
+            }
+        }
     }
 }
