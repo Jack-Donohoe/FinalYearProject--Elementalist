@@ -26,7 +26,9 @@ public class Combat_Manager : MonoBehaviour
     
     private Player_Combat player;
 
-    private (int, String)[] enemyActions;
+    private (int, string, int)[] enemyActions;
+
+    private bool allEnemiesDead;
 
     private bool started = false;
 
@@ -37,6 +39,8 @@ public class Combat_Manager : MonoBehaviour
         
         player.StartTurn();
         hud.DialogueText.text = "Player Turn";
+
+        allEnemiesDead = true;
     }
 
     private void Update()
@@ -51,10 +55,22 @@ public class Combat_Manager : MonoBehaviour
                     EndCombat();
                 }
 
-                if (spawnedEnemies[0].GetComponent<Grunt_Combat>().Dead)
+                for (int i = 0; i < spawnedEnemies.Length; i++)
+                {
+                    if (spawnedEnemies[i].GetComponent<Grunt_Combat>().Dead)
+                    {
+                        allEnemiesDead = true;
+                    }
+                    else
+                    {
+                        allEnemiesDead = false;
+                        return;
+                    }
+                }
+
+                if (allEnemiesDead)
                 {
                     state = BattleState.Player_Won;
-                    spawnedEnemies[0].SetActive(false);
                     EndCombat();
                 }
             }
@@ -70,7 +86,7 @@ public class Combat_Manager : MonoBehaviour
         started = true;
         hud.StartUp();
         player.SetEnemies();
-        enemyActions = new (int, string)[spawnedEnemies.Length];
+        enemyActions = new (int, string, int)[spawnedEnemies.Length];
     }
 
     void SpawnEnemies(Element enemyElement, int amount)
@@ -102,10 +118,10 @@ public class Combat_Manager : MonoBehaviour
 
                     String enemy_Name = spawnedEnemies[i].GetComponent<Grunt_Combat>().enemy_Name + " " +  (i + 1);
                     spawnedEnemies[i].GetComponent<Grunt_Combat>().enemy_Name = enemy_Name;
-                    hud.targetButtonTexts[i].GetComponent<TMP_Text>().text = enemy_Name;
                 }
             }
         }
+        hud.RefreshTargetButtons(spawnedEnemies);
     }
 
     public void ChangeTurn()
@@ -122,21 +138,40 @@ public class Combat_Manager : MonoBehaviour
             hud.DialogueText.text = "Player Turn";
             
             player.StartTurn();
+            hud.RefreshTargetButtons(spawnedEnemies);
         }
     }
 
     IEnumerator EnemyTurn()
     {
-        for (int i = 0; i < enemyActions.Length; i++)
+        int aliveEnemyCount = 0;
+
+        for (int i = 0; i < spawnedEnemies.Length; i++)
         {
-            enemyActions[i] = spawnedEnemies[i].GetComponent<Grunt_Combat>().SelectAction();
+            if (!spawnedEnemies[i].GetComponent<Grunt_Combat>().Dead)
+            {
+                aliveEnemyCount++;
+            }
+        }
+        
+        enemyActions = new (int, string, int)[aliveEnemyCount];
+
+        int actionNum = 0;
+        for (int i = 0; i < spawnedEnemies.Length; i++)
+        {
+            if (!spawnedEnemies[i].GetComponent<Grunt_Combat>().Dead)
+            {
+                (int, string) action = spawnedEnemies[i].GetComponent<Grunt_Combat>().SelectAction();
+                enemyActions[actionNum] = (action.Item1, action.Item2, i);
+                actionNum++;
+            }
         }
         
         for (int i = 0; i < enemyActions.Length; i++)
         {
-            hud.DialogueText.text = spawnedEnemies[i].GetComponent<Grunt_Combat>().enemy_Name + "'s Turn";
+            (int, string, int) action = enemyActions[i];
+            hud.DialogueText.text = spawnedEnemies[action.Item3].GetComponent<Grunt_Combat>().enemy_Name + "'s Turn";
             
-            (int, string) action = enemyActions[i];
             StartCoroutine(EnemyAction(action.Item1, action.Item2, i));
             yield return new WaitForSecondsRealtime(1.5f);
         }

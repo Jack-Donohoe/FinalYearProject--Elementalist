@@ -134,6 +134,7 @@ public class Grunt_Combat : MonoBehaviour
         {
             health_points = 0;
             dead = true;
+            gameObject.SetActive(false);
         } 
         
         hud.setEnemyHP(health_points);

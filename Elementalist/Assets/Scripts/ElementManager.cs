@@ -30,6 +30,7 @@ public class ElementManager : MonoBehaviour
         combinations = new Dictionary<(string, string), Element>()
         {
             { ("Fire", "Water"), FindElement("Steam") },
+            { ("Water", "Fire"), FindElement("Steam") },
             { ("Fire", "Earth"), FindElement("Magma") },
         };
 
@@ -39,7 +40,7 @@ public class ElementManager : MonoBehaviour
             { ("Fire", "Fire"), 0.5f },
             { ("Water", "Fire"), 2f },
             { ("Water", "Water"), 0.5f },
-            { ("Steam", "Water"), 1f },
+            { ("Steam", "Water"), 2f },
             { ("Steam", "Fire"), 2f },
         };
     }
@@ -49,7 +50,7 @@ public class ElementManager : MonoBehaviour
         return combinations[names];
     }
 
-    private Element FindElement(string name)
+    public Element FindElement(string name)
     {
         foreach (var element in elements)
         {

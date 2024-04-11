@@ -111,6 +111,7 @@ public class Player_Combat : MonoBehaviour
             }
             case State.Ready:
             {
+                SetEnemies();
                 break;
             }
             case State.Attack:
@@ -316,8 +317,15 @@ public class Player_Combat : MonoBehaviour
         {
             if (button == targetButtons[i])
             {
-                Debug.Log("Target Selected");
-                PerformAction(enemies[i]);
+                if (!enemies[i].GetComponent<Grunt_Combat>().Dead)
+                {
+                    Debug.Log("Target Selected");
+                    PerformAction(enemies[i]);
+                }
+                else
+                {
+                    return;
+                }
             }
         }
     }

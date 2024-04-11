@@ -89,6 +89,10 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
+        elementInventory = new List<Element>();
+        elementInventory.Add(ElementManager.Instance.FindElement("Fire"));
+        elementInventory.Add(ElementManager.Instance.FindElement("Water"));
+        
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         SceneManager.LoadScene("Level1");

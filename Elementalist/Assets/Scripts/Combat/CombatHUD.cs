@@ -99,4 +99,16 @@ public class CombatHUD : MonoBehaviour
         TargetPanel.SetActive(false);
         ActionPanel.SetActive(true);
     }
+    
+    public void RefreshTargetButtons(GameObject[] enemies)
+    {
+        for (int i = 0; i < enemies.Length; i++)
+        {
+            targetButtonTexts[i].text = "";
+            if (!enemies[i].GetComponent<Grunt_Combat>().Dead)
+            {
+                targetButtonTexts[i].text = enemies[i].GetComponent<Grunt_Combat>().enemy_Name;
+            }
+        }
+    }
 }
