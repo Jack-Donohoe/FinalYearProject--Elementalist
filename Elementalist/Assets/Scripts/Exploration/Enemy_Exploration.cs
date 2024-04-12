@@ -9,7 +9,8 @@ public class Enemy_Exploration : MonoBehaviour
     public enum State
     {
         Patrol,
-        PlayerDetected
+        PlayerDetected,
+        Guardian
     }
 
     public State enemyState;
@@ -25,6 +26,8 @@ public class Enemy_Exploration : MonoBehaviour
     private Transform lastPlayerPos;
 
     public Element enemyElement;
+
+    public bool eliteEnemy;
 
     // Update is called once per frame
     void Update()
@@ -48,11 +51,18 @@ public class Enemy_Exploration : MonoBehaviour
                 target = player.transform;
                 break;
             }
+            
+            case State.Guardian:
+                GetComponent<NavMeshAgent>().enabled = false;
+                break;
         }
-        
-        LookForPlayer();
-        DetectPlayerNearby();
-        enemyAgent.SetDestination(target.position);
+
+        if (!eliteEnemy)
+        {
+            LookForPlayer();
+            DetectPlayerNearby();
+            enemyAgent.SetDestination(target.position);
+        }
     }
     
     public void Setup()
@@ -110,7 +120,7 @@ public class Enemy_Exploration : MonoBehaviour
 
     void DetectPlayerNearby()
     {
-        if (Vector3.Distance(transform.position, player.transform.position) < 3)
+        if (Vector3.Distance(transform.position, player.transform.position) < 5)
         {
             enemyState = State.PlayerDetected;
         } 

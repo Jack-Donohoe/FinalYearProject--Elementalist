@@ -912,12 +912,12 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 580725dd379310843b1444491619d888, type: 2}
     - target: {fileID: 2500490663805706967, guid: 30cb6c276703c0d43b9c16d00664cdf1, type: 3}
       propertyPath: elementInventory.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2500490663805706967, guid: 30cb6c276703c0d43b9c16d00664cdf1, type: 3}
       propertyPath: elementInventory.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: 51f4cc4b598eaa64c893482717fba1e8, type: 2}
+      objectReference: {fileID: 11400000, guid: 580725dd379310843b1444491619d888, type: 2}
     - target: {fileID: 2500490663805706967, guid: 30cb6c276703c0d43b9c16d00664cdf1, type: 3}
       propertyPath: elementInventory.Array.data[1]
       value: 

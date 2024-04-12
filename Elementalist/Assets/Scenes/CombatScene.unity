@@ -498,7 +498,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 111196615}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.18910751, y: -0.0000000084479606, z: 0.0000000016269286, w: 0.9819564}
+  m_LocalRotation: {x: 0.18910751, y: 0.000000008447955, z: -0.0000000016269276, w: 0.9819564}
   m_LocalPosition: {x: 0, y: 4, z: -15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1834,7 +1834,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2087154731}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.18910751, y: -0.0000000084479606, z: 0.0000000016269286, w: 0.9819564}
+  m_LocalRotation: {x: 0.18910751, y: 0.000000008447955, z: -0.0000000016269276, w: 0.9819564}
   m_LocalPosition: {x: 0, y: 4, z: -15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1915,7 +1915,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 580725dd379310843b1444491619d888, type: 2}
     - target: {fileID: 3256959476624745702, guid: c9ae9cc906decd14eac7b34946a43d9e, type: 3}
       propertyPath: enemyTypes.Array.size
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3256959476624745702, guid: c9ae9cc906decd14eac7b34946a43d9e, type: 3}
       propertyPath: enemyTypes.Array.data[0]
@@ -1925,6 +1925,14 @@ PrefabInstance:
       propertyPath: enemyTypes.Array.data[1]
       value: 
       objectReference: {fileID: 4709504129376466749, guid: 7a2c685282343f848a07a356207ec4aa, type: 3}
+    - target: {fileID: 3256959476624745702, guid: c9ae9cc906decd14eac7b34946a43d9e, type: 3}
+      propertyPath: enemyTypes.Array.data[2]
+      value: 
+      objectReference: {fileID: 4709504129376466749, guid: eefa7fcf52a9b944a93c2b83219657d8, type: 3}
+    - target: {fileID: 3256959476624745702, guid: c9ae9cc906decd14eac7b34946a43d9e, type: 3}
+      propertyPath: enemyTypes.Array.data[3]
+      value: 
+      objectReference: {fileID: 4709504129376466749, guid: 8845092dad7c4574e966cd4c75be8f0e, type: 3}
     - target: {fileID: 7154253464818492262, guid: c9ae9cc906decd14eac7b34946a43d9e, type: 3}
       propertyPath: m_Name
       value: CombatManager

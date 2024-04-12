@@ -1411,6 +1411,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7746267936111492441}
+  - component: {fileID: 105614768266070986}
   m_Layer: 0
   m_Name: EndRoom
   m_TagString: Untagged
@@ -1446,6 +1447,22 @@ Transform:
   - {fileID: 5188677557393150921}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &105614768266070986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6883810412256738501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73cb73d768a239d49a8ec78c2621b14b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyTypes:
+  - {fileID: 4709504129376466749, guid: 08b631d07d0c6ce4da5032218083adae, type: 3}
+  - {fileID: 4709504129376466749, guid: 72fb01df8e166274e9d7a139f217faa6, type: 3}
+  waypoints: []
 --- !u!1 &7744550872132747031
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,40 +6,11 @@ using Random = UnityEngine.Random;
 
 public class Grunt_Combat : MonoBehaviour
 {
-    private int max_health = 50;
-    public int Max_Health
-    {
-        get => max_health;
-        set => max_health = value;
-    }
-    
     private int health_points = 50;
-    public int HP
-    {
-        get => health_points;
-        set => health_points = value;
-    }
     
-    private int max_magic = 50;
-    public int Max_Magic
-    {
-        get => max_magic;
-        set => max_magic = value;
-    }
-    
-    private int magic_points = 20;
-    public int MP
-    {
-        get => magic_points;
-        set => magic_points = value;
-    }
+    private int magic_points = 15;
     
     private int attack_power = 10;
-    public int Attack_Power
-    {
-        get => attack_power;
-        set => attack_power = value;
-    }
     
     private int defence_power = 5;
     public int Defence_Power
@@ -62,6 +33,8 @@ public class Grunt_Combat : MonoBehaviour
     public String enemy_Name = "Grunt";
 
     public Element element;
+
+    public bool eliteEnemy;
     
     // Start is called before the first frame update
     void Start()
@@ -72,6 +45,14 @@ public class Grunt_Combat : MonoBehaviour
         hud.setEnemyHP(health_points);
         
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player_Combat>();
+
+        if (eliteEnemy)
+        {
+            health_points = Mathf.RoundToInt(health_points * 2f);
+            magic_points = Mathf.RoundToInt(magic_points * 1.5f);
+            attack_power = Mathf.RoundToInt(attack_power * 1.5f);
+            defence_power = Mathf.RoundToInt(defence_power * 1.5f);
+        }
     }
 
     public (int, String) SelectAction()
@@ -79,7 +60,7 @@ public class Grunt_Combat : MonoBehaviour
         (int, String) action;
         int rand = Random.Range(0, 100);
 
-        if (rand < 40 && magic_points >= 5)
+        if (rand > 40 || magic_points < 5)
         {
             action = Attack();
         }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,6 +12,10 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get { return _instance; } }
 
     public string levelName;
+
+    public int playerLevel = 1;
+    public int xpToLevelUp = 100;
+    public int playerXP = 0;
 
     // Player Info
     private int max_health = 100;
@@ -89,10 +94,8 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        elementInventory = new List<Element>();
-        elementInventory.Add(ElementManager.Instance.FindElement("Fire"));
-        elementInventory.Add(ElementManager.Instance.FindElement("Water"));
-        
+        elementInventory = new List<Element> { ElementManager.Instance.FindElement("Water") };
+
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         SceneManager.LoadScene("Level1");
@@ -125,19 +128,27 @@ public class GameManager : MonoBehaviour
     public void SaveGame()
     { 
         map = GameObject.FindGameObjectWithTag("Map");
+
+        List<string> elementsToSave = new List<string>();
+        foreach (Element element in elementInventory)
+        {
+            elementsToSave.Add(element.GetName());
+        }
         
         GameData gameData = new GameData
         {
             levelName = levelName,
             playerPos = GameObject.FindGameObjectWithTag("Player").transform.position,
             playerRotation = GameObject.FindGameObjectWithTag("Player").transform.rotation,
+            playerLevel = playerLevel,
+            playerXp = playerXP,
             playerMaxHealth = max_health,
             playerHealth = health_points,
             playerMaxMagic = max_magic,
             playerMagic = magic_points,
             playerAttack = attack_power,
             playerDefence = defence_power,
-            //elements = elementInventory,
+            elements = elementsToSave,
             level = map.GetComponent<ProcGenV4>().level
         };
         DataManager.instance.SaveGameData(gameData);
@@ -166,6 +177,23 @@ public class GameManager : MonoBehaviour
         player.transform.position = gameData.playerPos;
         player.GetComponent<CharacterController>().enabled = true;
         player.transform.rotation = gameData.playerRotation;
+
+        playerLevel = gameData.playerLevel;
+        xpToLevelUp = playerLevel * 100;
+        playerXP = gameData.playerXp;
+        max_health = gameData.playerMaxHealth;
+        health_points = gameData.playerHealth;
+        max_magic = gameData.playerMaxMagic;
+        magic_points = gameData.playerMagic;
+        attack_power = gameData.playerAttack;
+        defence_power = gameData.playerDefence;
+
+        elementInventory = new List<Element>();
+
+        foreach (string element in gameData.elements)
+        {
+            elementInventory.Add(ElementManager.Instance.FindElement(element));
+        }
         
         StartCoroutine(RemoveLoadingScreen());
     }
@@ -192,7 +220,7 @@ public class GameManager : MonoBehaviour
         hud.inGameHUD.gameObject.SetActive(true);
     }
     
-    public void StartCombat(Element enemyElement)
+    public void StartCombat(Element enemyElement, bool eliteEnemy)
     {
         map = GameObject.FindGameObjectWithTag("Map");
             
@@ -200,12 +228,6 @@ public class GameManager : MonoBehaviour
         {
             playerPos = GameObject.FindGameObjectWithTag("Player").transform.position,
             playerRotation = GameObject.FindGameObjectWithTag("Player").transform.rotation,
-            playerMaxHealth = max_health,
-            playerHealth = health_points,
-            playerMaxMagic = max_magic,
-            playerMagic = magic_points,
-            playerAttack = attack_power,
-            playerDefence = defence_power,
             level = map.GetComponent<ProcGenV4>().level
         };
         DataManager.instance.SaveLevelData(levelData);
@@ -218,14 +240,12 @@ public class GameManager : MonoBehaviour
         loadScene.completed += (x) =>
         {
             GameObject manager = GameObject.FindGameObjectWithTag("CombatManager");
-            StartCoroutine(manager.GetComponent<Combat_Manager>().StartUp(enemyElement));
+            StartCoroutine(manager.GetComponent<Combat_Manager>().StartUp(enemyElement, eliteEnemy));
         };
     }
 
-    public IEnumerator ReturnToLevel()
+    public void ReturnToLevel()
     {
-        yield return new WaitForSeconds(2f);
-
         SceneManager.LoadScene(levelName);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -248,6 +268,37 @@ public class GameManager : MonoBehaviour
         player.transform.rotation = levelData.playerRotation;
         
         StartCoroutine(RemoveLoadingScreen());
+    }
+
+    public bool CheckLevelUp(int xpToAdd)
+    {
+        playerXP += xpToAdd;
+
+        if (playerXP >= xpToLevelUp)
+        {
+            playerXP -= xpToLevelUp;
+            
+            int NewMaxHP = max_health + ((Random.value > 0.3f) ? 5 : 10);
+            int NewMaxMP = max_magic + ((Random.value > 0.5f) ? 5 : 10);
+            int NewAttack = attack_power + Random.Range(2, 5);
+            int NewDefence = defence_power + Random.Range(2, 5);
+
+            CombatHUD hud = GameObject.FindGameObjectWithTag("HUD").GetComponent<CombatHUD>();
+            hud.LevelUpHP.text = "Max HP: " + max_health + " + " + (NewMaxHP - max_health) + " = " + NewMaxHP; 
+            hud.LevelUpMP.text = "Max MP: " + max_magic + " + " + (NewMaxMP - max_magic) + " = " + NewMaxMP; 
+            hud.LevelUpAttack.text = "Attack Power: " + attack_power + " + " + (NewAttack - attack_power) + " = " + NewAttack; 
+            hud.LevelUpDefence.text = "Defence Power: " + defence_power + " + " + (NewDefence - defence_power) + " = " + NewDefence; 
+            
+            SetPlayerStats(NewMaxHP, NewMaxMP, NewAttack, NewDefence);
+            SetPlayerResources(NewMaxHP, NewMaxMP);
+            
+            playerLevel++;
+            xpToLevelUp = playerLevel * 100;
+
+            return true;
+        }
+
+        return false;
     }
 
     public IEnumerator LoseGame()
@@ -285,11 +336,6 @@ public class GameManager : MonoBehaviour
         return elementInventory[i];
     }
 
-    public List<Element> GetElements()
-    {
-        return elementInventory;
-    }
-
     public void SetPlayerResources(int hp, int mp)
     {
         health_points = hp;
@@ -307,6 +353,9 @@ public class GameManager : MonoBehaviour
 
     private void ResetPlayerInfo()
     {
+        playerLevel = 1;
+        xpToLevelUp = playerLevel * 100;
+        playerXP = 0;
         max_health = 100;
         max_magic = 60;
         health_points = 100;

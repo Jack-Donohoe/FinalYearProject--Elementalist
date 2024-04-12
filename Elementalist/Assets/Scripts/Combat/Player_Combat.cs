@@ -77,6 +77,7 @@ public class Player_Combat : MonoBehaviour
         state = State.Idle;
 
         max_health = GameManager.Instance.Max_Health;
+        max_magic = GameManager.Instance.Max_Magic;
         
         health_points = GameManager.Instance.HP;
         magic_points = GameManager.Instance.MP;
@@ -92,7 +93,6 @@ public class Player_Combat : MonoBehaviour
     public void SetEnemies()
     {
         enemies = manager.spawnedEnemies;
-        Debug.Log(enemies.Length);
     }
 
     // Update is called once per frame
@@ -256,8 +256,10 @@ public class Player_Combat : MonoBehaviour
         manager.ChangeTurn();
     }
 
-    public (int,int) CalculateCombatRewards()
+    public (int,int,int) CalculateCombatRewards()
     {
+        int xp = enemies.Length * 50;
+        
         int newHealth = health_points + max_health / 10;
         if (newHealth > max_health)
         {
@@ -270,7 +272,7 @@ public class Player_Combat : MonoBehaviour
             newMagic = max_magic;
         }
         
-        return (newHealth, newMagic);
+        return (newHealth, newMagic, xp);
     }
 
     private void ShowTargetOptions()
@@ -319,7 +321,6 @@ public class Player_Combat : MonoBehaviour
             {
                 if (!enemies[i].GetComponent<Grunt_Combat>().Dead)
                 {
-                    Debug.Log("Target Selected");
                     PerformAction(enemies[i]);
                 }
                 else

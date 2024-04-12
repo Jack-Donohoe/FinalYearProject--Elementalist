@@ -76,7 +76,7 @@ public class ProcGenV4 : MonoBehaviour
         
                 room.roomType = Random.Range(0, 10) > 5 ? RoomV2.RoomType.Empty : RoomV2.RoomType.Enemy;
         
-                room.connections["top"] = Random.Range(0, 10) <= 5;
+                room.connections["top"] = Random.Range(0, 10) <= 6;
                 room.connections["left"] = Random.Range(0, 10) <= 5;
                 room.connections["bottom"] = Random.Range(0, 10) <= 5;
                 room.connections["right"] = Random.Range(0, 10) <= 5;
@@ -325,18 +325,9 @@ public class ProcGenV4 : MonoBehaviour
                         {
                             if (levelToGenerate[i, j].completed == false)
                             {
-                                int enemyNum = 0;
-
-                                if (Random.value < fireEnemyFrequency)
-                                {
-                                    enemyNum = 0;
-                                }
-                                else if (Random.value < waterEnemyFrequency)
-                                {
-                                    enemyNum = 1;
-                                }
+                                int enemyNum = Random.value < fireEnemyFrequency ? 0 : 1;
                                 
-                                room.GetComponent<Level_Room>().SpawnEnemy(enemyNum);
+                                room.GetComponent<Level_Room>().SpawnEnemy(enemyNum, false);
                             }
                         }
                         else
@@ -407,6 +398,13 @@ public class ProcGenV4 : MonoBehaviour
                         Quaternion.identity, this.transform);
                     room.name = "Room" + j + " " + i;
                     room.transform.Rotate(0f, 180f, 0f);
+                    
+                    if (levelToGenerate[i, j].completed == false)
+                    {
+                        int enemyNum = Random.value < 0.7 ? 0 : 1;
+                                
+                        room.GetComponent<Level_Room>().SpawnEnemy(enemyNum, true);
+                    }
                     
                     // if (connections.Item1)
                     // {

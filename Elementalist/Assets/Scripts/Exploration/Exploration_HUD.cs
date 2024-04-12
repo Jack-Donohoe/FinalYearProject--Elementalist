@@ -18,19 +18,31 @@ public class Exploration_HUD : MonoBehaviour
     public Button[] elementButtons;
     public TMP_Text[] elementButtonTexts;
     public RawImage[] elementButtonImages;
+
+    public TMP_Text playerLevel;
+    public TMP_Text playerXP;
     
     public Slider PlayerHPSlider;
     public TMP_Text HPValue;
     public Slider MPSlider;
     public TMP_Text MPValue;
 
+    public TMP_Text maxHP;
+    public TMP_Text maxMP;
+    public TMP_Text playerAttack;
+    public TMP_Text playerDefence;
+
     public Button[] comboButtons;
     public RawImage[] comboButtonImages;
     public TMP_Text resultText;
 
+    // Used to track first and second selected elements in combination menu
     private Element firstSelectedElement;
     private Element secondSelectedElement;
     private int selectedCounter;
+    
+    // Used to track first and second selected button in combination menu
+    Button firstButton, secondButton;
     
     private void Start()
     {
@@ -90,7 +102,7 @@ public class Exploration_HUD : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         
-        List<Element> elements = GameManager.Instance.GetElements();
+        List<Element> elements = GameManager.Instance.elementInventory;
         
         for(int i = 0; i < elements.Count; i++)
         {
@@ -100,6 +112,7 @@ public class Exploration_HUD : MonoBehaviour
 
             string[] baseElements = {"Fire", "Water", "Earth", "Air"};
 
+            comboButtons[i].GetComponent<Image>().color = new Color(0.35f, 0.35f, 0.35f);
             if (baseElements.Contains(elements[i].GetName()))
             {
                 comboButtons[i].gameObject.SetActive(true);
@@ -112,7 +125,10 @@ public class Exploration_HUD : MonoBehaviour
 
     private void UpdateInventoryMenu()
     {
-        List<Element> elements = GameManager.Instance.GetElements();
+        List<Element> elements = GameManager.Instance.elementInventory;
+
+        firstSelectedElement = null;
+        secondSelectedElement = null;
         
         foreach (var button in elementButtons)
         {
@@ -133,6 +149,7 @@ public class Exploration_HUD : MonoBehaviour
 
             string[] baseElements = {"Fire", "Water", "Earth", "Air"};
 
+            comboButtons[i].GetComponent<Image>().color = new Color(0.35f, 0.35f, 0.35f);
             if (baseElements.Contains(elements[i].GetName()))
             {
                 comboButtons[i].gameObject.SetActive(true);
@@ -149,6 +166,20 @@ public class Exploration_HUD : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         inGameHUD.SetActive(true);
+    }
+
+    public void UpdateStatsMenu()
+    {
+        playerLevel.text = "Level: " + GameManager.Instance.playerLevel;
+        playerXP.text = "Current XP: " + GameManager.Instance.playerXP + "/" + GameManager.Instance.xpToLevelUp;
+        
+        setPlayerHP(GameManager.Instance.HP, GameManager.Instance.Max_Health);
+        setMP(GameManager.Instance.MP, GameManager.Instance.Max_Magic);
+
+        maxHP.text = "Max HP: " + GameManager.Instance.Max_Health;
+        maxMP.text = "Max MP: " + GameManager.Instance.Max_Magic;
+        playerAttack.text = "Attack Power: " + GameManager.Instance.Attack_Power;
+        playerDefence.text = "Defence Power: " + GameManager.Instance.Defence_Power;
     }
     
     public void setPlayerHP(int hp, int maxHP)
@@ -190,6 +221,7 @@ public class Exploration_HUD : MonoBehaviour
         inventoryViews[0].SetActive(false);
         inventoryViews[1].SetActive(true);
         inventoryViews[2].SetActive(false);
+        UpdateInventoryMenu();
     }
     
     public void OnToCombinationButton()
@@ -197,6 +229,7 @@ public class Exploration_HUD : MonoBehaviour
         inventoryViews[0].SetActive(false);
         inventoryViews[1].SetActive(false);
         inventoryViews[2].SetActive(true);
+        UpdateInventoryMenu();
     }
     
     public void OnToStatsButton()
@@ -226,13 +259,33 @@ public class Exploration_HUD : MonoBehaviour
             {
                 if (selectedCounter == 0)
                 {
+                    if (firstButton != null)
+                    {
+                        comboButtons[i].GetComponent<Image>().color = new Color(0.35f, 0.35f, 0.35f);
+                    }
+                    
+                    firstButton = button;
+                    firstButton.GetComponent<Image>().color = new Color(0.7f, 0.7f, 0.7f);
+                    
                     selectedCounter++;
                     firstSelectedElement = GameManager.Instance.GetElement(i);
                     Debug.Log(firstSelectedElement);
                 } else
                 {
+                    if (secondButton != null)
+                    {
+                        comboButtons[i].GetComponent<Image>().color = new Color(0.35f, 0.35f, 0.35f);
+                    }
+                    
+                    secondButton = button;
+                    secondButton.GetComponent<Image>().color = new Color(0.7f, 0.7f, 0.7f);
+                    
                     selectedCounter = 0;
                     secondSelectedElement = GameManager.Instance.GetElement(i);
+                    if (secondSelectedElement == firstSelectedElement)
+                    {
+                        firstSelectedElement = null;
+                    }
                     Debug.Log(secondSelectedElement);
                 }
             }
@@ -244,13 +297,29 @@ public class Exploration_HUD : MonoBehaviour
         if (firstSelectedElement != null && secondSelectedElement != null)
         {
             Element newElement = ElementManager.Instance.CombineElements((firstSelectedElement.GetName(), secondSelectedElement.GetName()));
-            resultText.text = "You Created: " + newElement.GetName();
-            
-            Debug.Log(GameManager.Instance.AddElement(newElement));
-            Debug.Log(GameManager.Instance.RemoveElement(firstSelectedElement));
-            Debug.Log(GameManager.Instance.RemoveElement(secondSelectedElement));
-            
-            UpdateInventoryMenu();
+
+            if (!GameManager.Instance.elementInventory.Contains(newElement))
+            {
+                resultText.text = "You Created: " + newElement.GetName();
+
+                Debug.Log(GameManager.Instance.AddElement(newElement));
+                Debug.Log(GameManager.Instance.RemoveElement(firstSelectedElement));
+                Debug.Log(GameManager.Instance.RemoveElement(secondSelectedElement));
+
+                foreach (Element element in GameManager.Instance.elementInventory)
+                {
+                    if (element == newElement)
+                    {
+                        GameManager.Instance.selectedElement = element;
+                    }
+                }
+
+                UpdateInventoryMenu();
+            }
+            else
+            {
+                resultText.text = newElement.GetName() + " already exists.";
+            }
         }
     }
 }

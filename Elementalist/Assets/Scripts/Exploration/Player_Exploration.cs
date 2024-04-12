@@ -7,23 +7,13 @@ using UnityEngine.InputSystem;
 public class Player_Exploration : MonoBehaviour
 {
     private Exploration_HUD hud;
-
-    private int max_health;
-    private int health;
-    private int max_magic;
-    private int magic;
     
     // float timer = 0f;
 
     private void Start()
     {
         hud = GameObject.FindGameObjectWithTag("HUD").GetComponent<Exploration_HUD>();
-        max_health = GameManager.Instance.Max_Health;
-        health = GameManager.Instance.HP;
-        max_magic = GameManager.Instance.Max_Magic;
-        magic = GameManager.Instance.MP;
-        hud.setPlayerHP(health, max_health);
-        hud.setMP(magic, max_magic);
+        hud.UpdateStatsMenu();
     }
     
     private void Update()
@@ -70,7 +60,9 @@ public class Player_Exploration : MonoBehaviour
         {
             GameObject.FindGameObjectWithTag("Map").GetComponent<ProcGenV4>().SetRoomCompleted(collider.gameObject.transform.parent.transform.position, true);
             Debug.Log(collider.gameObject.GetComponent<Enemy_Exploration>().enemyElement);
-            GameManager.Instance.StartCombat(collider.gameObject.GetComponent<Enemy_Exploration>().enemyElement);
+
+            Enemy_Exploration enemy = collider.gameObject.GetComponent<Enemy_Exploration>();
+            GameManager.Instance.StartCombat(enemy.enemyElement, enemy.eliteEnemy);
         }
     }
 }
