@@ -12,3 +12,4 @@ This is the Github Repository for my Final Year Project in Computer Science at S
 - https://www.cadhatch.com/seamless-water-textures
 - https://www.freeiconspng.com/img/41947
 - https://github.com/Ayfel/PrefabLightmapping
+- https://frontierx.itch.io/element-emblems
