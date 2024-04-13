@@ -52,7 +52,7 @@ public class Combat_Manager : MonoBehaviour
                 if (player.Dead)
                 {
                     state = BattleState.Player_Lost;
-                    EndCombat();
+                    StartCoroutine(EndCombat());
                 }
 
                 for (int i = 0; i < spawnedEnemies.Length; i++)
@@ -71,7 +71,7 @@ public class Combat_Manager : MonoBehaviour
                 if (allEnemiesDead)
                 {
                     state = BattleState.Player_Won;
-                    EndCombat();
+                    StartCoroutine(EndCombat());
                 }
             }
         }
@@ -123,8 +123,17 @@ public class Combat_Manager : MonoBehaviour
                 {
                     spawnedEnemies[i] = Instantiate(enemyType, spawnLocation, Quaternion.Euler(new Vector3(0f,180f,0f)));
 
-                    String enemy_Name = spawnedEnemies[i].GetComponent<Grunt_Combat>().enemy_Name + " " +  (i + 1);
-                    spawnedEnemies[i].GetComponent<Grunt_Combat>().enemy_Name = enemy_Name;
+                    Grunt_Combat gruntCombat = spawnedEnemies[i].GetComponent<Grunt_Combat>();
+
+                    String enemyName = gruntCombat.element.GetName() + " " + gruntCombat.enemy_Name;
+
+                    if (eliteEnemy == false)
+                    {
+                        enemyName = enemyName + " " + (i + 1);
+                        Debug.Log(enemyName);
+                    }
+                    
+                    spawnedEnemies[i].GetComponent<Grunt_Combat>().enemy_Name = enemyName;
                 }
             }
         }
@@ -199,8 +208,9 @@ public class Combat_Manager : MonoBehaviour
         }
     }
 
-    void EndCombat()
+    IEnumerator EndCombat()
     {
+        yield return new WaitForSeconds(1f);
         if (state == BattleState.Player_Won)
         {
             hud.DialogueText.text = "Player Wins!";

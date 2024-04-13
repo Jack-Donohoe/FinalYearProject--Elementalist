@@ -6,7 +6,7 @@ using Random = UnityEngine.Random;
 
 public class Grunt_Combat : MonoBehaviour
 {
-    private int health_points = 50;
+    private int health_points = 60;
     
     private int magic_points = 15;
     
@@ -25,7 +25,7 @@ public class Grunt_Combat : MonoBehaviour
 
     public Combat_Manager manager;
     
-    private bool dead = false;
+    private bool dead;
     public bool Dead => dead;
 
     private Player_Combat player;
@@ -48,10 +48,11 @@ public class Grunt_Combat : MonoBehaviour
 
         if (eliteEnemy)
         {
+            enemy_Name = "Elite " + enemy_Name;
             health_points = Mathf.RoundToInt(health_points * 2f);
-            magic_points = Mathf.RoundToInt(magic_points * 1.5f);
-            attack_power = Mathf.RoundToInt(attack_power * 1.5f);
-            defence_power = Mathf.RoundToInt(defence_power * 1.5f);
+            magic_points = Mathf.RoundToInt(magic_points * 2f);
+            attack_power = Mathf.RoundToInt(attack_power * 2f);
+            defence_power = Mathf.RoundToInt(defence_power * 2f);
         }
     }
 

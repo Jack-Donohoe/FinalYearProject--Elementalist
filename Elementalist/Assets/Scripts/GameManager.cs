@@ -61,13 +61,13 @@ public class GameManager : MonoBehaviour
     }
     
     // Element Info
-    public List<Element> elementInventory = new List<Element>();
+    public List<Element> elementInventory;
     public Element selectedElement;
 
     // Level Objects
     public Exploration_HUD hud;
+    public int SensitivityValue = 1;
     private GameObject map;
-    public GameObject Map => map;
 
     private void Awake()
     {
@@ -94,29 +94,44 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        elementInventory = new List<Element> { ElementManager.Instance.FindElement("Water") };
+        elementInventory = new List<Element> { ElementManager.Instance.FindElement("Water"), ElementManager.Instance.FindElement("Earth") };
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        SceneManager.LoadScene("Level1");
+        var loadScene = SceneManager.LoadSceneAsync("Level1");
         levelName = "Level1";
         ResetPlayerInfo();
-        StartCoroutine(StartLevel());
+
+        loadScene.completed += (x) =>
+        {
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            SensitivityValue = Mathf.RoundToInt(player.GetComponent<PlayerController>().FreeLookCamera.m_XAxis.m_MaxSpeed / 50);
+            StartLevel();
+        };
     }
 
     public void LoadNextLevel()
     {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        SensitivityValue = Mathf.RoundToInt(player.GetComponent<PlayerController>().FreeLookCamera.m_XAxis.m_MaxSpeed / 50);
+        
         if (SceneManager.GetActiveScene().name == "Level1")
         {
-            SceneManager.LoadScene("Level2");
-            StartCoroutine(StartLevel());
-            levelName = "Level2";
+            var loadScene = SceneManager.LoadSceneAsync("Level2");
+            loadScene.completed += (x) =>
+            {
+                StartLevel();
+                levelName = "Level2";
+            };
         }
         else if (SceneManager.GetActiveScene().name == "Level2")
         {
-            SceneManager.LoadScene("Level3");
-            StartCoroutine(StartLevel());
-            levelName = "Level3";
+            var loadScene = SceneManager.LoadSceneAsync("Level3");
+            loadScene.completed += (x) =>
+            {
+                StartLevel();
+                levelName = "Level3";
+            };
         } else if (SceneManager.GetActiveScene().name == "Level3")
         {
             SceneManager.LoadScene("WinScreen");
@@ -198,24 +213,26 @@ public class GameManager : MonoBehaviour
         StartCoroutine(RemoveLoadingScreen());
     }
 
-    private IEnumerator StartLevel()
+    private void StartLevel()
     {
-        yield return new WaitForNextFrameUnit();
         map = GameObject.FindGameObjectWithTag("Map");
         map.GetComponent<ProcGenV4>().OnLevelLoad();
         
-        GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterController>().enabled = false;
-        GameObject.FindGameObjectWithTag("Player").transform.position = map.GetComponent<ProcGenV4>().startPos;
-        GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterController>().enabled = true;
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        
+        player.GetComponent<CharacterController>().enabled = false;
+        player.transform.position = map.GetComponent<ProcGenV4>().startPos;
+        player.GetComponent<CharacterController>().enabled = true;
         
         hud = GameObject.FindGameObjectWithTag("HUD").GetComponent<Exploration_HUD>();
+        hud.pauseMenu.GetComponent<PauseMenu>().SensitivitySlider.value = SensitivityValue;
+        
         StartCoroutine(RemoveLoadingScreen());
     }
 
     private IEnumerator RemoveLoadingScreen()
     {
-        yield return new WaitForSecondsRealtime(1.5f);
-        hud = GameObject.FindGameObjectWithTag("HUD").GetComponent<Exploration_HUD>();
+        yield return new WaitForSeconds(1.5f);
         hud.loadingScreen.gameObject.SetActive(false);
         hud.inGameHUD.gameObject.SetActive(true);
     }
@@ -223,11 +240,14 @@ public class GameManager : MonoBehaviour
     public void StartCombat(Element enemyElement, bool eliteEnemy)
     {
         map = GameObject.FindGameObjectWithTag("Map");
+        
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        SensitivityValue = Mathf.RoundToInt(player.GetComponent<PlayerController>().FreeLookCamera.m_XAxis.m_MaxSpeed / 50);
             
         LevelData levelData = new LevelData
         {
-            playerPos = GameObject.FindGameObjectWithTag("Player").transform.position,
-            playerRotation = GameObject.FindGameObjectWithTag("Player").transform.rotation,
+            playerPos = player.transform.position,
+            playerRotation = player.transform.rotation,
             level = map.GetComponent<ProcGenV4>().level
         };
         DataManager.instance.SaveLevelData(levelData);
@@ -257,8 +277,8 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForNextFrameUnit();
         LevelData levelData = DataManager.instance.LoadLevelData();
-        map = GameObject.FindGameObjectWithTag("Map");
         
+        map = GameObject.FindGameObjectWithTag("Map");
         map.GetComponent<ProcGenV4>().GenerateLevel(levelData.level);
         
         GameObject player = GameObject.FindGameObjectWithTag("Player");
@@ -266,6 +286,9 @@ public class GameManager : MonoBehaviour
         player.transform.position = levelData.playerPos;
         player.GetComponent<CharacterController>().enabled = true;
         player.transform.rotation = levelData.playerRotation;
+        
+        hud = GameObject.FindGameObjectWithTag("HUD").GetComponent<Exploration_HUD>();
+        hud.pauseMenu.GetComponent<PauseMenu>().SensitivitySlider.value = SensitivityValue;
         
         StartCoroutine(RemoveLoadingScreen());
     }

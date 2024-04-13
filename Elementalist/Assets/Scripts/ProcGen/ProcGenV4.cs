@@ -27,9 +27,8 @@ public class ProcGenV4 : MonoBehaviour
     
     [Range(0,1)]
     public float airEnemyFrequency = 0f;
-        
-    // Start is called before the first frame update
-    void Start()
+    
+    void Awake()
     {
         rooms = new Dictionary<(bool, bool, bool, bool), (GameObject, float)>()
         {

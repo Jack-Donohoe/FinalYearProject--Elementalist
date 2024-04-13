@@ -21,7 +21,7 @@ public class Level_Room : MonoBehaviour
         }
         else
         {
-            createdEnemy = Instantiate(enemyTypes[enemyNum], new Vector3(transform.position.x, 1.5f, transform.position.z + 15f), Quaternion.Euler(0,0,0), transform);
+            createdEnemy = Instantiate(enemyTypes[enemyNum], new Vector3(transform.position.x, 1.5f, transform.position.z + 15f), Quaternion.Euler(0,180,0), transform);
         }
     }
 }

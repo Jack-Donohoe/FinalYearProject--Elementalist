@@ -36,12 +36,18 @@ public class ElementManager : MonoBehaviour
 
         damage_multipliers = new Dictionary<(string, string), float>()
         {
-            { ("Fire", "Water"), 0.5f },
             { ("Fire", "Fire"), 0.5f },
-            { ("Water", "Fire"), 2f },
+            { ("Fire", "Water"), 0.5f },
+            { ("Fire", "Earth"), 2f },
             { ("Water", "Water"), 0.5f },
+            { ("Water", "Fire"), 2f },
+            { ("Water", "Earth"), 1f },
+            { ("Earth", "Earth"), 0.5f },
+            { ("Earth", "Fire"), 0.5f },
+            { ("Earth", "Water"), 1f },
             { ("Steam", "Water"), 2f },
             { ("Steam", "Fire"), 2f },
+            { ("Steam", "Earth"), 1f }
         };
     }
 

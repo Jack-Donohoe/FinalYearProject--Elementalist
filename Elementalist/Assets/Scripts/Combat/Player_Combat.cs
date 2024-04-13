@@ -277,6 +277,7 @@ public class Player_Combat : MonoBehaviour
 
     private void ShowTargetOptions()
     {
+        hud.RefreshTargetButtons(enemies);
         hud.ActionPanel.SetActive(false);
         hud.TargetPanel.SetActive(true);
         hud.DialogueText.text = "Select Target";
@@ -296,7 +297,10 @@ public class Player_Combat : MonoBehaviour
     {
         Element element = GameManager.Instance.selectedElement;
         if (state != State.Ready || magic_points < element.GetMagicCost())
+        {
+            hud.DialogueText.text = "MP Too Low";
             return;
+        }
 
         ElementalAttack();
         
