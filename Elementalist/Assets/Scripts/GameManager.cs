@@ -69,6 +69,8 @@ public class GameManager : MonoBehaviour
     public int SensitivityValue = 1;
     private GameObject map;
 
+    private bool tutorial;
+
     private void Awake()
     {
         if (_instance != null && _instance != this)
@@ -100,6 +102,7 @@ public class GameManager : MonoBehaviour
         Cursor.visible = false;
         var loadScene = SceneManager.LoadSceneAsync("Level1");
         levelName = "Level1";
+        tutorial = true;
         ResetPlayerInfo();
 
         loadScene.completed += (x) =>
@@ -210,7 +213,8 @@ public class GameManager : MonoBehaviour
             elementInventory.Add(ElementManager.Instance.FindElement(element));
         }
         
-        StartCoroutine(RemoveLoadingScreen());
+        hud = GameObject.FindGameObjectWithTag("HUD").GetComponent<Exploration_HUD>();
+        StartCoroutine(hud.RemoveLoadingScreen(tutorial));
     }
 
     private void StartLevel()
@@ -227,14 +231,7 @@ public class GameManager : MonoBehaviour
         hud = GameObject.FindGameObjectWithTag("HUD").GetComponent<Exploration_HUD>();
         hud.pauseMenu.GetComponent<PauseMenu>().SensitivitySlider.value = SensitivityValue;
         
-        StartCoroutine(RemoveLoadingScreen());
-    }
-
-    private IEnumerator RemoveLoadingScreen()
-    {
-        yield return new WaitForSeconds(1.5f);
-        hud.loadingScreen.gameObject.SetActive(false);
-        hud.inGameHUD.gameObject.SetActive(true);
+        StartCoroutine(hud.RemoveLoadingScreen(tutorial));
     }
     
     public void StartCombat(Element enemyElement, bool eliteEnemy)
@@ -289,8 +286,10 @@ public class GameManager : MonoBehaviour
         
         hud = GameObject.FindGameObjectWithTag("HUD").GetComponent<Exploration_HUD>();
         hud.pauseMenu.GetComponent<PauseMenu>().SensitivitySlider.value = SensitivityValue;
+
+        tutorial = false;
         
-        StartCoroutine(RemoveLoadingScreen());
+        StartCoroutine(hud.RemoveLoadingScreen(tutorial));
     }
 
     public bool CheckLevelUp(int xpToAdd)
@@ -366,7 +365,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("HP=" + hp +" MP=" + mp);
     }
     
-    public void SetPlayerStats(int maxHP, int maxMP, int attackPow, int defencePow)
+    private void SetPlayerStats(int maxHP, int maxMP, int attackPow, int defencePow)
     {
         max_health = maxHP;
         max_magic = maxMP;

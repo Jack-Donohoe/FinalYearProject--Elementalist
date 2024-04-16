@@ -12,10 +12,32 @@ public class Exploration_HUD : MonoBehaviour
     public GameObject inGameHUD;
     
     public GameObject pauseMenu;
+    
     public GameObject inventoryMenu;
     public GameObject[] inventoryViews;
 
+    public GameObject dialogueMenu;
+
     public TMP_Text interactText;
+    
+    public IEnumerator RemoveLoadingScreen(bool tutorial)
+    {
+        yield return new WaitForSeconds(1.5f);
+        loadingScreen.gameObject.SetActive(false);
+
+        if (tutorial)
+        {
+            Time.timeScale = 0f;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            
+            dialogueMenu.SetActive(true);
+        }
+        else
+        { 
+            inGameHUD.SetActive(true);
+        }
+    }
 
     public void HandlePauseMenu()
     {
@@ -36,6 +58,11 @@ public class Exploration_HUD : MonoBehaviour
     {
         Time.timeScale = 0f;
         inGameHUD.SetActive(false);
+        
+        if (dialogueMenu.activeSelf)
+        {
+            dialogueMenu.SetActive(false);
+        }
         
         if (inventoryMenu.activeSelf)
         {
@@ -64,6 +91,11 @@ public class Exploration_HUD : MonoBehaviour
     {
         Time.timeScale = 0f;
         inGameHUD.SetActive(false);
+        
+        if (dialogueMenu.activeSelf)
+        {
+            dialogueMenu.SetActive(false);
+        }
 
         if (pauseMenu.activeSelf)
         {
@@ -115,6 +147,4 @@ public class Exploration_HUD : MonoBehaviour
         inventoryViews[1].SetActive(false);
         inventoryViews[2].SetActive(false);
     }
-
-    
 }
