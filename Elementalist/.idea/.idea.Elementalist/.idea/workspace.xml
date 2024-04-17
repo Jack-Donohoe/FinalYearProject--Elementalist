@@ -7,11 +7,8 @@
     <list default="true" id="a963d819-7dda-485b-9ffe-5bea1ba9d47c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Elementalist/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Elementalist/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Fonts/squealer-font/Squealer-p3zZ SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Fonts/squealer-font/Squealer-p3zZ SDF.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/Stone Roof.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Stone Roof.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/Stone.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Stone.mat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Exploration/Exploration HUD.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Exploration/Exploration HUD.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Exploration/UI/Exploration_HUD.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Exploration/UI/Exploration_HUD.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Exploration/UI/DialogueMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Exploration/UI/DialogueMenu.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,28 +49,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Attach to Unity Editor.Attach to Unity Editor.executor&quot;: &quot;Debug&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Final-Prototype-Apr&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Attach to Unity Editor.Attach to Unity Editor.executor": "Debug",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "Final-Prototype-Apr",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;rider.external.source.directories&quot;: [
-      &quot;C:\\Users\\Jack\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\DecompilerCache&quot;,
-      &quot;C:\\Users\\Jack\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\SourcesCache&quot;,
-      &quot;C:\\Users\\Jack\\AppData\\Local\\Symbols\\src&quot;
+  "keyToStringList": {
+    "rider.external.source.directories": [
+      "C:\\Users\\jackd\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\DecompilerCache",
+      "C:\\Users\\jackd\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\SourcesCache",
+      "C:\\Users\\jackd\\AppData\\Local\\Symbols\\src"
     ]
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Standalone Player" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="D:/Documents/College/Final Year Project/Builds\Elementalist.exe" />
@@ -250,6 +247,7 @@
       <workItem from="1713023143208" duration="13301000" />
       <workItem from="1713110204767" duration="1072000" />
       <workItem from="1713240892687" duration="3122000" />
+      <workItem from="1713277597530" duration="2785000" />
     </task>
     <servers />
   </component>
