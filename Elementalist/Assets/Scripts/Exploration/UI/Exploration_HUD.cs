@@ -35,6 +35,7 @@ public class Exploration_HUD : MonoBehaviour
         }
         else
         { 
+            dialogueMenu.SetActive(false);
             inGameHUD.SetActive(true);
         }
     }
@@ -130,7 +131,9 @@ public class Exploration_HUD : MonoBehaviour
         inventoryViews[0].SetActive(false);
         inventoryViews[1].SetActive(true);
         inventoryViews[2].SetActive(false);
+        
         inventoryMenu.GetComponent<InventoryMenu>().UpdateInventoryMenu();
+        dialogueMenu.GetComponent<DialogueMenu>().inventoryTutorialMenu.SetActive(false);
     }
     
     public void OnToCombinationButton()
@@ -138,7 +141,9 @@ public class Exploration_HUD : MonoBehaviour
         inventoryViews[0].SetActive(false);
         inventoryViews[1].SetActive(false);
         inventoryViews[2].SetActive(true);
+        
         inventoryMenu.GetComponent<InventoryMenu>().UpdateInventoryMenu();
+        dialogueMenu.GetComponent<DialogueMenu>().inventoryTutorialMenu.SetActive(false);
     }
     
     public void OnToStatsButton()
@@ -146,5 +151,7 @@ public class Exploration_HUD : MonoBehaviour
         inventoryViews[0].SetActive(true);
         inventoryViews[1].SetActive(false);
         inventoryViews[2].SetActive(false);
+        
+        dialogueMenu.GetComponent<DialogueMenu>().inventoryTutorialMenu.SetActive(false);
     }
 }

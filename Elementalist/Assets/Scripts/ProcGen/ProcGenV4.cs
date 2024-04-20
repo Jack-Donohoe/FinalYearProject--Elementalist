@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.AI.Navigation;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class ProcGenV4 : MonoBehaviour
 {
@@ -54,6 +56,12 @@ public class ProcGenV4 : MonoBehaviour
             { (true, true, true, true), (roomTemplates[4], 0f) }
         };
     }
+
+    // Used for testing grid generation
+    // private void Start()
+    // {
+    //     GenerateLevel(PopulateMap());
+    // }
 
     public void OnLevelLoad()
     {

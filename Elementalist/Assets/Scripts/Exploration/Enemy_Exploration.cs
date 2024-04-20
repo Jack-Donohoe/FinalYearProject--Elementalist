@@ -99,7 +99,7 @@ public class Enemy_Exploration : MonoBehaviour
         ray.origin = transform.position + Vector3.up * 0.7f;
         string seenObject = "";
 
-        float castDistance = 10;
+        float castDistance = 20;
         ray.direction = transform.forward * castDistance;
         Debug.DrawRay(ray.origin, ray.direction * castDistance, Color.red);
 
@@ -120,7 +120,7 @@ public class Enemy_Exploration : MonoBehaviour
 
     void DetectPlayerNearby()
     {
-        if (Vector3.Distance(transform.position, player.transform.position) < 5)
+        if (Vector3.Distance(transform.position, player.transform.position) < 10)
         {
             enemyState = State.PlayerDetected;
         } 

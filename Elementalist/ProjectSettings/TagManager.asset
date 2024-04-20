@@ -11,6 +11,9 @@ TagManager:
   - Waypoint
   - CombatManager
   - Door
+  - Attack Button
+  - Elemental Button
+  - Change Element Button
   layers:
   - Default
   - TransparentFX

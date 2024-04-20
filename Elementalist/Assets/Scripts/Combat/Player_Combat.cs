@@ -63,6 +63,8 @@ public class Player_Combat : MonoBehaviour
     private GameObject[] enemies;
 
     private string action;
+    private int action_cost;
+    private string action_dialogue;
 
     private int damage;
     public int Damage => damage;
@@ -70,6 +72,8 @@ public class Player_Combat : MonoBehaviour
     private string dialogue;
 
     public Animator animator;
+
+    private int counter = 0;
     
     // Start is called before the first frame update
     void Start()
@@ -184,8 +188,7 @@ public class Player_Combat : MonoBehaviour
                                   * ElementManager.Instance.GetDamageMultiplier((element.GetName(), enemyCombat.element.GetName())) - enemyCombat.Defence_Power);
         dialogue = "Player attacks with a " + element.GetAttackName() + " and deals " + damage + " damage!";
         
-        magic_points -= element.GetMagicCost();
-        hud.setMP(magic_points);
+        action_cost = element.GetMagicCost();
 
         if (crit_multiplier == 2)
         {
@@ -213,6 +216,9 @@ public class Player_Combat : MonoBehaviour
         {
             animator.SetBool("Attacking", true);
             StartCoroutine(LaunchProjectile(attackTarget));
+            
+            magic_points -= action_cost;
+            hud.setMP(magic_points);
         }
         else if (action == "Attack")
         {
@@ -224,7 +230,18 @@ public class Player_Combat : MonoBehaviour
         
         state = State.Idle;
         hud.TogglePlayerActions();
-    } 
+        hud.backButton.gameObject.SetActive(false);
+    }
+
+    private void ChangeElement(int i)
+    {
+        GameManager.Instance.selectedElement = GameManager.Instance.elementInventory[i];
+        counter++;
+        
+        hud.ElementPanel.SetActive(false);
+        hud.ActionPanel.SetActive(true);
+        hud.backButton.gameObject.SetActive(false);
+    }
 
     public void TakeDamage(int damage)
     {
@@ -243,6 +260,7 @@ public class Player_Combat : MonoBehaviour
     {
         state = State.Ready;
         hud.TogglePlayerActions();
+        counter = 0;
     }
 
     public void StartEndTurn()
@@ -278,9 +296,23 @@ public class Player_Combat : MonoBehaviour
     private void ShowTargetOptions()
     {
         hud.RefreshTargetButtons(enemies);
+        
         hud.ActionPanel.SetActive(false);
         hud.TargetPanel.SetActive(true);
+        hud.backButton.gameObject.SetActive(true);
+        
         hud.DialogueText.text = "Select Target";
+    }
+
+    private void ShowElementOptions()
+    {
+        hud.RefreshElementButtons();
+        
+        hud.ActionPanel.SetActive(false);
+        hud.ElementPanel.SetActive(true);
+        hud.backButton.gameObject.SetActive(true);
+
+        hud.DialogueText.text = "Select Element";
     }
     
     public void onAttackButton()
@@ -307,12 +339,16 @@ public class Player_Combat : MonoBehaviour
         ShowTargetOptions();
     }
 
-    public void onHealButton()
+    public void onChangeElementButton()
     {
-        if (state != State.Ready || magic_points < 5)
+        if (state != State.Ready || counter == 1)
+        {
+            hud.DialogueText.text = "Already changed element this turn.";
             return;
+        }
 
-        Heal();
+        //Heal();
+        ShowElementOptions();
     }
 
     public void onTargetButton(Button button)
@@ -326,6 +362,26 @@ public class Player_Combat : MonoBehaviour
                 if (!enemies[i].GetComponent<Grunt_Combat>().Dead)
                 {
                     PerformAction(enemies[i]);
+                }
+                else
+                {
+                    return;
+                }
+            }
+        }
+    }
+    
+    public void onElementButton(Button button)
+    {
+        Button[] elementButtons = hud.elementButtons;
+        
+        for (int i = 0; i < elementButtons.Length; i++)
+        {
+            if (button == elementButtons[i])
+            {
+                if (i <= GameManager.Instance.elementInventory.Count)
+                {
+                    ChangeElement(i);
                 }
                 else
                 {

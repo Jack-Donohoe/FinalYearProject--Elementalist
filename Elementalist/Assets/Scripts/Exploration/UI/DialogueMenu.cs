@@ -13,8 +13,8 @@ public class DialogueMenu : MonoBehaviour
     public TMP_Text inventoryText;
 
     private string tutorial = 
-        "Hello! Welcome to Elementalist." +
-        "\n\nThe goal in this game is to defeat enemies, grow in strength and find and combine new elements in order to defeat each of the three floor guardians blocking the way. " +
+        "Welcome to Elementalist!" +
+        "\n\nThe goal in this game is to defeat enemies, grow in strength and find and combine new elements in order to defeat each of the 3 floor guardians in each level." +
         "\n\nIf you do this, you'll complete the game! So go forth and good luck!";
 
     private string inventorytutorial =

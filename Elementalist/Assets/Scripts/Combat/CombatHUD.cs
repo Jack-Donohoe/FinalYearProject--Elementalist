@@ -9,18 +9,18 @@ public class CombatHUD : MonoBehaviour
 {
     public TMP_Text DialogueText; 
     public Slider PlayerHPSlider;
-    public Slider EnemyHPSlider;
     public Slider MPSlider;
 
     public GameObject CombatPanel, RewardPanel;
 
-    public GameObject CombatUI, PauseMenu, PlayerInfo, ActionPanel, TargetPanel;
+    public GameObject CombatUI, PauseMenu, PlayerInfo, ActionPanel, TargetPanel, ElementPanel;
 
     public GameObject RewardsScreen, LevelUpScreen;
     public TMP_Text EnemiesDefeated, XPGained, ElementAdded, LevelUpHP, LevelUpMP, LevelUpAttack, LevelUpDefence;
 
-    public Button[] targetButtons;
-    public TMP_Text[] targetButtonTexts;
+    public Button[] targetButtons, elementButtons;
+
+    public Button backButton;
 
     public void StartUp()
     {
@@ -82,11 +82,26 @@ public class CombatHUD : MonoBehaviour
     {
         for (int i = 0; i < enemies.Length; i++)
         {
-            targetButtonTexts[i].text = "";
+            TMP_Text buttonText = targetButtons[i].transform.Find("Text").GetComponent<TMP_Text>();
             if (!enemies[i].GetComponent<Grunt_Combat>().Dead)
             {
-                targetButtonTexts[i].text = enemies[i].GetComponent<Grunt_Combat>().enemy_Name;
+                buttonText.text = enemies[i].GetComponent<Grunt_Combat>().enemy_Name;
             }
+            else
+            {
+                buttonText.text = "";
+            }
+        }
+    }
+    
+    public void RefreshElementButtons()
+    {
+        List<Element> elements = GameManager.Instance.elementInventory;
+        
+        for (int i = 0; i < elements.Count; i++)
+        {
+            TMP_Text buttonText = elementButtons[i].transform.Find("Text").GetComponent<TMP_Text>();
+            buttonText.text = elements[i].GetName();
         }
     }
 
@@ -116,6 +131,21 @@ public class CombatHUD : MonoBehaviour
         LevelUpScreen.SetActive(true);
     }
 
+    public void OnBackButton()
+    {
+        if (TargetPanel.activeSelf)
+        {
+            TargetPanel.SetActive(false);
+        }
+        else if (ElementPanel)
+        {
+            ElementPanel.SetActive(false);
+        }
+        
+        ActionPanel.SetActive(true);
+        backButton.gameObject.SetActive(false);
+    }
+
     public void HideLevelUpPanel()
     {
         LevelUpScreen.SetActive(false);
@@ -141,11 +171,6 @@ public class CombatHUD : MonoBehaviour
     public void setPlayerHP(int hp)
     {
        PlayerHPSlider.value = hp;
-    }
-
-    public void setEnemyHP(int hp)
-    {
-        EnemyHPSlider.value = hp;
     }
 
     public void setMP(int mp)

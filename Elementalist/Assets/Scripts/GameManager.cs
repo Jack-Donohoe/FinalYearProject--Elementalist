@@ -96,7 +96,8 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        elementInventory = new List<Element> { ElementManager.Instance.FindElement("Water"), ElementManager.Instance.FindElement("Earth") };
+        elementInventory = new List<Element> { ElementManager.Instance.FindElement("Water") };
+        selectedElement = elementInventory[0];
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -145,6 +146,7 @@ public class GameManager : MonoBehaviour
 
     public void SaveGame()
     { 
+        Debug.Log("Saving Game");
         map = GameObject.FindGameObjectWithTag("Map");
 
         List<string> elementsToSave = new List<string>();
@@ -212,6 +214,11 @@ public class GameManager : MonoBehaviour
         {
             elementInventory.Add(ElementManager.Instance.FindElement(element));
         }
+
+        if (!elementInventory.Contains(selectedElement))
+        {
+            selectedElement = elementInventory[0];
+        }
         
         hud = GameObject.FindGameObjectWithTag("HUD").GetComponent<Exploration_HUD>();
         StartCoroutine(hud.RemoveLoadingScreen(tutorial));
@@ -256,6 +263,9 @@ public class GameManager : MonoBehaviour
         hud.loadingScreen.gameObject.SetActive(true);
         loadScene.completed += (x) =>
         {
+            // Prevents a bug where game freezes if player character collides with enemy right as menu is opened
+            Time.timeScale = 1f;
+            
             GameObject manager = GameObject.FindGameObjectWithTag("CombatManager");
             StartCoroutine(manager.GetComponent<Combat_Manager>().StartUp(enemyElement, eliteEnemy));
         };
@@ -286,6 +296,7 @@ public class GameManager : MonoBehaviour
         
         hud = GameObject.FindGameObjectWithTag("HUD").GetComponent<Exploration_HUD>();
         hud.pauseMenu.GetComponent<PauseMenu>().SensitivitySlider.value = SensitivityValue;
+        hud.dialogueMenu.GetComponent<DialogueMenu>().inventoryTutorialMenu.SetActive(false);
 
         tutorial = false;
         

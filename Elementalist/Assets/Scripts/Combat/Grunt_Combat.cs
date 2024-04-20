@@ -40,16 +40,13 @@ public class Grunt_Combat : MonoBehaviour
     void Start()
     {
         manager = GameObject.FindGameObjectWithTag("CombatManager").GetComponent<Combat_Manager>();
-
-        hud = GameObject.FindGameObjectWithTag("HUD").GetComponent<CombatHUD>();
-        hud.setEnemyHP(health_points);
         
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player_Combat>();
 
         if (eliteEnemy)
         {
             enemy_Name = "Elite " + enemy_Name;
-            health_points = Mathf.RoundToInt(health_points * 2f);
+            health_points = Mathf.RoundToInt(health_points * 2.5f);
             magic_points = Mathf.RoundToInt(magic_points * 2f);
             attack_power = Mathf.RoundToInt(attack_power * 2f);
             defence_power = Mathf.RoundToInt(defence_power * 2f);
@@ -117,8 +114,6 @@ public class Grunt_Combat : MonoBehaviour
             health_points = 0;
             dead = true;
             gameObject.SetActive(false);
-        } 
-        
-        hud.setEnemyHP(health_points);
+        }
     }
 }

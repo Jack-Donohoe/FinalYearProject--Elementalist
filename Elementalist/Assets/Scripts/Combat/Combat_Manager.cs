@@ -195,7 +195,7 @@ public class Combat_Manager : MonoBehaviour
 
     IEnumerator EnemyAction(int damage, string dialogue, int counter)
     {
-        yield return new WaitForSecondsRealtime(1f);
+        yield return new WaitForSecondsRealtime(1.5f);
         player.TakeDamage(damage);
         hud.DialogueText.text = dialogue;
 
@@ -203,7 +203,7 @@ public class Combat_Manager : MonoBehaviour
 
         if (counter == enemyActions.Length)
         {
-            yield return new WaitForSecondsRealtime(1f);
+            yield return new WaitForSecondsRealtime(2f);
             ChangeTurn();
         }
     }

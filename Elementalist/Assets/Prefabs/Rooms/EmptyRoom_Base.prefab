@@ -1505,6 +1505,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Room Light
       objectReference: {fileID: 0}
+    - target: {fileID: 6468829008801021921, guid: c18bb9e44e04cb04092a38ca71e38e02, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
