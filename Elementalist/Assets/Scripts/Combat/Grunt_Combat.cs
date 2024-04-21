@@ -6,11 +6,11 @@ using Random = UnityEngine.Random;
 
 public class Grunt_Combat : MonoBehaviour
 {
-    private int health_points = 60;
+    private int health_points = 50;
     
     private int magic_points = 15;
-    
-    private int attack_power = 10;
+
+    private int attack_power = 15;
     
     private int defence_power = 5;
     public int Defence_Power
@@ -46,10 +46,17 @@ public class Grunt_Combat : MonoBehaviour
         if (eliteEnemy)
         {
             enemy_Name = "Elite " + enemy_Name;
-            health_points = Mathf.RoundToInt(health_points * 2.5f);
-            magic_points = Mathf.RoundToInt(magic_points * 2f);
-            attack_power = Mathf.RoundToInt(attack_power * 2f);
-            defence_power = Mathf.RoundToInt(defence_power * 2f);
+            health_points = Mathf.RoundToInt(health_points * 2f * GameManager.Instance.levelInt);
+            magic_points = Mathf.RoundToInt(magic_points * 0.75f * 2f * GameManager.Instance.levelInt);
+            attack_power = Mathf.RoundToInt(attack_power * 2f * GameManager.Instance.levelInt);
+            defence_power = Mathf.RoundToInt(defence_power * 2f * GameManager.Instance.levelInt);
+        }
+        else
+        {
+            health_points = Mathf.RoundToInt(health_points * 0.75f  * GameManager.Instance.levelInt);
+            magic_points = Mathf.RoundToInt(magic_points * 0.75f * GameManager.Instance.levelInt);
+            attack_power = Mathf.RoundToInt(attack_power * 0.75f * GameManager.Instance.levelInt);
+            defence_power = Mathf.RoundToInt(defence_power * 0.75f * GameManager.Instance.levelInt);
         }
     }
 
@@ -77,6 +84,11 @@ public class Grunt_Combat : MonoBehaviour
         crit_multiplier = (rand <= 5)? 2: 1;
 
         int damage = Mathf.RoundToInt(attack_power + Random.Range(5,10) * crit_multiplier - player.Defence_Power);
+        if (damage <= 0)
+        {
+            damage = 1;
+        }
+        
         string textToDisplay = enemy_Name +" attacks and deals " + damage + " damage!";
         
         if (crit_multiplier == 2)
@@ -94,6 +106,11 @@ public class Grunt_Combat : MonoBehaviour
         crit_multiplier = (rand <= 5)? 2: 1;
         
         int damage = Mathf.RoundToInt(attack_power + Random.Range(15,20) * crit_multiplier - player.Defence_Power);
+        if (damage <= 0)
+        {
+            damage = 1;
+        }
+        
         magic_points -= 5;
         string textToDisplay = enemy_Name + " uses an Elemental Attack and deals " + damage + " damage!";
         

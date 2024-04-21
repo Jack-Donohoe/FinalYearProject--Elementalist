@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Earth", menuName = "Elements/Earth", order = 1)]
+[CreateAssetMenu(fileName = "Earth", menuName = "Elements/Earth", order = 3)]
 public class Earth : Element
 {
     [SerializeField] private string element_name;

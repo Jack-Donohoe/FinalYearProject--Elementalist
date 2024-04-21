@@ -13,7 +13,7 @@ public class CombatHUD : MonoBehaviour
 
     public GameObject CombatPanel, RewardPanel;
 
-    public GameObject CombatUI, PauseMenu, PlayerInfo, ActionPanel, TargetPanel, ElementPanel;
+    public GameObject PauseMenu, PlayerInfo, ActionPanel, TargetPanel, ElementPanel;
 
     public GameObject RewardsScreen, LevelUpScreen;
     public TMP_Text EnemiesDefeated, XPGained, ElementAdded, LevelUpHP, LevelUpMP, LevelUpAttack, LevelUpDefence;
@@ -54,7 +54,7 @@ public class CombatHUD : MonoBehaviour
     private void LoadPauseMenu()
     {
         Time.timeScale = 0f;
-        CombatUI.SetActive(false);
+        CombatPanel.SetActive(false);
         
         if (PauseMenu.activeSelf)
         {
@@ -68,7 +68,7 @@ public class CombatHUD : MonoBehaviour
     {
         Time.timeScale = 1f;
         menu.SetActive(false);
-        CombatUI.SetActive(true);
+        CombatPanel.SetActive(true);
     }
     
     public void TogglePlayerActions()
@@ -83,14 +83,8 @@ public class CombatHUD : MonoBehaviour
         for (int i = 0; i < enemies.Length; i++)
         {
             TMP_Text buttonText = targetButtons[i].transform.Find("Text").GetComponent<TMP_Text>();
-            if (!enemies[i].GetComponent<Grunt_Combat>().Dead)
-            {
-                buttonText.text = enemies[i].GetComponent<Grunt_Combat>().enemy_Name;
-            }
-            else
-            {
-                buttonText.text = "";
-            }
+
+            buttonText.text = !enemies[i].GetComponent<Grunt_Combat>().Dead ? enemies[i].GetComponent<Grunt_Combat>().enemy_Name : "";
         }
     }
     
@@ -112,7 +106,7 @@ public class CombatHUD : MonoBehaviour
         RewardPanel.SetActive(true);
         
         EnemiesDefeated.text = "Enemies Defeated: " + enemiesDefeated;
-        XPGained.text = "XP Gained: " + enemiesDefeated + " x 50 = " + xp + "xp";
+        XPGained.text = "XP Gained: " + enemiesDefeated + " x " + xp /enemiesDefeated + " = " + xp + "xp";
 
         if (elementAdded != null)
         {

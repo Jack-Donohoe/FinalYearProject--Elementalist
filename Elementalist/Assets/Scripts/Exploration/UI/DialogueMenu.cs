@@ -46,5 +46,6 @@ public class DialogueMenu : MonoBehaviour
     public void OnCloseInventoryTutorialButton()
     {
         inventoryTutorialMenu.SetActive(false);
+        GameManager.Instance.tutorial = false;
     }
 }

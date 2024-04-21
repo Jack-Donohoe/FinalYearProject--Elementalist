@@ -81,11 +81,14 @@ public class Combat_Manager : MonoBehaviour
     {
         yield return new WaitForNextFrameUnit();
         
-        int enemyAmount = Mathf.CeilToInt((float) GameManager.Instance.playerLevel / 2);
+        int enemyAmount = Mathf.CeilToInt((float) GameManager.Instance.playerLevel / GameManager.Instance.levelInt);
 
         if (eliteEnemy)
         {
             enemyAmount = 1;
+        } else if (enemyAmount > 4)
+        {
+            enemyAmount = 4;
         }
         
         SpawnEnemies(enemyElement, enemyAmount, eliteEnemy);
@@ -121,6 +124,7 @@ public class Combat_Manager : MonoBehaviour
             {
                 if (enemyType.GetComponent<Grunt_Combat>().element == enemyElement && enemyType.GetComponent<Grunt_Combat>().eliteEnemy == eliteEnemy)
                 {
+                    Debug.Log(enemyElement.GetName());
                     spawnedEnemies[i] = Instantiate(enemyType, spawnLocation, Quaternion.Euler(new Vector3(0f,180f,0f)));
 
                     Grunt_Combat gruntCombat = spawnedEnemies[i].GetComponent<Grunt_Combat>();
@@ -185,17 +189,20 @@ public class Combat_Manager : MonoBehaviour
         
         for (int i = 0; i < enemyActions.Length; i++)
         {
-            (int, string, int) action = enemyActions[i];
-            hud.DialogueText.text = spawnedEnemies[action.Item3].GetComponent<Grunt_Combat>().enemy_Name + "'s Turn";
-            
-            StartCoroutine(EnemyAction(action.Item1, action.Item2, i));
-            yield return new WaitForSecondsRealtime(1.5f);
+            if (!player.Dead)
+            {
+                (int, string, int) action = enemyActions[i];
+                hud.DialogueText.text =
+                    spawnedEnemies[action.Item3].GetComponent<Grunt_Combat>().enemy_Name + "'s Turn";
+
+                StartCoroutine(EnemyAction(action.Item1, action.Item2, i));
+                yield return new WaitForSecondsRealtime(1.5f);
+            }
         }
     }
 
     IEnumerator EnemyAction(int damage, string dialogue, int counter)
     {
-        yield return new WaitForSecondsRealtime(1.5f);
         player.TakeDamage(damage);
         hud.DialogueText.text = dialogue;
 
@@ -221,7 +228,7 @@ public class Combat_Manager : MonoBehaviour
 
             Element elementToAdd;
 
-            if (!GameManager.Instance.elementInventory.Contains(spawnedEnemies[0].GetComponent<Grunt_Combat>().element))
+            if (!GameManager.Instance.elementInventory.Contains(spawnedEnemies[0].GetComponent<Grunt_Combat>().element) && GameManager.Instance.elementInventory.Count < 4)
             {
                 elementToAdd = spawnedEnemies[0].GetComponent<Grunt_Combat>().element;
                 GameManager.Instance.elementInventory.Add(elementToAdd);

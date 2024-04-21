@@ -14805,7 +14805,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyState: 2
-  enemyElement: {fileID: 11400000, guid: 580725dd379310843b1444491619d888, type: 2}
+  enemyElement: {fileID: 11400000, guid: 0e7cc13e30db4b84298e73a9a40c4a69, type: 2}
   eliteEnemy: 1
 --- !u!95 &7579823594499567320
 Animator:

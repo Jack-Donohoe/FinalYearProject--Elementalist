@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Steam", menuName = "Elements/Steam", order = 2)]
+[CreateAssetMenu(fileName = "Steam", menuName = "Elements/Steam", order = 5)]
 public class Steam : Element
 {
     [SerializeField] private string element_name;

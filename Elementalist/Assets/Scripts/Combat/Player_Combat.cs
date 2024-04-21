@@ -123,11 +123,11 @@ public class Player_Combat : MonoBehaviour
                 Attack();
                 break;
             }
-            case State.Heal:
-            {
-                Heal();
-                break;
-            }
+            // case State.Heal:
+            // {
+            //     Heal();
+            //     break;
+            // }
             case State.ElementalAttack:
             {
                 ElementalAttack();
@@ -184,11 +184,22 @@ public class Player_Combat : MonoBehaviour
         int damageVal = element.GetDamageValue();
         Grunt_Combat enemyCombat = enemies[0].GetComponent<Grunt_Combat>();
 
+        float element_multiplier = ElementManager.Instance.GetDamageMultiplier((element.GetName(), enemyCombat.element.GetName()));
+
         damage = Mathf.RoundToInt(attack_power + Random.Range(damageVal - 5, damageVal) * crit_multiplier
-                                  * ElementManager.Instance.GetDamageMultiplier((element.GetName(), enemyCombat.element.GetName())) - enemyCombat.Defence_Power);
+                                  * element_multiplier - enemyCombat.Defence_Power);
         dialogue = "Player attacks with a " + element.GetAttackName() + " and deals " + damage + " damage!";
         
         action_cost = element.GetMagicCost();
+
+        if (element_multiplier == 2f)
+        {
+            dialogue += " It's Super Effective!";
+        }
+        else if (element_multiplier == 0.5f)
+        {
+            dialogue += " It's Not Very Effective!";
+        }
 
         if (crit_multiplier == 2)
         {
@@ -261,6 +272,19 @@ public class Player_Combat : MonoBehaviour
         state = State.Ready;
         hud.TogglePlayerActions();
         counter = 0;
+
+        if (magic_points < max_magic)
+        {
+            int mpToAdd = Random.value < 0.5 ? 0 : 5;
+            magic_points += mpToAdd;
+
+            if (magic_points > max_magic)
+            {
+                magic_points = max_magic;
+            }
+            
+            hud.setMP(magic_points);
+        }
     }
 
     public void StartEndTurn()
@@ -276,7 +300,12 @@ public class Player_Combat : MonoBehaviour
 
     public (int,int,int) CalculateCombatRewards()
     {
-        int xp = enemies.Length * 50;
+        int xp = enemies.Length * 50 * GameManager.Instance.levelInt;
+
+        if (enemies[0].GetComponent<Grunt_Combat>().eliteEnemy)
+        {
+            xp = Mathf.RoundToInt(xp * 1.5f);
+        }
         
         int newHealth = health_points + max_health / 10;
         if (newHealth > max_health)

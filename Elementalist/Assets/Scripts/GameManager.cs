@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get { return _instance; } }
 
     public string levelName;
+    public int levelInt;
 
     public int playerLevel = 1;
     public int xpToLevelUp = 100;
@@ -69,7 +70,7 @@ public class GameManager : MonoBehaviour
     public int SensitivityValue = 1;
     private GameObject map;
 
-    private bool tutorial;
+    public bool tutorial;
 
     private void Awake()
     {
@@ -96,13 +97,14 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        elementInventory = new List<Element> { ElementManager.Instance.FindElement("Water") };
+        elementInventory = new List<Element> { ElementManager.Instance.FindElement("Water"), ElementManager.Instance.FindElement("Air") };
         selectedElement = elementInventory[0];
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         var loadScene = SceneManager.LoadSceneAsync("Level1");
         levelName = "Level1";
+        levelInt = 1;
         tutorial = true;
         ResetPlayerInfo();
 
@@ -124,8 +126,9 @@ public class GameManager : MonoBehaviour
             var loadScene = SceneManager.LoadSceneAsync("Level2");
             loadScene.completed += (x) =>
             {
-                StartLevel();
                 levelName = "Level2";
+                levelInt = 2;
+                StartLevel();
             };
         }
         else if (SceneManager.GetActiveScene().name == "Level2")
@@ -133,8 +136,9 @@ public class GameManager : MonoBehaviour
             var loadScene = SceneManager.LoadSceneAsync("Level3");
             loadScene.completed += (x) =>
             {
-                StartLevel();
                 levelName = "Level3";
+                levelInt = 3;
+                StartLevel();
             };
         } else if (SceneManager.GetActiveScene().name == "Level3")
         {
@@ -158,6 +162,7 @@ public class GameManager : MonoBehaviour
         GameData gameData = new GameData
         {
             levelName = levelName,
+            levelInt = levelInt,
             playerPos = GameObject.FindGameObjectWithTag("Player").transform.position,
             playerRotation = GameObject.FindGameObjectWithTag("Player").transform.rotation,
             playerLevel = playerLevel,
@@ -180,6 +185,7 @@ public class GameManager : MonoBehaviour
 
         SceneManager.LoadScene(gameData.levelName);
         levelName = gameData.levelName;
+        levelInt = gameData.levelInt;
 
         StartCoroutine(LoadGame(gameData));
     }
@@ -311,10 +317,10 @@ public class GameManager : MonoBehaviour
         {
             playerXP -= xpToLevelUp;
             
-            int NewMaxHP = max_health + ((Random.value > 0.3f) ? 5 : 10);
-            int NewMaxMP = max_magic + ((Random.value > 0.5f) ? 5 : 10);
-            int NewAttack = attack_power + Random.Range(2, 5);
-            int NewDefence = defence_power + Random.Range(2, 5);
+            int NewMaxHP = max_health + ((Random.value > 0.3f) ? 20 : 25);
+            int NewMaxMP = max_magic + ((Random.value > 0.5f) ? 10 : 15);
+            int NewAttack = attack_power + Random.Range(5, 10);
+            int NewDefence = defence_power + Random.Range(5, 10);
 
             CombatHUD hud = GameObject.FindGameObjectWithTag("HUD").GetComponent<CombatHUD>();
             hud.LevelUpHP.text = "Max HP: " + max_health + " + " + (NewMaxHP - max_health) + " = " + NewMaxHP; 

@@ -6,36 +6,67 @@
   <component name="ChangeListManager">
     <list default="true" id="a963d819-7dda-485b-9ffe-5bea1ba9d47c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Elementalist/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Elementalist/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/Blue.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/Blue.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Combat/CombatHUD.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Combat/CombatHUD.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Elements/Earth.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Elements/Earth.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Elements/Fire.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Elements/Fire.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Elements/Steam.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Elements/Steam.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Elements/Water.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Elements/Water.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Elements/Water.asset.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Elements/Water.asset.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/Dark.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/Dark.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/Earth Metal.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/Earth Metal.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/Fire Metal.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/Fire Metal.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/LevelExitBlue.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/LevelExitBlue.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/Red.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/Red.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/Rock.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/Rock.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/Stone Roof.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/Stone Roof.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/Stone.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/Stone.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/Water Metal.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/Water Metal.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/Wind Metal.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/Wind Metal.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/Wood.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/Wood.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/stone.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/stone.jpg.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Combat/Enemies/Elite Water Grunt.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Combat/Enemies/Elite Water Grunt.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Combat/Enemies/Water Grunt.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Combat/Enemies/Water Grunt.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/ElementManager.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/ElementManager.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Elements/WaterBall.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Elements/WaterBall.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Exploration/Enemies/Elite Water Grunt.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Exploration/Enemies/Elite Water Grunt.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Exploration/Enemies/Water Grunt.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Exploration/Enemies/Water Grunt.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Exploration/Exploration HUD.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Exploration/Exploration HUD.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Rooms/Corner/EmptyRoom_Corner.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Rooms/Corner/EmptyRoom_Corner.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Rooms/EmptyRoom_Base.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Rooms/EmptyRoom_Base.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Rooms/EndRoom.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Rooms/EndRoom.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Rooms/One Entrance/EmptyRoom_One.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Rooms/One Entrance/EmptyRoom_One.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Rooms/StartRoom.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Rooms/StartRoom.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Rooms/Room Light.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Rooms/Room Light.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Rooms/Straight/EmptyRoom_Straight.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Rooms/Straight/EmptyRoom_Straight.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Rooms/T Junction/EmptyRoom_T.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Rooms/T Junction/EmptyRoom_T.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/CombatScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/CombatScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/DeathScreen.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/DeathScreen.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Level1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Level1.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Level2.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Level2.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Level3.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Level3.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/StartScreen.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/StartScreen.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/TestScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/TestScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/WinScreen.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/WinScreen.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Combat/CombatHUD.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Combat/CombatHUD.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Combat/CombatSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Combat/CombatSystem.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Combat/Combat_Manager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Combat/Combat_Manager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Combat/Grunt_Combat.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Combat/Grunt_Combat.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Combat/Player_Combat.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Combat/Player_Combat.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Exploration/Enemy_Exploration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Exploration/Enemy_Exploration.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/DataManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/DataManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ElementManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ElementManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Elements/Earth.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Elements/Earth.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Elements/Steam.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Elements/Steam.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Exploration/UI/DialogueMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Exploration/UI/DialogueMenu.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Exploration/UI/Exploration_HUD.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Exploration/UI/Exploration_HUD.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/ProcGen/ProcGenV4.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ProcGen/ProcGenV4.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Shaders/Water/Water.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Shaders/Water/Water.mat" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,15 +78,19 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/56073df97ede4f769c2cc45d546d986d172200/33/cd352b64/GameObject.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/e4e9310d6e504b9195be7c4cd0c0cfcd574c30/70/ba25e9eb/List`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Combat/Grunt_Combat.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Combat/Hover_On_Button.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Elements/Earth.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Elements/Element.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Elements/Fire.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Elements/Ice.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Elements/Sand.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Elements/Steam.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Elements/Water.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Exploration/Door.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Exploration/Player_Exploration.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Exploration/Room_Light.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Exploration/UI/InventoryMenu.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Exploration/UI/PauseMenu.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/PrefabLightmapData.cs" root0="FORCE_HIGHLIGHTING" />
@@ -63,6 +98,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/ProcGen/ProcGenV4.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/ProcGen/Room.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Projectile.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ai.navigation@1.1.5/Runtime/NavMeshSurface.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.cinemachine@2.9.7/Runtime/Behaviours/CinemachineFreeLook.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.cinemachine@2.9.7/Runtime/Helpers/CinemachineInputProvider.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.core@14.0.8/Runtime/Utilities/ResourceReloader.cs" root0="SKIP_HIGHLIGHTING" />
@@ -280,6 +316,8 @@
       <workItem from="1713396560711" duration="614000" />
       <workItem from="1713399553411" duration="115000" />
       <workItem from="1713554357853" duration="13906000" />
+      <workItem from="1713643047956" duration="8411000" />
+      <workItem from="1713710195195" duration="17844000" />
     </task>
     <servers />
   </component>

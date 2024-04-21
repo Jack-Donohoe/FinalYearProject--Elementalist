@@ -1462,6 +1462,8 @@ MonoBehaviour:
   enemyTypes:
   - {fileID: 4709504129376466749, guid: 08b631d07d0c6ce4da5032218083adae, type: 3}
   - {fileID: 4709504129376466749, guid: 72fb01df8e166274e9d7a139f217faa6, type: 3}
+  - {fileID: 4709504129376466749, guid: e4f657bda1ab09c48bd49d0ff9a1db1d, type: 3}
+  - {fileID: 4709504129376466749, guid: 52a2d08c0d99ef0408d2adb092f38fd4, type: 3}
   waypoints: []
 --- !u!1 &7744550872132747031
 GameObject:

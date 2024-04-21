@@ -331,7 +331,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.15531825, y: -0.000000016997571, z: 0.0000000026724647, w: 0.9878645}
+  m_LocalRotation: {x: 0.15531825, y: -0.000000016997573, z: 0.0000000026724651, w: 0.9878645}
   m_LocalPosition: {x: 0, y: 2.5, z: -3.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -416,6 +416,134 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+--- !u!1 &1286545219
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1286545221}
+  - component: {fileID: 1286545220}
+  m_Layer: 0
+  m_Name: AudioPlayer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &1286545220
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1286545219}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: b315a2322ff026a40b57d1d5df8c3bc4, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.2
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &1286545221
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1286545219}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1442386661
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -628,32 +756,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: Exploration HUD
       objectReference: {fileID: 0}
-    - target: {fileID: 163372292889261331, guid: 4211721dd6f6cb44081851f581d8e44f, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 163372292889261331, guid: 4211721dd6f6cb44081851f581d8e44f, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
+    - target: {fileID: 1102191158335014617, guid: 4211721dd6f6cb44081851f581d8e44f, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: cf774253b9d5e7a47b5dc49fd417adb2, type: 2}
     - target: {fileID: 1102191158335014617, guid: 4211721dd6f6cb44081851f581d8e44f, type: 3}
       propertyPath: m_hasFontAssetChanged
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2348505283370982252, guid: 4211721dd6f6cb44081851f581d8e44f, type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2733281854033398769, guid: 4211721dd6f6cb44081851f581d8e44f, type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2813824357542517267, guid: 4211721dd6f6cb44081851f581d8e44f, type: 3}
-      propertyPath: m_AnchorMax.x
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 2813824357542517267, guid: 4211721dd6f6cb44081851f581d8e44f, type: 3}
-      propertyPath: m_AnchorMax.y
+    - target: {fileID: 2348505283370982252, guid: 4211721dd6f6cb44081851f581d8e44f, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: cf774253b9d5e7a47b5dc49fd417adb2, type: 2}
+    - target: {fileID: 2348505283370982252, guid: 4211721dd6f6cb44081851f581d8e44f, type: 3}
+      propertyPath: m_hasFontAssetChanged
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3493509653091405114, guid: 4211721dd6f6cb44081851f581d8e44f, type: 3}
@@ -736,25 +852,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3601492907158255453, guid: 4211721dd6f6cb44081851f581d8e44f, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3639534091452286418, guid: 4211721dd6f6cb44081851f581d8e44f, type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 0
-      objectReference: {fileID: 0}
+    - target: {fileID: 4315852746256174699, guid: 4211721dd6f6cb44081851f581d8e44f, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: cf774253b9d5e7a47b5dc49fd417adb2, type: 2}
     - target: {fileID: 4315852746256174699, guid: 4211721dd6f6cb44081851f581d8e44f, type: 3}
       propertyPath: m_hasFontAssetChanged
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5580543101309270451, guid: 4211721dd6f6cb44081851f581d8e44f, type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8793662196107078974, guid: 4211721dd6f6cb44081851f581d8e44f, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: cf774253b9d5e7a47b5dc49fd417adb2, type: 2}
+    - target: {fileID: 8793662196107078974, guid: 4211721dd6f6cb44081851f581d8e44f, type: 3}
       propertyPath: m_hasFontAssetChanged
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -847,11 +959,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8331634207267769950, guid: fb588c631153d504899f9ff906a2376a, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000008498785
+      value: -0.000000008498788
       objectReference: {fileID: 0}
     - target: {fileID: 8331634207267769950, guid: fb588c631153d504899f9ff906a2376a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0000000013362322
+      value: 0.0000000013362326
       objectReference: {fileID: 0}
     - target: {fileID: 9172801567724682835, guid: fb588c631153d504899f9ff906a2376a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -921,3 +1033,4 @@ SceneRoots:
   - {fileID: 507656171846470266}
   - {fileID: 1442386661}
   - {fileID: 424374016}
+  - {fileID: 1286545221}

@@ -8,6 +8,7 @@ using Newtonsoft.Json;
 public class GameData
 {
     public string levelName;
+    public int levelInt;
     public Vector3 playerPos;
     public Quaternion playerRotation;
     public int playerLevel;

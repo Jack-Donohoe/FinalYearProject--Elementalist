@@ -34,8 +34,7 @@ public class Exploration_HUD : MonoBehaviour
             dialogueMenu.SetActive(true);
         }
         else
-        { 
-            dialogueMenu.SetActive(false);
+        {
             inGameHUD.SetActive(true);
         }
     }
@@ -101,6 +100,12 @@ public class Exploration_HUD : MonoBehaviour
         if (pauseMenu.activeSelf)
         {
             pauseMenu.SetActive(false);
+        }
+
+        if (GameManager.Instance.levelName == "Level1")
+        {
+            bool tutorial = GameManager.Instance.tutorial;
+            dialogueMenu.GetComponent<DialogueMenu>().inventoryTutorialMenu.SetActive(tutorial);
         }
 
         InventoryMenu menu = inventoryMenu.GetComponent<InventoryMenu>();

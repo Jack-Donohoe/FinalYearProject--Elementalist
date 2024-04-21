@@ -22,13 +22,10 @@ public class ProcGenV4 : MonoBehaviour
     public float fireEnemyFrequency = 0f;
     
     [Range(0,1)]
-    public float waterEnemyFrequency = 0f;
-    
-    [Range(0,1)]
     public float earthEnemyFrequency = 0f;
     
     [Range(0,1)]
-    public float airEnemyFrequency = 0f;
+    public float steamEnemyFrequency = 0f;
     
     void Awake()
     {
@@ -81,7 +78,7 @@ public class ProcGenV4 : MonoBehaviour
                 
                 room.completed = false;
         
-                room.roomType = Random.Range(0, 10) > 5 ? RoomV2.RoomType.Empty : RoomV2.RoomType.Enemy;
+                room.roomType = Random.Range(0, 10) > 6 ? RoomV2.RoomType.Empty : RoomV2.RoomType.Enemy;
         
                 room.connections["top"] = Random.Range(0, 10) <= 6;
                 room.connections["left"] = Random.Range(0, 10) <= 5;
@@ -332,9 +329,24 @@ public class ProcGenV4 : MonoBehaviour
                         {
                             if (levelToGenerate[i, j].completed == false)
                             {
-                                int enemyNum = Random.value < fireEnemyFrequency ? 0 : 1;
-                                
-                                room.GetComponent<Level_Room>().SpawnEnemy(enemyNum, false);
+                                if (GameManager.Instance.levelName == "Level1")
+                                {
+                                    int enemyNum = Random.value < fireEnemyFrequency ? 0 : 1;
+
+                                    room.GetComponent<Level_Room>().SpawnEnemy(enemyNum, false);
+                                }
+                                else if (GameManager.Instance.levelName == "Level2")
+                                {
+                                    int enemyNum = Random.value < earthEnemyFrequency ? 2 : 3;
+
+                                    room.GetComponent<Level_Room>().SpawnEnemy(enemyNum, false);
+                                }
+                                else if (GameManager.Instance.levelName == "Level3")
+                                {
+                                    int enemyNum = Random.Range(0,4);
+
+                                    room.GetComponent<Level_Room>().SpawnEnemy(enemyNum, false);
+                                }
                             }
                         }
                         else
@@ -408,9 +420,24 @@ public class ProcGenV4 : MonoBehaviour
                     
                     if (levelToGenerate[i, j].completed == false)
                     {
-                        int enemyNum = Random.value < 0.7 ? 0 : 1;
-                                
-                        room.GetComponent<Level_Room>().SpawnEnemy(enemyNum, true);
+                        if (GameManager.Instance.levelName == "Level1")
+                        {
+                            int enemyNum = Random.value < 0.7 ? 0 : 1;
+
+                            room.GetComponent<Level_Room>().SpawnEnemy(enemyNum, true);
+                        }
+                        else if (GameManager.Instance.levelName == "Level2")
+                        {
+                            int enemyNum = Random.value < 0.5 ? 2 : 3;
+
+                            room.GetComponent<Level_Room>().SpawnEnemy(enemyNum, true);
+                        }
+                        else if (GameManager.Instance.levelName == "Level3")
+                        {
+                            int enemyNum = Random.Range(0,4);
+
+                            room.GetComponent<Level_Room>().SpawnEnemy(enemyNum, true);
+                        }
                     }
                     
                     // if (connections.Item1)
