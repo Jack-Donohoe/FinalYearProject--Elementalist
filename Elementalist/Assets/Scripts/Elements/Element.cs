@@ -17,4 +17,6 @@ public abstract class Element : ScriptableObject
     public abstract string GetAttackName();
 
     public abstract Texture2D GetIcon();
+
+    public abstract AudioClip GetSFX();
 }

@@ -10,6 +10,8 @@ public class Exploration_HUD : MonoBehaviour
 {
     public GameObject loadingScreen;
     public GameObject inGameHUD;
+
+    public Slider HPBar, MPBar;
     
     public GameObject pauseMenu;
     
@@ -24,6 +26,12 @@ public class Exploration_HUD : MonoBehaviour
     {
         yield return new WaitForSeconds(1.5f);
         loadingScreen.gameObject.SetActive(false);
+
+        HPBar.maxValue = GameManager.Instance.Max_Health;
+        HPBar.value = GameManager.Instance.HP;
+
+        MPBar.maxValue = GameManager.Instance.Max_Magic;
+        MPBar.value = GameManager.Instance.MP;
 
         if (tutorial)
         {

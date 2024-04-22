@@ -19,3 +19,4 @@ MonoBehaviour:
   magic_cost: 15
   attack_name: Ice Spike
   icon: {fileID: 2800000, guid: 6bb27f2e61e9bab47980bbf8ddc14acf, type: 3}
+  SFX: {fileID: 8300000, guid: 54481c4c2b69a0746aec051162d0b381, type: 3}

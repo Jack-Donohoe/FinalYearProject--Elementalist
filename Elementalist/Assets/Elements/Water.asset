@@ -19,3 +19,4 @@ MonoBehaviour:
   magic_cost: 10
   attack_name: Water Bolt
   icon: {fileID: 2800000, guid: 1dcc439d15148034ab838cd7978351c7, type: 3}
+  SFX: {fileID: 8300000, guid: 67e565508bf3ebd4aa6fcbf87d3ecc25, type: 3}

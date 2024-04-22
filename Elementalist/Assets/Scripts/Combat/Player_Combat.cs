@@ -72,6 +72,7 @@ public class Player_Combat : MonoBehaviour
     private string dialogue;
 
     public Animator animator;
+    public AudioSource sfxPlayer;
 
     private int counter = 0;
     
@@ -219,6 +220,8 @@ public class Player_Combat : MonoBehaviour
         Vector3 direction = (attackTarget.transform.position - projectileToLaunch.transform.position).normalized * (element.GetProjectileSpeed() * Time.deltaTime);
         projectileToLaunch.transform.LookAt(enemies[0].transform.position);
         projectileToLaunch.GetComponent<Projectile>().SetMoveDirection(direction);
+        
+        sfxPlayer.PlayOneShot(element.GetSFX());
     }
 
     private void PerformAction(GameObject attackTarget)

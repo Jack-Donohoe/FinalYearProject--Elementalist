@@ -19,6 +19,8 @@ public class Air : Element
     
     [SerializeField] private Texture2D icon;
     
+    [SerializeField] private AudioClip SFX;
+    
     public override string GetName()
     {
         return element_name;
@@ -52,5 +54,10 @@ public class Air : Element
     public override Texture2D GetIcon()
     {
         return icon;
+    }
+
+    public override AudioClip GetSFX()
+    {
+        return SFX;
     }
 }

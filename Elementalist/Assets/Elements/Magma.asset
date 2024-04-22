@@ -19,3 +19,4 @@ MonoBehaviour:
   magic_cost: 20
   attack_name: Magma Ball
   icon: {fileID: 2800000, guid: a014637347517be43a6c9780ba07deb7, type: 3}
+  SFX: {fileID: 8300000, guid: 8f534b79818bdf142b01660cda68caf2, type: 3}

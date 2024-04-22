@@ -19,3 +19,4 @@ MonoBehaviour:
   magic_cost: 10
   attack_name: Crystal Blast
   icon: {fileID: 2800000, guid: e4b90b19f21dd6b4f9e57af4cc2fe610, type: 3}
+  SFX: {fileID: 8300000, guid: cd39252e4f45e2748b742758ef151a23, type: 3}

@@ -84,9 +84,9 @@ public class Grunt_Combat : MonoBehaviour
         crit_multiplier = (rand <= 5)? 2: 1;
 
         int damage = Mathf.RoundToInt(attack_power + Random.Range(5,10) * crit_multiplier - player.Defence_Power);
-        if (damage <= 0)
+        if (damage < 5)
         {
-            damage = 1;
+            damage = 5;
         }
         
         string textToDisplay = enemy_Name +" attacks and deals " + damage + " damage!";
@@ -106,9 +106,9 @@ public class Grunt_Combat : MonoBehaviour
         crit_multiplier = (rand <= 5)? 2: 1;
         
         int damage = Mathf.RoundToInt(attack_power + Random.Range(15,20) * crit_multiplier - player.Defence_Power);
-        if (damage <= 0)
+        if (damage < 10)
         {
-            damage = 1;
+            damage = 10;
         }
         
         magic_points -= 5;

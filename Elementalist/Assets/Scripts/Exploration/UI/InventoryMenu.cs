@@ -64,6 +64,7 @@ public class InventoryMenu : MonoBehaviour
             elementButtons[i].gameObject.SetActive(true);
             elementButtonTexts[i].text = elements[i].GetName();
             elementButtonImages[i].texture = elements[i].GetIcon();
+            elementButtons[i].GetComponent<Image>().color = new Color(0.35f, 0.35f, 0.35f);
             
             if (GameManager.Instance.elementInventory[i] == GameManager.Instance.selectedElement)
             {
@@ -100,10 +101,10 @@ public class InventoryMenu : MonoBehaviour
         
         for(int i = 0; i < elements.Count; i++)
         {
-            Debug.Log(elements[i].GetName());
             elementButtons[i].gameObject.SetActive(true);
             elementButtonTexts[i].text = elements[i].GetName();
             elementButtonImages[i].texture = elements[i].GetIcon();
+            elementButtons[i].GetComponent<Image>().color = new Color(0.35f, 0.35f, 0.35f);
             
             if (GameManager.Instance.elementInventory[i] == GameManager.Instance.selectedElement)
             {

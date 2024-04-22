@@ -19,3 +19,4 @@ MonoBehaviour:
   magic_cost: 10
   attack_name: Fireball
   icon: {fileID: 2800000, guid: 8ee0225f99f1d134b8c8e81e34bcaf44, type: 3}
+  SFX: {fileID: 8300000, guid: 7f252b3bec06d42429bccf37abc35d95, type: 3}

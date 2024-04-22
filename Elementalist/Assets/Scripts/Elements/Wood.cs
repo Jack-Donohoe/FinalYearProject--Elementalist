@@ -18,6 +18,8 @@ public class Wood : Element
     [SerializeField] private string attack_name;
 
     [SerializeField] private Texture2D icon;
+    
+    [SerializeField] private AudioClip SFX;
 
     public override string GetName()
     {
@@ -52,5 +54,10 @@ public class Wood : Element
     public override Texture2D GetIcon()
     {
         return icon;
+    }
+    
+    public override AudioClip GetSFX()
+    {
+        return SFX;
     }
 }

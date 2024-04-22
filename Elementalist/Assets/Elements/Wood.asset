@@ -19,3 +19,4 @@ MonoBehaviour:
   magic_cost: 5
   attack_name: Vine Ball
   icon: {fileID: 2800000, guid: 273b5d7724b052f4f96fa2299d7d473e, type: 3}
+  SFX: {fileID: 8300000, guid: e1ef839bf2243c446bedd9fe76292bb5, type: 3}
