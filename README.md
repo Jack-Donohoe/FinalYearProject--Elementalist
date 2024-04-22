@@ -20,7 +20,6 @@ This is the Github Repository for my Final Year Project in Computer Science at S
 - https://freesound.org/people/kjartan_abel/sounds/647212/
 - https://freesound.org/people/Sirkoto51/sounds/416632/
 - https://freesound.org/people/qubodup/sounds/442827/
-- https://freesound.org/people/florianreichelt/sounds/683102/
 - https://freesound.org/people/florianreichelt/sounds/683096/
 - https://freesound.org/people/birdOfTheNorth/sounds/623817/
 - https://freesound.org/people/colorsCrimsonTears/sounds/563536/
@@ -28,3 +27,5 @@ This is the Github Repository for my Final Year Project in Computer Science at S
 - https://freesound.org/people/BrickDeveloper171/sounds/610473/
 - https://freesound.org/people/lotteria001/sounds/709888/
 - https://freesound.org/people/EminYILDIRIM/sounds/541477/
+- https://freesound.org/people/igroglaz/sounds/593875/
+- https://freesound.org/people/EminYILDIRIM/sounds/572006/
