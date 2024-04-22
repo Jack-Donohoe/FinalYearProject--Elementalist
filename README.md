@@ -17,3 +17,10 @@ This is the Github Repository for my Final Year Project in Computer Science at S
 - https://www.fontspace.com/deutsch-gothic-font-f9877
 - https://freesound.org/people/humanoide9000/sounds/685841/
 - https://freesound.org/people/Vrymaa/sounds/722394/
+- https://freesound.org/people/kjartan_abel/sounds/647212/
+- https://freesound.org/people/Sirkoto51/sounds/416632/
+- https://freesound.org/people/qubodup/sounds/442827/
+- https://freesound.org/people/florianreichelt/sounds/683102/
+- https://freesound.org/people/florianreichelt/sounds/683096/
+- https://freesound.org/people/birdOfTheNorth/sounds/623817/
+- https://freesound.org/people/colorsCrimsonTears/sounds/563536/
