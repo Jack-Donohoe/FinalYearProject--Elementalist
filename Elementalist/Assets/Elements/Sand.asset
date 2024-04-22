@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Sand
   m_EditorClassIdentifier: 
   element_name: Sand
-  sandball: {fileID: 0}
+  sandball: {fileID: 386620094696020906, guid: e2b29aaf01eb840458983379425c320d, type: 3}
   speed: 6
   damage_value: 30
   magic_cost: 15

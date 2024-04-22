@@ -48,10 +48,10 @@ public class Grunt_Combat : MonoBehaviour
             enemy_Name = "Elite " + enemy_Name;
             health_points = Mathf.RoundToInt(health_points * 2f * GameManager.Instance.levelInt);
             magic_points = Mathf.RoundToInt(magic_points * 0.75f * 2f * GameManager.Instance.levelInt);
-            attack_power = Mathf.RoundToInt(attack_power * 2f * GameManager.Instance.levelInt);
+            attack_power = Mathf.RoundToInt(attack_power * 0.8f * 2f * GameManager.Instance.levelInt);
             defence_power = Mathf.RoundToInt(defence_power * 2f * GameManager.Instance.levelInt);
         }
-        else
+        else if(GameManager.Instance.levelInt != 1)
         {
             health_points = Mathf.RoundToInt(health_points * 0.75f  * GameManager.Instance.levelInt);
             magic_points = Mathf.RoundToInt(magic_points * 0.75f * GameManager.Instance.levelInt);
