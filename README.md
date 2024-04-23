@@ -3,7 +3,6 @@ This is the Github Repository for my Final Year Project in Computer Science at S
 
 # References
 - https://pvs-studio.com/en/blog/posts/csharp/1027/
-- https://www.jettelly.com/blog/creating-a-toon-style-fire-with-shader-graph-in-unity/
 - https://github.com/abitofgamedev/CartoonFire
 - https://github.com/abitofgamedev/water_vfx
 - https://blog.ldev.app/building-a-toon-smoke-particle-shader-in-shader-graph/
