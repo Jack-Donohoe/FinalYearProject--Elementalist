@@ -7,6 +7,7 @@ This is the Github Repository for my Final Year Project in Computer Science at S
 - https://github.com/abitofgamedev/CartoonFire
 - https://github.com/abitofgamedev/water_vfx
 - https://blog.ldev.app/building-a-toon-smoke-particle-shader-in-shader-graph/
+- https://www.spiceworks.com/tech/tech-general/articles/what-is-fsm/
 
 # Assets
 - https://www.cadhatch.com/seamless-water-textures
