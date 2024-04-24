@@ -35,7 +35,6 @@ public class CombatSystem : MonoBehaviour
     IEnumerator playerAttack()
     {
         enemyHP = enemyHP - 5;
-        hud.setEnemyHP(enemyHP);
 
         yield return new WaitForSeconds(1f);
 
@@ -54,7 +53,6 @@ public class CombatSystem : MonoBehaviour
     IEnumerator fireballAttack()
     {
         enemyHP = enemyHP - 10;
-        hud.setEnemyHP(enemyHP);
 
         playerMP = playerMP - 10;
         hud.setMP(playerMP);

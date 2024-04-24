@@ -1,43 +1,16 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Grunt_Combat : MonoBehaviour
 {
-    private int max_health = 50;
-    public int Max_Health
-    {
-        get => max_health;
-        set => max_health = value;
-    }
-    
     private int health_points = 50;
-    public int HP
-    {
-        get => health_points;
-        set => health_points = value;
-    }
     
-    private int max_magic = 50;
-    public int Max_Magic
-    {
-        get => max_magic;
-        set => max_magic = value;
-    }
-    
-    private int magic_points = 20;
-    public int MP
-    {
-        get => magic_points;
-        set => magic_points = value;
-    }
-    
-    private int attack_power = 10;
-    public int Attack_Power
-    {
-        get => attack_power;
-        set => attack_power = value;
-    }
+    private int magic_points = 15;
+
+    private int attack_power = 15;
     
     private int defence_power = 5;
     public int Defence_Power
@@ -46,145 +19,107 @@ public class Grunt_Combat : MonoBehaviour
         set => defence_power = value;
     }
     
-    private int multiplier;
+    private int crit_multiplier;
     
     public CombatHUD hud;
 
     public Combat_Manager manager;
     
-    public enum State { Idle, Attack, Heal, ElementalAttack, Dead }
-
-    public State state;
-    
-    private bool dead = false;
+    private bool dead;
     public bool Dead => dead;
 
     private Player_Combat player;
+
+    public String enemy_Name = "Grunt";
+
+    public Element element;
+
+    public bool eliteEnemy;
     
     // Start is called before the first frame update
     void Start()
     {
-        state = State.Idle;
-        
-        hud.setEnemyHP(health_points);
+        manager = GameObject.FindGameObjectWithTag("CombatManager").GetComponent<Combat_Manager>();
         
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player_Combat>();
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (dead)
+        if (eliteEnemy)
         {
-            state = State.Dead;
+            enemy_Name = "Elite " + enemy_Name;
+            health_points = Mathf.RoundToInt(health_points * 2f * GameManager.Instance.levelInt);
+            magic_points = Mathf.RoundToInt(magic_points * 0.75f * 2f * GameManager.Instance.levelInt);
+            attack_power = Mathf.RoundToInt(attack_power * 0.8f * 2f * GameManager.Instance.levelInt);
+            defence_power = Mathf.RoundToInt(defence_power * 2f * GameManager.Instance.levelInt);
         }
-        
-        switch (state)
+        else if(GameManager.Instance.levelInt != 1)
         {
-            case State.Idle:
-            {
-                break;
-            }
-            case State.Attack:
-            {
-                Attack();
-                break;
-            }
-            case State.Heal:
-            {
-                Heal();
-                break;
-            }
-            case State.ElementalAttack:
-            {
-                ElementalAttack();
-                break;
-            }
+            health_points = Mathf.RoundToInt(health_points * 0.75f  * GameManager.Instance.levelInt);
+            magic_points = Mathf.RoundToInt(magic_points * 0.75f * GameManager.Instance.levelInt);
+            attack_power = Mathf.RoundToInt(attack_power * 0.75f * GameManager.Instance.levelInt);
+            defence_power = Mathf.RoundToInt(defence_power * 0.75f * GameManager.Instance.levelInt);
         }
     }
 
-    public IEnumerator StartTurn()
+    public (int, String) SelectAction()
     {
-        yield return new WaitForSeconds(0.5f);
+        (int, String) action;
         int rand = Random.Range(0, 100);
 
-        if (rand >= 30)
+        if (rand > 40 || magic_points < 5)
         {
-            state = State.Attack;
-        } else if (rand is > 20 and < 30 && magic_points >= 5)
-        {
-            state = State.Heal;
+            action = Attack();
         }
-        else if (rand <= 20 && magic_points >= 5)
+        else
         {
-            state = State.ElementalAttack;
+            action = ElementalAttack();
         }
+
+        return action;
     }
 
-    private IEnumerator EndTurn()
-    {
-        state = State.Idle;
-        
-        yield return new WaitForSeconds(1.5f);
-        manager.ChangeTurn();
-    }
-
-    private void Attack()
+    private (int, String) Attack()
     {
         int rand = Random.Range(0, 100);
 
-        multiplier = (rand <= 8)? 2: 1;
+        crit_multiplier = (rand <= 5)? 2: 1;
 
-        int damage = (attack_power/10) * 15 * multiplier - player.Defence_Power;
-        player.TakeDamage(damage);
-        hud.DialogueText.text = "Enemy A attacks and deals " + damage + " damage!";
-        
-        StartCoroutine(EndTurn());
-    }
-
-    private void Heal()
-    {
-        int healthToRestore = (Random.value > 0.7f) ? 10 : 5;
-        health_points += healthToRestore;
-        
-        if (health_points > 100)
+        int damage = Mathf.RoundToInt(attack_power + Random.Range(5,10) * crit_multiplier - player.Defence_Power);
+        if (damage < 5)
         {
-            health_points = 100;
+            damage = 5;
         }
         
-        hud.setEnemyHP(health_points);
-        magic_points -= 5;
-        string textToDisplay = "Enemy A uses Heal and restores " + healthToRestore + "HP";
+        string textToDisplay = enemy_Name +" attacks and deals " + damage + " damage!";
         
-        if (multiplier == 2)
+        if (crit_multiplier == 2)
         {
             textToDisplay += " Critical Hit!";
         }
 
-        hud.DialogueText.text = textToDisplay;
-        
-        StartCoroutine(EndTurn());
+        return (damage, textToDisplay);
     }
 
-    private void ElementalAttack()
+    private (int, String) ElementalAttack()
     {
         int rand = Random.Range(0, 100);
         
-        multiplier = (rand <= 8)? 2: 1;
+        crit_multiplier = (rand <= 5)? 2: 1;
         
-        int damage = (attack_power/10) * 25 * multiplier - player.Defence_Power;
-        player.TakeDamage(damage);
+        int damage = Mathf.RoundToInt(attack_power + Random.Range(15,20) * crit_multiplier - player.Defence_Power);
+        if (damage < 10)
+        {
+            damage = 10;
+        }
+        
         magic_points -= 5;
-        string textToDisplay = "Enemy A uses an Elemental Attack and deals " + damage + " damage!";
+        string textToDisplay = enemy_Name + " uses an Elemental Attack and deals " + damage + " damage!";
         
-        if (multiplier == 2)
+        if (crit_multiplier == 2)
         {
             textToDisplay += " Critical Hit!";
         }
-
-        hud.DialogueText.text = textToDisplay;
         
-        StartCoroutine(EndTurn());
+        return (damage, textToDisplay);
     }
 
     public void TakeDamage(int damage)
@@ -195,8 +130,7 @@ public class Grunt_Combat : MonoBehaviour
         {
             health_points = 0;
             dead = true;
-        } 
-        
-        hud.setEnemyHP(health_points);
+            gameObject.SetActive(false);
+        }
     }
 }

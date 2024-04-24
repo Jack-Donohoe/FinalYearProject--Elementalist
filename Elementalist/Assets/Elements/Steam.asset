@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   element_name: Steam
   steamblast: {fileID: 6663041814053919139, guid: fb31c035bab2f8544b46f04386cf1feb, type: 3}
-  speed: 4
-  damage_value: 25
-  magic_cost: 5
+  speed: 6
+  damage_value: 30
+  magic_cost: 15
   attack_name: Steam Blast
-  icon: {fileID: 2800000, guid: 60bd93c229ea6ee42bb7d74db941c6e3, type: 3}
+  icon: {fileID: 2800000, guid: 6488da2a38d0266419dffac812076e28, type: 3}
+  SFX: {fileID: 8300000, guid: b31e073c0ecf52b47b379b8ddfcc766f, type: 3}

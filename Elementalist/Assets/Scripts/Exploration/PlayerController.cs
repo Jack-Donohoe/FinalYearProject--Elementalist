@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -11,12 +12,13 @@ public class PlayerController : MonoBehaviour
     public Vector2 MoveComposite;
 
     public Transform MainCamera;
+    public CinemachineFreeLook FreeLookCamera;
     
     private CharacterController _controller;
 
-    public Vector3 _moveDirection;
+    public Vector3 MoveDirection;
     public float MoveSpeed;
-    private float _lookDampening = 25f;
+    private float lookDampening = 15f;
 
     private Animator _animator;
 
@@ -51,27 +53,27 @@ public class PlayerController : MonoBehaviour
 
         Vector3 moveDirection = cameraForward.normalized * MoveComposite.y + cameraRight.normalized * MoveComposite.x;
 
-        _moveDirection.x = moveDirection.x * MoveSpeed;
-        _moveDirection.z = moveDirection.z * MoveSpeed;
+        MoveDirection.x = moveDirection.x * MoveSpeed;
+        MoveDirection.z = moveDirection.z * MoveSpeed;
     }
 
     private void LookMoveDirection()
     {
-        Vector3 lookDirection = new(_moveDirection.x, 0f, _moveDirection.z);
+        Vector3 lookDirection = new(MoveDirection.x, 0f, MoveDirection.z);
 
         if (lookDirection == Vector3.zero)
         {
             return;
         }
         
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookDirection), _lookDampening * Time.deltaTime);
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookDirection), lookDampening * Time.deltaTime);
     }
 
     private void Move()
     {
-        _controller.Move(_moveDirection * Time.deltaTime);
+        _controller.Move(MoveDirection * Time.deltaTime);
 
-        if (_moveDirection.x != 0 || _moveDirection.y != 0)
+        if (MoveDirection.x != 0 || MoveDirection.y != 0)
         {
             _animator.SetBool("Walking", true);
         }

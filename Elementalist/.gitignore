@@ -13,6 +13,8 @@
 /[Ll]ogs/
 /[Uu]ser[Ss]ettings/
 
+!/[Ll]ibrary/*.asset
+
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
 /[Mm]emoryCaptures/
@@ -72,3 +74,10 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
 # End of https://www.toptal.com/developers/gitignore/api/unity
+
+Library/ArtifactDB
+Library\ArtifactDB
+ArtifactDB
+\ArtifactDB
+/ArtifactDB
+*ArtifactDB

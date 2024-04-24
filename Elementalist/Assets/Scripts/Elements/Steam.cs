@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Steam", menuName = "Elements/Steam", order = 2)]
+[CreateAssetMenu(fileName = "Steam", menuName = "Elements/Steam", order = 5)]
 public class Steam : Element
 {
     [SerializeField] private string element_name;
@@ -18,6 +18,8 @@ public class Steam : Element
     [SerializeField] private string attack_name;
     
     [SerializeField] private Texture2D icon;
+    
+    [SerializeField] private AudioClip SFX;
     
     public override string GetName()
     {
@@ -52,5 +54,10 @@ public class Steam : Element
     public override Texture2D GetIcon()
     {
         return icon;
+    }
+    
+    public override AudioClip GetSFX()
+    {
+        return SFX;
     }
 }

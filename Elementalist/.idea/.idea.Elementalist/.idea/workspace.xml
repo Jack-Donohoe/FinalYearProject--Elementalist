@@ -6,26 +6,49 @@
   <component name="ChangeListManager">
     <list default="true" id="a963d819-7dda-485b-9ffe-5bea1ba9d47c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Elementalist/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Elementalist/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Exploration/Door.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Exploration/Door.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Elements/Air.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Elements/Air.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Elements/Earth.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Elements/Earth.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Elements/Fire.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Elements/Fire.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Elements/Ice.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Elements/Ice.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Elements/Lightning.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Elements/Lightning.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Elements/Magma.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Elements/Magma.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Elements/Sand.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Elements/Sand.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Elements/Steam.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Elements/Steam.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Elements/Water.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Elements/Water.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Elements/Wood.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Elements/Wood.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Exploration/Exploration HUD.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Exploration/Exploration HUD.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Level1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Level1.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Rooms/Torch.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Rooms/Torch.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/CombatScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/CombatScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/CombatScene/LightingData.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/CombatScene/LightingData.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/CombatScene/Lightmap-0_comp_dir.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/CombatScene/Lightmap-0_comp_dir.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/CombatScene/Lightmap-0_comp_light.exr" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/CombatScene/Lightmap-0_comp_light.exr" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/CombatScene/Lightmap-1_comp_dir.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/CombatScene/Lightmap-1_comp_dir.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/CombatScene/Lightmap-1_comp_light.exr" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/CombatScene/Lightmap-1_comp_light.exr" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/CombatScene/Lightmap-2_comp_dir.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/CombatScene/Lightmap-2_comp_dir.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/CombatScene/Lightmap-2_comp_light.exr" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/CombatScene/Lightmap-2_comp_light.exr" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/CombatScene/Lightmap-3_comp_dir.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/CombatScene/Lightmap-3_comp_dir.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/CombatScene/Lightmap-3_comp_light.exr" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/CombatScene/Lightmap-3_comp_light.exr" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/CombatScene/Lightmap-4_comp_dir.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/CombatScene/Lightmap-4_comp_dir.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/CombatScene/Lightmap-4_comp_light.exr" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/CombatScene/Lightmap-4_comp_light.exr" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/CombatScene/Lightmap-5_comp_dir.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/CombatScene/Lightmap-5_comp_dir.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/CombatScene/Lightmap-5_comp_light.exr" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/CombatScene/Lightmap-5_comp_light.exr" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Level2.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Level2.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Level3.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Level3.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/TestScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/TestScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/DataManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/DataManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Exploration/Door.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Exploration/Door.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Exploration/Exploration_HUD.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Exploration/Exploration_HUD.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MenuUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MenuUI.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ProcGen/ProcGenV4.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ProcGen/ProcGenV4.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Library/ArtifactDB" beforeDir="false" afterPath="$PROJECT_DIR$/Library/ArtifactDB" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Library/Bee/TundraBuildState.state" beforeDir="false" afterPath="$PROJECT_DIR$/Library/Bee/TundraBuildState.state" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Library/Bee/TundraBuildState.state.map" beforeDir="false" afterPath="$PROJECT_DIR$/Library/Bee/TundraBuildState.state.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Library/Bee/backend2.traceevents" beforeDir="false" afterPath="$PROJECT_DIR$/Library/Bee/backend2.traceevents" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Library/Bee/buildprogram0.traceevents" beforeDir="false" afterPath="$PROJECT_DIR$/Library/Bee/buildprogram0.traceevents" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Library/Bee/fullprofile.json" beforeDir="false" afterPath="$PROJECT_DIR$/Library/Bee/fullprofile.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Library/Bee/tundra.digestcache" beforeDir="false" afterPath="$PROJECT_DIR$/Library/Bee/tundra.digestcache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Library/ilpp.pid" beforeDir="false" afterPath="$PROJECT_DIR$/Library/ilpp.pid" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Combat/Grunt_Combat.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Combat/Grunt_Combat.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Combat/Player_Combat.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Combat/Player_Combat.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Elements/Air.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Elements/Air.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Elements/Earth.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Elements/Earth.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Elements/Element.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Elements/Element.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Elements/Fire.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Elements/Fire.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Elements/Ice.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Elements/Ice.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Elements/Lightning.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Elements/Lightning.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Elements/Magma.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Elements/Magma.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Elements/Sand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Elements/Sand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Elements/Steam.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Elements/Steam.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Elements/Water.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Elements/Water.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Elements/Wood.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Elements/Wood.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Exploration/UI/Exploration_HUD.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Exploration/UI/Exploration_HUD.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Exploration/UI/InventoryMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Exploration/UI/InventoryMenu.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,20 +60,29 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/56073df97ede4f769c2cc45d546d986d172200/33/cd352b64/GameObject.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/e4e9310d6e504b9195be7c4cd0c0cfcd574c30/70/ba25e9eb/List`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Combat/Grunt_Combat.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Combat/Hover_On_Button.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Elements/Earth.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Elements/Element.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Elements/Fire.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Elements/Ice.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Elements/Sand.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Elements/Steam.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Elements/Water.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Exploration/Door.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Exploration/Exploration_HUD.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Exploration/Level Exit.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Exploration/Player_Exploration.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Exploration/Room_Light.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Exploration/UI/InventoryMenu.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Exploration/UI/PauseMenu.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/PrefabLightmapData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/ProcGen/AStar_Test.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/ProcGen/ProcGenV4.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/ProcGen/Room.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Projectile.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ai.navigation@1.1.5/Runtime/NavMeshSurface.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.cinemachine@2.9.7/Runtime/Behaviours/CinemachineFreeLook.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.cinemachine@2.9.7/Runtime/Helpers/CinemachineInputProvider.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.core@14.0.8/Runtime/Utilities/ResourceReloader.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.shadergraph@14.0.8/Editor/Data/Implementation/GraphObject.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
@@ -63,28 +95,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Attach to Unity Editor.Attach to Unity Editor.executor&quot;: &quot;Debug&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Prototype-3-Mar&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Attach to Unity Editor.Attach to Unity Editor.executor": "Debug",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "Final-Prototype-Apr",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;rider.external.source.directories&quot;: [
-      &quot;C:\\Users\\Jack\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\DecompilerCache&quot;,
-      &quot;C:\\Users\\Jack\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\SourcesCache&quot;,
-      &quot;C:\\Users\\Jack\\AppData\\Local\\Symbols\\src&quot;
+  "keyToStringList": {
+    "rider.external.source.directories": [
+      "C:\\Users\\Jack\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\DecompilerCache",
+      "C:\\Users\\Jack\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\SourcesCache",
+      "C:\\Users\\Jack\\AppData\\Local\\Symbols\\src"
     ]
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Standalone Player" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="D:/Documents/College/Final Year Project/Builds\Elementalist.exe" />
@@ -247,6 +279,30 @@
       <workItem from="1711669356826" duration="4729000" />
       <workItem from="1711729218614" duration="10311000" />
       <workItem from="1712008930251" duration="1326000" />
+      <workItem from="1712317309102" duration="17317000" />
+      <workItem from="1712514455455" duration="8767000" />
+      <workItem from="1712567932949" duration="2829000" />
+      <workItem from="1712702299342" duration="8488000" />
+      <workItem from="1712738684446" duration="980000" />
+      <workItem from="1712752785496" duration="1452000" />
+      <workItem from="1712755180955" duration="1999000" />
+      <workItem from="1712758396220" duration="437000" />
+      <workItem from="1712852510461" duration="1974000" />
+      <workItem from="1712863727614" duration="23519000" />
+      <workItem from="1712959238622" duration="4291000" />
+      <workItem from="1713023143208" duration="13301000" />
+      <workItem from="1713110204767" duration="1072000" />
+      <workItem from="1713240892687" duration="3122000" />
+      <workItem from="1713277597530" duration="2785000" />
+      <workItem from="1713381580105" duration="3532000" />
+      <workItem from="1713396560711" duration="614000" />
+      <workItem from="1713399553411" duration="115000" />
+      <workItem from="1713554357853" duration="13906000" />
+      <workItem from="1713643047956" duration="8411000" />
+      <workItem from="1713710195195" duration="17844000" />
+      <workItem from="1713779597341" duration="1256000" />
+      <workItem from="1713788991960" duration="949000" />
+      <workItem from="1713816645082" duration="3957000" />
     </task>
     <servers />
   </component>

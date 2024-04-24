@@ -9,19 +9,26 @@ public class CombatHUD : MonoBehaviour
 {
     public TMP_Text DialogueText; 
     public Slider PlayerHPSlider;
-    public Slider EnemyHPSlider;
     public Slider MPSlider;
 
-    public GameObject CombatUI, PauseMenu, AttackButton, ElementalAttackButton, HealButton;
+    public GameObject CombatPanel, RewardPanel;
 
-    public void Start()
+    public GameObject PauseMenu, PlayerInfo, ActionPanel, TargetPanel, ElementPanel;
+
+    public GameObject RewardsScreen, LevelUpScreen;
+    public TMP_Text EnemiesDefeated, XPGained, ElementAdded, LevelUpHP, LevelUpMP, LevelUpAttack, LevelUpDefence;
+
+    public Button[] targetButtons, elementButtons;
+
+    public Button backButton;
+
+    public void StartUp()
     {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        PlayerHPSlider.maxValue = player.GetComponent<Player_Combat>().Max_Health;
-        MPSlider.maxValue = player.GetComponent<Player_Combat>().Max_Magic;
+        PlayerHPSlider.maxValue = GameManager.Instance.Max_Health;
+        MPSlider.maxValue = GameManager.Instance.Max_Magic;
 
-        GameObject enemy = GameObject.FindGameObjectWithTag("CombatManager").GetComponent<Combat_Manager>().GetEnemy(0);
-        EnemyHPSlider.maxValue = enemy.GetComponent<Grunt_Combat>().HP;
+        PlayerHPSlider.value = GameManager.Instance.HP;
+        MPSlider.value = GameManager.Instance.MP;
     }
 
     public void Update()
@@ -47,7 +54,7 @@ public class CombatHUD : MonoBehaviour
     private void LoadPauseMenu()
     {
         Time.timeScale = 0f;
-        CombatUI.SetActive(false);
+        CombatPanel.SetActive(false);
         
         if (PauseMenu.activeSelf)
         {
@@ -61,7 +68,82 @@ public class CombatHUD : MonoBehaviour
     {
         Time.timeScale = 1f;
         menu.SetActive(false);
-        CombatUI.SetActive(true);
+        CombatPanel.SetActive(true);
+    }
+    
+    public void TogglePlayerActions()
+    {
+        PlayerInfo.SetActive(!PlayerInfo.activeSelf);
+        TargetPanel.SetActive(false);
+        ActionPanel.SetActive(true);
+    }
+    
+    public void RefreshTargetButtons(GameObject[] enemies)
+    {
+        for (int i = 0; i < enemies.Length; i++)
+        {
+            TMP_Text buttonText = targetButtons[i].transform.Find("Text").GetComponent<TMP_Text>();
+
+            buttonText.text = !enemies[i].GetComponent<Grunt_Combat>().Dead ? enemies[i].GetComponent<Grunt_Combat>().enemy_Name : "";
+        }
+    }
+    
+    public void RefreshElementButtons()
+    {
+        List<Element> elements = GameManager.Instance.elementInventory;
+        
+        for (int i = 0; i < elements.Count; i++)
+        {
+            TMP_Text buttonText = elementButtons[i].transform.Find("Text").GetComponent<TMP_Text>();
+            buttonText.text = elements[i].GetName();
+        }
+    }
+
+    public IEnumerator ShowRewardsPanel(int enemiesDefeated, int xp, Element elementAdded)
+    {
+        yield return new WaitForSeconds(1.5f);
+        CombatPanel.SetActive(false);
+        RewardPanel.SetActive(true);
+        
+        EnemiesDefeated.text = "Enemies Defeated: " + enemiesDefeated;
+        XPGained.text = "XP Gained: " + enemiesDefeated + " x " + xp /enemiesDefeated + " = " + xp + "xp";
+
+        if (elementAdded != null)
+        {
+            ElementAdded.text = "Element Added: " + elementAdded.GetName();
+        }
+        else
+        {
+            ElementAdded.text = "Element Added: None";
+        }
+    }
+
+    public IEnumerator ShowLevelUpPanel()
+    {
+        yield return new WaitForSeconds(1.5f);
+        RewardsScreen.SetActive(false);
+        LevelUpScreen.SetActive(true);
+    }
+
+    public void OnBackButton()
+    {
+        if (TargetPanel.activeSelf)
+        {
+            TargetPanel.SetActive(false);
+        }
+        else if (ElementPanel)
+        {
+            ElementPanel.SetActive(false);
+        }
+        
+        ActionPanel.SetActive(true);
+        backButton.gameObject.SetActive(false);
+    }
+
+    public void HideLevelUpPanel()
+    {
+        LevelUpScreen.SetActive(false);
+        RewardsScreen.SetActive(true);
     }
     
     public void OnMainMenuButton()
@@ -75,25 +157,18 @@ public class CombatHUD : MonoBehaviour
         Application.Quit();
     }
 
+    public void OnReturnToLevelButton()
+    {
+        GameManager.Instance.ReturnToLevel();
+    }
+
     public void setPlayerHP(int hp)
     {
        PlayerHPSlider.value = hp;
     }
 
-    public void setEnemyHP(int hp)
-    {
-        EnemyHPSlider.value = hp;
-    }
-
     public void setMP(int mp)
     {
         MPSlider.value = mp;
-    }
-
-    public void TogglePlayerActions()
-    {
-        AttackButton.SetActive(!AttackButton.activeSelf);
-        ElementalAttackButton.SetActive(!ElementalAttackButton.activeSelf);
-        HealButton.SetActive(!HealButton.activeSelf);
     }
 }

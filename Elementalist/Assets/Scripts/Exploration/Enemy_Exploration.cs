@@ -9,7 +9,8 @@ public class Enemy_Exploration : MonoBehaviour
     public enum State
     {
         Patrol,
-        PlayerDetected
+        PlayerDetected,
+        Guardian
     }
 
     public State enemyState;
@@ -24,13 +25,13 @@ public class Enemy_Exploration : MonoBehaviour
     GameObject player;
     private Transform lastPlayerPos;
 
-    private float timer;
+    public Element enemyElement;
+
+    public bool eliteEnemy;
 
     // Update is called once per frame
     void Update()
     {
-        timer += Time.deltaTime;
-        
         switch (enemyState)
         {
             case State.Patrol:
@@ -40,7 +41,6 @@ public class Enemy_Exploration : MonoBehaviour
                 if (Vector3.Distance(transform.position, target.position) < 1.5)
                 {
                     waypointCount = Random.Range(0, waypoints.Length);
-                    //if (waypointCount > waypoints.Length - 1) waypointCount = 0;
                 }
                 
                 break;
@@ -51,10 +51,18 @@ public class Enemy_Exploration : MonoBehaviour
                 target = player.transform;
                 break;
             }
+            
+            case State.Guardian:
+                GetComponent<NavMeshAgent>().enabled = false;
+                break;
         }
-        
-        LookForPlayer();
-        enemyAgent.SetDestination(target.position);
+
+        if (!eliteEnemy)
+        {
+            LookForPlayer();
+            DetectPlayerNearby();
+            enemyAgent.SetDestination(target.position);
+        }
     }
     
     public void Setup()
@@ -91,7 +99,7 @@ public class Enemy_Exploration : MonoBehaviour
         ray.origin = transform.position + Vector3.up * 0.7f;
         string seenObject = "";
 
-        float castDistance = 10;
+        float castDistance = 20;
         ray.direction = transform.forward * castDistance;
         Debug.DrawRay(ray.origin, ray.direction * castDistance, Color.red);
 
@@ -107,6 +115,18 @@ public class Enemy_Exploration : MonoBehaviour
             {
                 enemyState = State.Patrol;
             }
+        }
+    }
+
+    void DetectPlayerNearby()
+    {
+        if (Vector3.Distance(transform.position, player.transform.position) < 10)
+        {
+            enemyState = State.PlayerDetected;
+        } 
+        else
+        {
+            enemyState = State.Patrol;
         }
     }
 

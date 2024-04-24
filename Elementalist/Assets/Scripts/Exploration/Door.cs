@@ -5,49 +5,27 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-    public GameObject warpPoint;
-    private bool nearDoor;
+    private GameObject player;
 
     private void Start()
     {
-        // if (gameObject.name == "Teleporter 1")
-        // {
-        //     warpPoint = transform.parent.Find("WarpPoint 2").gameObject;
-        // }
-        // else if (gameObject.name == "Teleporter 2")
-        // {
-        //     warpPoint = transform.parent.Find("WarpPoint 1").gameObject;
-        // }
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     private void Update()
     {
-        HandleDoor();
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player"))
+        if (Vector3.Distance(transform.position, player.transform.position) < 2f)
         {
-            nearDoor = true;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            nearDoor = false;
+            HandleDoor();
         }
     }
 
     void HandleDoor()
     {
-        if (nearDoor && Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            GameObject player = GameObject.FindGameObjectWithTag("Player");
             player.GetComponent<CharacterController>().enabled = false;
-            player.transform.position = new Vector3(warpPoint.transform.position.x, 0.25f, warpPoint.transform.position.z);
+            player.transform.position = new Vector3(player.transform.position.x + player.transform.forward.normalized.x, 0.25f, player.transform.position.z + player.transform.forward.normalized.z);
             player.GetComponent<CharacterController>().enabled = true;
         }
     }

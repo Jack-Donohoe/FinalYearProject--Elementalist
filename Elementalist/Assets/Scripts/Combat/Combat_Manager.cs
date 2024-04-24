@@ -1,13 +1,24 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Combat_Manager : MonoBehaviour
 {
     public CombatHUD hud;
     
-    public GameObject[] enemies;
+    public GameObject[] enemyTypes;
+
+    public GameObject[] spawnedEnemies;
+
+    private Vector3[] spawnLocations =
+    {
+        new (-4.5f, 1.5f, 0f), 
+        new (-1.5f, 1.5f, 0f), 
+        new (1.5f, 1.5f, 0f), 
+        new (4.5f, 1.5f, 0f),
+    };
 
     enum BattleState { PlayerTurn, EnemyTurn, Player_Won, Player_Lost }
 
@@ -15,37 +26,122 @@ public class Combat_Manager : MonoBehaviour
     
     private Player_Combat player;
 
-    private void Awake()
-    {
-        enemies = GameObject.FindGameObjectsWithTag("Enemy");
-    }
+    private (int, string, int)[] enemyActions;
 
-    // Start is called before the first frame update
-    void Start()
+    private bool allEnemiesDead;
+
+    private bool started = false;
+
+    private void Start()
     {
         state = BattleState.PlayerTurn;
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player_Combat>();
+        
         player.StartTurn();
         hud.DialogueText.text = "Player Turn";
+
+        allEnemiesDead = true;
     }
 
     private void Update()
     {
-        if (state != BattleState.Player_Won && state != BattleState.Player_Lost)
+        if (started)
         {
-            if (player.Dead)
+            if (state != BattleState.Player_Won && state != BattleState.Player_Lost)
             {
-                state = BattleState.Player_Lost;
-                EndCombat();
-            }
+                if (player.Dead)
+                {
+                    state = BattleState.Player_Lost;
+                    StartCoroutine(EndCombat());
+                }
 
-            if (enemies[0].GetComponent<Grunt_Combat>().Dead)
-            {
-                state = BattleState.Player_Won;
-                enemies[0].SetActive(false);
-                EndCombat();
+                for (int i = 0; i < spawnedEnemies.Length; i++)
+                {
+                    if (spawnedEnemies[i].GetComponent<Grunt_Combat>().Dead)
+                    {
+                        allEnemiesDead = true;
+                    }
+                    else
+                    {
+                        allEnemiesDead = false;
+                        return;
+                    }
+                }
+
+                if (allEnemiesDead)
+                {
+                    state = BattleState.Player_Won;
+                    StartCoroutine(EndCombat());
+                }
             }
         }
+    }
+
+    public IEnumerator StartUp(Element enemyElement, bool eliteEnemy)
+    {
+        yield return new WaitForNextFrameUnit();
+        
+        int enemyAmount = Mathf.CeilToInt((float) GameManager.Instance.playerLevel / GameManager.Instance.levelInt);
+
+        if (eliteEnemy)
+        {
+            enemyAmount = 1;
+        } else if (enemyAmount > 4)
+        {
+            enemyAmount = 4;
+        }
+        
+        SpawnEnemies(enemyElement, enemyAmount, eliteEnemy);
+        
+        started = true;
+        hud.StartUp();
+        player.SetEnemies();
+        enemyActions = new (int, string, int)[spawnedEnemies.Length];
+    }
+
+    void SpawnEnemies(Element enemyElement, int amount, bool eliteEnemy)
+    {
+        spawnedEnemies = new GameObject[amount];
+        
+        for (int i = 0; i < amount; i++)
+        {
+            Vector3 spawnLocation;
+            
+            if (amount == 1)
+            {
+                spawnLocation = new Vector3(0f, 1.5f, 0f);
+            }
+            else if (amount == 2)
+            {
+                spawnLocation = spawnLocations[i + 1];
+            }
+            else
+            {
+                spawnLocation = spawnLocations[i];
+            }
+            
+            foreach (GameObject enemyType in enemyTypes)
+            {
+                if (enemyType.GetComponent<Grunt_Combat>().element == enemyElement && enemyType.GetComponent<Grunt_Combat>().eliteEnemy == eliteEnemy)
+                {
+                    Debug.Log(enemyElement.GetName());
+                    spawnedEnemies[i] = Instantiate(enemyType, spawnLocation, Quaternion.Euler(new Vector3(0f,180f,0f)));
+
+                    Grunt_Combat gruntCombat = spawnedEnemies[i].GetComponent<Grunt_Combat>();
+
+                    String enemyName = gruntCombat.element.GetName() + " " + gruntCombat.enemy_Name;
+
+                    if (eliteEnemy == false)
+                    {
+                        enemyName = enemyName + " " + (i + 1);
+                        Debug.Log(enemyName);
+                    }
+                    
+                    spawnedEnemies[i].GetComponent<Grunt_Combat>().enemy_Name = enemyName;
+                }
+            }
+        }
+        hud.RefreshTargetButtons(spawnedEnemies);
     }
 
     public void ChangeTurn()
@@ -54,27 +150,100 @@ public class Combat_Manager : MonoBehaviour
         {
             state = BattleState.EnemyTurn;
             hud.DialogueText.text = "Enemy Turn";
-            
-            StartCoroutine(enemies[0].GetComponent<Grunt_Combat>().StartTurn());
+
+            StartCoroutine(EnemyTurn());
         } else if (state == BattleState.EnemyTurn)
         {
             state = BattleState.PlayerTurn;
             hud.DialogueText.text = "Player Turn";
             
             player.StartTurn();
+            hud.RefreshTargetButtons(spawnedEnemies);
         }
     }
 
-    void EndCombat()
+    IEnumerator EnemyTurn()
     {
+        int aliveEnemyCount = 0;
+
+        for (int i = 0; i < spawnedEnemies.Length; i++)
+        {
+            if (!spawnedEnemies[i].GetComponent<Grunt_Combat>().Dead)
+            {
+                aliveEnemyCount++;
+            }
+        }
+        
+        enemyActions = new (int, string, int)[aliveEnemyCount];
+
+        int actionNum = 0;
+        for (int i = 0; i < spawnedEnemies.Length; i++)
+        {
+            if (!spawnedEnemies[i].GetComponent<Grunt_Combat>().Dead)
+            {
+                (int, string) action = spawnedEnemies[i].GetComponent<Grunt_Combat>().SelectAction();
+                enemyActions[actionNum] = (action.Item1, action.Item2, i);
+                actionNum++;
+            }
+        }
+        
+        for (int i = 0; i < enemyActions.Length; i++)
+        {
+            if (!player.Dead)
+            {
+                (int, string, int) action = enemyActions[i];
+                hud.DialogueText.text =
+                    spawnedEnemies[action.Item3].GetComponent<Grunt_Combat>().enemy_Name + "'s Turn";
+
+                StartCoroutine(EnemyAction(action.Item1, action.Item2, i));
+                yield return new WaitForSecondsRealtime(1.5f);
+            }
+        }
+    }
+
+    IEnumerator EnemyAction(int damage, string dialogue, int counter)
+    {
+        player.TakeDamage(damage);
+        hud.DialogueText.text = dialogue;
+
+        counter++;
+
+        if (counter == enemyActions.Length)
+        {
+            yield return new WaitForSecondsRealtime(2f);
+            ChangeTurn();
+        }
+    }
+
+    IEnumerator EndCombat()
+    {
+        yield return new WaitForSeconds(1f);
         if (state == BattleState.Player_Won)
         {
             hud.DialogueText.text = "Player Wins!";
             
-            (int, int) combatRewards = player.CalculateCombatRewards();
-            GameManager.Instance.SetPlayerResources(combatRewards.Item1, combatRewards.Item2);  
+            (int, int, int) combatRewards = player.CalculateCombatRewards();
+            GameManager.Instance.SetPlayerResources(combatRewards.Item1, combatRewards.Item2);
+            int xpToAdd = combatRewards.Item3;
+
+            Element elementToAdd;
+
+            if (!GameManager.Instance.elementInventory.Contains(spawnedEnemies[0].GetComponent<Grunt_Combat>().element) && GameManager.Instance.elementInventory.Count < 4)
+            {
+                elementToAdd = spawnedEnemies[0].GetComponent<Grunt_Combat>().element;
+                GameManager.Instance.elementInventory.Add(elementToAdd);
+            }
+            else
+            {
+                elementToAdd = null;
+            }
             
-            StartCoroutine(GameManager.Instance.ReturnToLevel());
+            StartCoroutine(hud.ShowRewardsPanel(spawnedEnemies.Length, xpToAdd, elementToAdd));
+
+            if (GameManager.Instance.CheckLevelUp(xpToAdd))
+            {
+                StartCoroutine(hud.ShowLevelUpPanel());
+            }
         } else if (state == BattleState.Player_Lost)
         {
             hud.DialogueText.text = "Player was Defeated";
@@ -84,6 +253,6 @@ public class Combat_Manager : MonoBehaviour
 
     public GameObject GetEnemy(int i)
     {
-        return enemies[i];
+        return spawnedEnemies[i];
     }
 }

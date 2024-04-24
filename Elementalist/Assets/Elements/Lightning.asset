@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e307fe3c36bdc2d42826d8f432655e30, type: 3}
+  m_Name: Lightning
+  m_EditorClassIdentifier: 
+  element_name: Lightning
+  lightningball: {fileID: 1174626008990664587, guid: 4f4715992815afd49ac0794018f7e92b, type: 3}
+  speed: 10
+  damage_value: 35
+  magic_cost: 20
+  attack_name: Lightning Ball
+  icon: {fileID: 2800000, guid: cf4f4371c1be571429f688d0c6f840e0, type: 3}
+  SFX: {fileID: 8300000, guid: 99e61096c85e5194a9fc24ea595946e3, type: 3}
